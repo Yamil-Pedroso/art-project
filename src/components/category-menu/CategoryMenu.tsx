@@ -16,7 +16,7 @@ const categories = [
   "Rarisity",
   "Daily Sketching",
   "Exhibitions & Collectors",
-  "Art CV",
+  "Art Curriculum",
 ] as const;
 
 const CategoryMenu: React.FC<CategoryMenuProps> = ({
@@ -37,8 +37,8 @@ const CategoryMenu: React.FC<CategoryMenuProps> = ({
                     : "border-transparent bg-white/55 text-[#4c5550] hover:-translate-y-0.5 hover:border-[#b5502d]/40 hover:bg-white hover:text-[#b5502d] hover:shadow-sm"
                 }`}
             >
-              {category === "Art CV" ? (
-                <div>Art CV</div>
+              {category === "Art Curriculum" ? (
+                <div>Art Curriculum</div>
               ) : (
                 <span>{category}</span>
               )}

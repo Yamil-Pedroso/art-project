@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Route as ArtWorkDetailsRoute } from "@/routes/work-details/$workId";
 import { useNavigate } from "@tanstack/react-router";
@@ -17,6 +17,7 @@ import DailySketchbook from "../daily-sketchbook/DailySketchbook";
 
 const ArtGallery = () => {
   const navigate = useNavigate();
+  const galleryContentRef = useRef<HTMLDivElement>(null);
 
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,13 +29,26 @@ const ArtGallery = () => {
     });
   };
 
+  const scrollToGalleryContent = () => {
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        galleryContentRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      });
+    });
+  };
+
   const handleCategorySelect = (category: string) => {
     setSelectedCategory(category);
+    scrollToGalleryContent();
   };
 
   const handleNavCategory = (category: string) => {
     setSelectedCategory(category);
     setIsMenuOpen(false);
+    scrollToGalleryContent();
   };
 
   const filteredArtworks =
@@ -94,25 +108,25 @@ const ArtGallery = () => {
                 Home
               </a>
               <a
-                href="#gallery"
+                href="#gallery-content"
                 onClick={() => handleNavCategory("All")}
                 className="transition hover:text-[#b5502d]"
               >
                 Gallery
               </a>
               <a
-                href="#gallery"
+                href="#gallery-content"
                 onClick={() => handleNavCategory("Exhibitions & Collectors")}
                 className="transition hover:text-[#b5502d]"
               >
                 Exhibitions
               </a>
               <a
-                href="#gallery"
-                onClick={() => handleNavCategory("Art CV")}
+                href="#gallery-content"
+                onClick={() => handleNavCategory("Art Curriculum")}
                 className="transition hover:text-[#b5502d]"
               >
-                Art CV
+                Art Curriculum
               </a>
               <a
                 href="#contact"
@@ -162,14 +176,14 @@ const ArtGallery = () => {
                     Home
                   </a>
                   <a
-                    href="#gallery"
+                    href="#gallery-content"
                     onClick={() => handleNavCategory("All")}
                     className="border-b border-[#172019]/10 py-3"
                   >
                     Gallery
                   </a>
                   <a
-                    href="#gallery"
+                    href="#gallery-content"
                     onClick={() =>
                       handleNavCategory("Exhibitions & Collectors")
                     }
@@ -178,11 +192,11 @@ const ArtGallery = () => {
                     Exhibitions
                   </a>
                   <a
-                    href="#gallery"
-                    onClick={() => handleNavCategory("Art CV")}
+                    href="#gallery-content"
+                    onClick={() => handleNavCategory("Art Curriculum")}
                     className="border-b border-[#172019]/10 py-3"
                   >
-                    Art CV
+                    Art Curriculum
                   </a>
                   <a
                     href={`tel:${contactDetails.phoneHref}`}
@@ -271,53 +285,62 @@ const ArtGallery = () => {
           activeCategory={selectedCategory}
         />
 
-        {selectedCategory === "Daily Sketching" ? (
-          <AnimatePresence mode="wait">
-            <motion.div
-              key="daily-sketching"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.55 }}
-            >
-              <DailySketchbook />
-            </motion.div>
-          </AnimatePresence>
-        ) : selectedCategory === "Art CV" ? (
-          <motion.div
-            initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <ArtCV />
-          </motion.div>
-        ) : selectedCategory === "Exhibitions & Collectors" ? (
-          <AnimatePresence mode="wait">
+        <div
+          ref={galleryContentRef}
+          id="gallery-content"
+          className="scroll-mt-5 sm:scroll-mt-7"
+        >
+          {selectedCategory === "Daily Sketching" ? (
+            <AnimatePresence mode="wait">
+              <motion.div
+                key="daily-sketching"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.55 }}
+              >
+                <DailySketchbook />
+              </motion.div>
+            </AnimatePresence>
+          ) : selectedCategory === "Art Curriculum" ? (
             <motion.div
               initial={{ opacity: 0, y: -50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <ExhibitionCollector />
+              <ArtCV />
             </motion.div>
-          </AnimatePresence>
-        ) : filteredArtworks.length === 0 ? (
-          <EmptyCollection
-            category={selectedCategory}
-            onExploreAll={() => setSelectedCategory("All")}
-          />
-        ) : (
-          <div className="grid w-full grid-cols-1 gap-x-6 gap-y-14 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-            {filteredArtworks.map((artwork, index) => (
-              <UICard
-                key={artwork.id}
-                artwork={artwork}
-                index={index}
-                onClick={() => handleArtworkClick(artwork.id as number)}
-              />
-            ))}
-          </div>
-        )}
+          ) : selectedCategory === "Exhibitions & Collectors" ? (
+            <AnimatePresence mode="wait">
+              <motion.div
+                initial={{ opacity: 0, y: -50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                <ExhibitionCollector />
+              </motion.div>
+            </AnimatePresence>
+          ) : filteredArtworks.length === 0 ? (
+            <EmptyCollection
+              category={selectedCategory}
+              onExploreAll={() => {
+                setSelectedCategory("All");
+                scrollToGalleryContent();
+              }}
+            />
+          ) : (
+            <div className="grid w-full grid-cols-1 gap-x-6 gap-y-14 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+              {filteredArtworks.map((artwork, index) => (
+                <UICard
+                  key={artwork.id}
+                  artwork={artwork}
+                  index={index}
+                  onClick={() => handleArtworkClick(artwork.id as number)}
+                />
+              ))}
+            </div>
+          )}
+        </div>
       </section>
       <ContactSection />
       <Footer />
