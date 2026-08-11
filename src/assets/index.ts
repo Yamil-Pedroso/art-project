@@ -23,6 +23,9 @@ import exhib12 from "./images/exhibitions-collectors/exhib12.jpeg";
 import exhib13 from "./images/exhibitions-collectors/exhib13.jpeg";
 import exhib14 from "./images/exhibitions-collectors/exhib14.jpeg";
 
+// Master copy collection
+import master1 from "./images/master-copy/mc_01.jpeg";
+
 import digital1 from "./images/digital/digital.jpg";
 import cagueiro from "./images/digital/cagueiro.jpg";
 import earth from "./images/digital/earth.jpg";
@@ -64,6 +67,7 @@ const imageAssets: ImageAssets = {
   exhib12,
   exhib13,
   exhib14,
+  master1,
   pet1,
   pet2,
   pet3,

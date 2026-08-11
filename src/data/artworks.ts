@@ -169,4 +169,14 @@ export const artworks: ArtWorkProps[] = [
     imageUrl: imageAssets.blueTone,
     category: "Digital Art",
   },
+  {
+    id: 19,
+    title: "Anatomy Lesson — Master Study",
+    medium: "Oil on canvas",
+    dimensions: "",
+    description:
+      "A master-copy study exploring dramatic light, collective attention and the expressive tension of a timeless figurative composition.",
+    imageUrl: imageAssets.master1,
+    category: "Master copies",
+  },
 ];
