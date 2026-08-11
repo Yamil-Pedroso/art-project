@@ -1,9 +1,19 @@
+import { useState, type MouseEvent } from "react";
 import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { Route } from "../../routes/work-details/$workId";
 import { artworks } from "@/data/artworks";
 
+interface ZoomPosition {
+  x: number;
+  y: number;
+  xPercent: number;
+  yPercent: number;
+}
+
 const WorkDetails = () => {
+  const [zoomPosition, setZoomPosition] = useState<ZoomPosition | null>(null);
+  const [isImageZoomed, setIsImageZoomed] = useState(false);
   const { workId } = Route.useParams();
   const currentIndex = artworks.findIndex(
     (artwork) => artwork.id === Number(workId)
@@ -37,6 +47,40 @@ const WorkDetails = () => {
   const nextArtwork =
     artworks[currentIndex === artworks.length - 1 ? 0 : currentIndex + 1];
   const collectionNumber = String(currentIndex + 1).padStart(2, "0");
+
+  const handleZoomMove = (event: MouseEvent<HTMLElement>) => {
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const x = Math.max(0, Math.min(event.clientX - bounds.left, bounds.width));
+    const y = Math.max(0, Math.min(event.clientY - bounds.top, bounds.height));
+
+    setZoomPosition({
+      x,
+      y,
+      xPercent: (x / bounds.width) * 100,
+      yPercent: (y / bounds.height) * 100,
+    });
+  };
+
+  const handleImageClick = (event: MouseEvent<HTMLDivElement>) => {
+    if (!isImageZoomed) {
+      handleZoomMove(event);
+    }
+
+    setIsImageZoomed((isZoomed) => !isZoomed);
+  };
+
+  const toggleResponsiveZoom = () => {
+    if (!isImageZoomed && !zoomPosition) {
+      setZoomPosition({
+        x: 0,
+        y: 0,
+        xPercent: 50,
+        yPercent: 50,
+      });
+    }
+
+    setIsImageZoomed((isZoomed) => !isZoomed);
+  };
 
   return (
     <main className="relative min-h-screen w-full overflow-hidden bg-[#f5f2eb] text-[#172019]">
@@ -74,11 +118,115 @@ const WorkDetails = () => {
               className="absolute inset-0 scale-110 bg-cover bg-center opacity-[0.16] blur-3xl"
               style={{ backgroundImage: `url(${artwork.imageUrl})` }}
             />
-            <img
-              src={artwork.imageUrl}
-              alt={artwork.title}
-              className="relative z-10 max-h-full max-w-full object-contain shadow-[0_16px_45px_rgba(20,24,21,0.22)]"
-            />
+            <div
+              onMouseMove={handleZoomMove}
+              onMouseLeave={() => {
+                setZoomPosition(null);
+                setIsImageZoomed(false);
+              }}
+              onClick={handleImageClick}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  setIsImageZoomed((isZoomed) => !isZoomed);
+                }
+              }}
+              aria-label={
+                isImageZoomed
+                  ? "Reset enlarged artwork"
+                  : "Click to enlarge artwork"
+              }
+              className={`relative z-10 max-h-full max-w-full overflow-hidden shadow-[0_16px_45px_rgba(20,24,21,0.22)] outline-none ring-[#b5502d] focus-visible:ring-2 ${
+                isImageZoomed ? "cursor-zoom-out" : "cursor-zoom-in"
+              }`}
+            >
+              <img
+                src={artwork.imageUrl}
+                alt={artwork.title}
+                draggable={false}
+                className="block max-h-[calc(100svh-13.5rem)] max-w-full select-none object-contain transition-transform duration-300 ease-out lg:max-h-[calc(100svh-13.5rem)]"
+                style={
+                  isImageZoomed
+                    ? {
+                        transform: "scale(2.45)",
+                        transformOrigin: zoomPosition
+                          ? `${zoomPosition.xPercent}% ${zoomPosition.yPercent}%`
+                          : "50% 50%",
+                      }
+                    : undefined
+                }
+              />
+
+              {zoomPosition && !isImageZoomed && (
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute hidden h-48 w-48 -translate-x-1/2 -translate-y-1/2 rounded-full border-4 border-[#f5f2eb]/90 bg-no-repeat shadow-[0_18px_55px_rgba(14,18,15,0.45)] lg:block xl:h-56 xl:w-56"
+                  style={{
+                    left: zoomPosition.x,
+                    top: zoomPosition.y,
+                    backgroundImage: `url(${artwork.imageUrl})`,
+                    backgroundSize: "340% 340%",
+                    backgroundPosition: `${zoomPosition.xPercent}% ${zoomPosition.yPercent}%`,
+                  }}
+                >
+                  <span className="absolute inset-1 rounded-full border border-[#172019]/20" />
+                </div>
+              )}
+            </div>
+            <span className="absolute right-7 top-7 z-20 hidden items-center bg-[#172019]/75 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-white backdrop-blur lg:inline-flex">
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                fill="none"
+                className="mr-2 h-4 w-4"
+              >
+                <circle cx="10.5" cy="10.5" r="6" stroke="currentColor" strokeWidth="1.6" />
+                <path d="m15 15 5 5M10.5 7.5v6M7.5 10.5h6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+              </svg>
+              {isImageZoomed
+                ? "Move cursor · Click to reset"
+                : "Hover to magnify · Click to zoom"}
+            </span>
+            <button
+              type="button"
+              onClick={toggleResponsiveZoom}
+              aria-label={
+                isImageZoomed
+                  ? "Reduce artwork image"
+                  : "Enlarge artwork image"
+              }
+              aria-pressed={isImageZoomed}
+              className="absolute right-4 top-4 z-30 inline-flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-white/30 bg-[#172019]/85 text-white shadow-[0_12px_35px_rgba(14,18,15,0.28)] backdrop-blur transition active:scale-95 sm:right-7 sm:top-7 lg:hidden"
+            >
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                fill="none"
+                className="h-6 w-6"
+              >
+                <circle
+                  cx="10.5"
+                  cy="10.5"
+                  r="6"
+                  stroke="currentColor"
+                  strokeWidth="1.7"
+                />
+                <path
+                  d="m15 15 5 5"
+                  stroke="currentColor"
+                  strokeWidth="1.7"
+                  strokeLinecap="round"
+                />
+                <path
+                  d={isImageZoomed ? "M7.5 10.5h6" : "M10.5 7.5v6M7.5 10.5h6"}
+                  stroke="currentColor"
+                  strokeWidth="1.7"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </button>
             <span className="absolute bottom-4 left-4 z-20 bg-[#f5f2eb]/90 px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#59615c] backdrop-blur sm:bottom-7 sm:left-7">
               Original artwork
             </span>

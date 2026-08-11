@@ -43,6 +43,53 @@ import artBrush from "./images/art-brush.png";
 
 import yamiAtelier from "./images/avatar/yami_atelier.jpg";
 
+// Fantasy Collection
+import fantasy1 from "./images/fantasy/fantasy1.jpg";
+import fantasy2 from "./images/fantasy/fantasy2.jpg";
+
+// Rarisity Collection
+import rarity1 from "./images/rarisity/1.webp";
+import rarity2 from "./images/rarisity/2.webp";
+import rarity3 from "./images/rarisity/3.webp";
+import rarity4 from "./images/rarisity/4.webp";
+import rarity5 from "./images/rarisity/5.webp";
+import rarity6 from "./images/rarisity/6.webp";
+import rarity7 from "./images/rarisity/7.webp";
+import rarity8 from "./images/rarisity/8.webp";
+import rarity9 from "./images/rarisity/9.webp";
+import rarity10 from "./images/rarisity/10.webp";
+import rarity11 from "./images/rarisity/11.webp";
+import rarity12 from "./images/rarisity/12.webp";
+import rarity13 from "./images/rarisity/13.webp";
+import rarity14 from "./images/rarisity/14.webp";
+import rarity15 from "./images/rarisity/15.webp";
+
+// Drawing Collection
+import drawing1 from "./images/drawings/draw1.jpg";
+import drawing2 from "./images/drawings/draw2.jpg";
+import drawing3 from "./images/drawings/draw3.jpg";
+import drawing4 from "./images/drawings/draw4.jpg";
+import drawing5 from "./images/drawings/draw5.jpg";
+import drawing6 from "./images/drawings/draw6.jpg";
+import drawing7 from "./images/drawings/draw7.jpg";
+import drawing8 from "./images/drawings/draw8.jpg";
+import drawing9 from "./images/drawings/draw9.jpg";
+import drawing10 from "./images/drawings/draw10.jpg";
+import drawing11 from "./images/drawings/draw11.jpg";
+import drawing12 from "./images/drawings/draw12.jpg";
+import drawing13 from "./images/drawings/draw13.jpg";
+import drawing14 from "./images/drawings/draw14.jpg";
+import drawing15 from "./images/drawings/draw15.jpg";
+import drawing16 from "./images/drawings/draw16.jpg";
+import drawing17 from "./images/drawings/draw17.jpg";
+import drawing18 from "./images/drawings/draw18.jpg";
+import drawing19 from "./images/drawings/draw19.jpg";
+import drawing20 from "./images/drawings/draw20.jpg";
+import drawing21 from "./images/drawings/draw21.jpg";
+import drawing22 from "./images/drawings/draw22.jpg";
+import drawing23 from "./images/drawings/draw23.jpg";
+import drawing24 from "./images/drawings/draw24.jpg";
+
 interface ImageAssets {
   [key: string]: string;
 }
@@ -84,6 +131,47 @@ const imageAssets: ImageAssets = {
   colorBoy,
   blueTone,
   artBrush,
+  fantasy1,
+  fantasy2,
+  rarity1,
+  rarity2,
+  rarity3,
+  rarity4,
+  rarity5,
+  rarity6,
+  rarity7,
+  rarity8,
+  rarity9,
+  rarity10,
+  rarity11,
+  rarity12,
+  rarity13,
+  rarity14,
+  rarity15,
+  drawing1,
+  drawing2,
+  drawing3,
+  drawing4,
+  drawing5,
+  drawing6,
+  drawing7,
+  drawing8,
+  drawing9,
+  drawing10,
+  drawing11,
+  drawing12,
+  drawing13,
+  drawing14,
+  drawing15,
+  drawing16,
+  drawing17,
+  drawing18,
+  drawing19,
+  drawing20,
+  drawing21,
+  drawing22,
+  drawing23,
+  drawing24,
 };
 
 export default imageAssets;

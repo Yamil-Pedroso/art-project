@@ -179,4 +179,414 @@ export const artworks: ArtWorkProps[] = [
     imageUrl: imageAssets.master1,
     category: "Master copies",
   },
+  {
+    id: 20,
+    title: "The Gathering",
+    medium: "Digital illustration",
+    dimensions: "Variable",
+    description:
+      "Three curious figures gather around a mysterious table in a playful study of connection and shared ritual.",
+    imageUrl: imageAssets.rarity1,
+    category: "Rarisity",
+  },
+  {
+    id: 21,
+    title: "The Guide",
+    medium: "Digital illustration",
+    dimensions: "Variable",
+    description:
+      "A tall wanderer leads a small blue community through a strange landscape alive with color and possibility.",
+    imageUrl: imageAssets.rarity2,
+    category: "Rarisity",
+  },
+  {
+    id: 22,
+    title: "Orbiting Joy",
+    medium: "Digital illustration",
+    dimensions: "Variable",
+    description:
+      "A joyful green presence moves through an imagined cosmos populated by flowers, signals and distant planets.",
+    imageUrl: imageAssets.rarity3,
+    category: "Rarisity",
+  },
+  {
+    id: 23,
+    title: "Night Companions",
+    medium: "Digital illustration",
+    dimensions: "Variable",
+    description:
+      "Two fragile companions share a quiet night, suspended between tenderness, solitude and dream.",
+    imageUrl: imageAssets.rarity4,
+    category: "Rarisity",
+  },
+  {
+    id: 24,
+    title: "The Shadow Within",
+    medium: "Digital illustration",
+    dimensions: "Variable",
+    description:
+      "A psychological portrait where doubled figures suggest memory, protection and the unseen self.",
+    imageUrl: imageAssets.rarity5,
+    category: "Rarisity",
+  },
+  {
+    id: 25,
+    title: "Messenger",
+    medium: "Digital illustration",
+    dimensions: "Variable",
+    description:
+      "A many-armed messenger navigates an aquatic world, carrying gestures and stories in every direction.",
+    imageUrl: imageAssets.rarity6,
+    category: "Rarisity",
+  },
+  {
+    id: 26,
+    title: "Red Garden",
+    medium: "Digital illustration",
+    dimensions: "Variable",
+    description:
+      "A solitary figure emerges among luminous flowers in a vivid red garden charged with mystery.",
+    imageUrl: imageAssets.rarity7,
+    category: "Rarisity",
+  },
+  {
+    id: 27,
+    title: "Two Worlds",
+    medium: "Digital illustration",
+    dimensions: "Variable",
+    description:
+      "Two unusual beings hold distant worlds above them, balancing wonder with quiet uncertainty.",
+    imageUrl: imageAssets.rarity8,
+    category: "Rarisity",
+  },
+  {
+    id: 28,
+    title: "The Offering",
+    medium: "Digital illustration",
+    dimensions: "Variable",
+    description:
+      "A small encounter unfolds around a blue vessel, transforming a simple offering into an enigmatic ceremony.",
+    imageUrl: imageAssets.rarity9,
+    category: "Rarisity",
+  },
+  {
+    id: 29,
+    title: "Bright Company",
+    medium: "Digital illustration",
+    dimensions: "Variable",
+    description:
+      "A radiant group portrait celebrates individuality, companionship and the energy of belonging.",
+    imageUrl: imageAssets.rarity10,
+    category: "Rarisity",
+  },
+  {
+    id: 30,
+    title: "Self-Embrace",
+    medium: "Digital illustration",
+    dimensions: "Variable",
+    description:
+      "An orange figure folds inward in a tender reflection on vulnerability, care and self-acceptance.",
+    imageUrl: imageAssets.rarity11,
+    category: "Rarisity",
+  },
+  {
+    id: 31,
+    title: "Kindred",
+    medium: "Digital illustration",
+    dimensions: "Variable",
+    description:
+      "Two wide-eyed companions mirror one another in a portrait of kinship and shared curiosity.",
+    imageUrl: imageAssets.rarity12,
+    category: "Rarisity",
+  },
+  {
+    id: 32,
+    title: "The Visitor",
+    medium: "Digital illustration",
+    dimensions: "Variable",
+    description:
+      "A mysterious visitor and a small blue companion meet across the boundary between the familiar and unknown.",
+    imageUrl: imageAssets.rarity13,
+    category: "Rarisity",
+  },
+  {
+    id: 33,
+    title: "Signal Room",
+    medium: "Digital illustration",
+    dimensions: "Variable",
+    description:
+      "A vibrant interior filled with creatures, signals and symbols becomes a playful map of an imagined mind.",
+    imageUrl: imageAssets.rarity14,
+    category: "Rarisity",
+  },
+  {
+    id: 34,
+    title: "Pink Parade",
+    medium: "Digital illustration",
+    dimensions: "Variable",
+    description:
+      "A lively procession of gestural characters crosses a pink field in an explosion of movement and color.",
+    imageUrl: imageAssets.rarity15,
+    category: "Rarisity",
+  },
+  {
+    id: 35,
+    title: "Face to Face",
+    medium: "Ink and graphite on paper",
+    dimensions: "Variable",
+    description:
+      "A tense encounter between human and beast captured through raw, energetic lines.",
+    imageUrl: imageAssets.drawing1,
+    category: "Drawings",
+  },
+  {
+    id: 36,
+    title: "Silent Assembly",
+    medium: "Ink and graphite on paper",
+    dimensions: "Variable",
+    description:
+      "An anonymous gathering where gesture and posture become the language of the group.",
+    imageUrl: imageAssets.drawing2,
+    category: "Drawings",
+  },
+  {
+    id: 37,
+    title: "Forest Sentinel",
+    medium: "Ink and graphite on paper",
+    dimensions: "Variable",
+    description:
+      "A delicate woodland guardian emerges from branches, feathers and flowing organic forms.",
+    imageUrl: imageAssets.drawing3,
+    category: "Drawings",
+  },
+  {
+    id: 38,
+    title: "Rootbound",
+    medium: "Ink and graphite on paper",
+    dimensions: "Variable",
+    description:
+      "A seated figure appears fused with a barren tree in a study of endurance and transformation.",
+    imageUrl: imageAssets.drawing4,
+    category: "Drawings",
+  },
+  {
+    id: 39,
+    title: "Wild Bloom",
+    medium: "Ink and graphite on paper",
+    dimensions: "Variable",
+    description:
+      "A richly textured character portrait crowned by flowers, curls and untamed imagination.",
+    imageUrl: imageAssets.drawing5,
+    category: "Drawings",
+  },
+  {
+    id: 40,
+    title: "The Giant and Apprentice",
+    medium: "Ink and graphite on paper",
+    dimensions: "Variable",
+    description:
+      "Two contrasting fantasy figures explore scale, companionship and character design.",
+    imageUrl: imageAssets.drawing6,
+    category: "Drawings",
+  },
+  {
+    id: 41,
+    title: "Flamecaller",
+    medium: "Ink and graphite on paper",
+    dimensions: "Variable",
+    description:
+      "A young wanderer summons heat and movement in a dynamic study of magical gesture.",
+    imageUrl: imageAssets.drawing7,
+    category: "Drawings",
+  },
+  {
+    id: 42,
+    title: "Child of the Grove",
+    medium: "Ink and graphite on paper",
+    dimensions: "Variable",
+    description:
+      "A quiet child rests beside a watchful forest creature among leaves and hidden forms.",
+    imageUrl: imageAssets.drawing8,
+    category: "Drawings",
+  },
+  {
+    id: 43,
+    title: "Anatomy Studies",
+    medium: "Ink and graphite on paper",
+    dimensions: "Variable",
+    description:
+      "Observational studies of skulls, bone and structure rendered with careful linear precision.",
+    imageUrl: imageAssets.drawing9,
+    category: "Drawings",
+  },
+  {
+    id: 44,
+    title: "River Spirits",
+    medium: "Ink and graphite on paper",
+    dimensions: "Variable",
+    description:
+      "A traveler is surrounded by small animal spirits moving like a current through the composition.",
+    imageUrl: imageAssets.drawing10,
+    category: "Drawings",
+  },
+  {
+    id: 45,
+    title: "Steadfast",
+    medium: "Ink and graphite on paper",
+    dimensions: "Variable",
+    description:
+      "A direct portrait study built through dense marks, strong contrast and an unwavering gaze.",
+    imageUrl: imageAssets.drawing11,
+    category: "Drawings",
+  },
+  {
+    id: 46,
+    title: "The Listener",
+    medium: "Ink and graphite on paper",
+    dimensions: "Variable",
+    description:
+      "A contemplative figure leans into silence in an intimate study of expression and mood.",
+    imageUrl: imageAssets.drawing12,
+    category: "Drawings",
+  },
+  {
+    id: 47,
+    title: "Old Soul",
+    medium: "Ink and graphite on paper",
+    dimensions: "Variable",
+    description:
+      "Age, character and experience surface through layered strokes in this expressive portrait.",
+    imageUrl: imageAssets.drawing13,
+    category: "Drawings",
+  },
+  {
+    id: 48,
+    title: "Warrior Study",
+    medium: "Ink and graphite on paper",
+    dimensions: "Variable",
+    description:
+      "A compact character study balancing heavy armor, movement and a commanding silhouette.",
+    imageUrl: imageAssets.drawing14,
+    category: "Drawings",
+  },
+  {
+    id: 49,
+    title: "Ronin",
+    medium: "Ink and graphite on paper",
+    dimensions: "Variable",
+    description:
+      "A solitary swordsman takes shape through decisive black marks and weathered detail.",
+    imageUrl: imageAssets.drawing15,
+    category: "Drawings",
+  },
+  {
+    id: 50,
+    title: "Woodland Heir",
+    medium: "Colored ink on paper",
+    dimensions: "Variable",
+    description:
+      "A luminous elven portrait combines delicate linework with warm earth-toned ink.",
+    imageUrl: imageAssets.drawing16,
+    category: "Drawings",
+  },
+  {
+    id: 51,
+    title: "The General",
+    medium: "Colored ink on paper",
+    dimensions: "Variable",
+    description:
+      "A poised warrior is rendered with intricate costume details and disciplined red linework.",
+    imageUrl: imageAssets.drawing17,
+    category: "Drawings",
+  },
+  {
+    id: 52,
+    title: "Sound Traveler",
+    medium: "Colored ink on paper",
+    dimensions: "Variable",
+    description:
+      "A young traveler wearing oversized headphones brings a playful contemporary note to the sketchbook.",
+    imageUrl: imageAssets.drawing18,
+    category: "Drawings",
+  },
+  {
+    id: 53,
+    title: "Quiet Strength",
+    medium: "Ink on paper",
+    dimensions: "Variable",
+    description:
+      "An expressive portrait built with dense cross-hatching, balancing a steady gaze with the warmth of a spontaneous sketchbook study.",
+    imageUrl: imageAssets.drawing19,
+    category: "Drawings",
+  },
+  {
+    id: 54,
+    title: "Pasture Studies",
+    medium: "Colored ink on paper",
+    dimensions: "Variable",
+    description:
+      "A pair of animal studies explores weight, rest and character through fluid red lines and layered observation.",
+    imageUrl: imageAssets.drawing20,
+    category: "Drawings",
+  },
+  {
+    id: 55,
+    title: "Desert Pilgrim",
+    medium: "Ink on paper",
+    dimensions: "Variable",
+    description:
+      "A veiled traveler and camel emerge through intricate linework in a scene shaped by endurance, silence and distant journeys.",
+    imageUrl: imageAssets.drawing21,
+    category: "Drawings",
+  },
+  {
+    id: 56,
+    title: "The Contemplative",
+    medium: "Ink on paper",
+    dimensions: "Variable",
+    description:
+      "A reflective character study captures an inward moment through loose contours, deep shadows and a quietly dramatic expression.",
+    imageUrl: imageAssets.drawing22,
+    category: "Drawings",
+  },
+  {
+    id: 57,
+    title: "Harlequin",
+    medium: "Ink and colored pencil on paper",
+    dimensions: "Variable",
+    description:
+      "A vivid harlequin portrait combines theatrical costume, sharp linework and selective color in a playful study of identity.",
+    imageUrl: imageAssets.drawing23,
+    category: "Drawings",
+  },
+  {
+    id: 58,
+    title: "The Collector",
+    medium: "Ink on paper",
+    dimensions: "Variable",
+    description:
+      "A dark fantasy figure carries a strange collection of masks and skulls, rendered with forceful blacks and restless detail.",
+    imageUrl: imageAssets.drawing24,
+    category: "Drawings",
+  },
+  {
+    id: 59,
+    title: "The Jester and the Goldfish",
+    medium: "Oil on canvas",
+    dimensions: "Variable",
+    description:
+      "A quiet jester shelters a small golden companion, turning an unlikely encounter into a tender scene of solitude, wonder and trust.",
+    imageUrl: imageAssets.fantasy1,
+    category: "Fantasy",
+  },
+  {
+    id: 60,
+    title: "The Raven Alchemist",
+    medium: "Oil on canvas",
+    dimensions: "Variable",
+    description:
+      "A mysterious raven-like figure emerges from deep shadow and electric color, suspended between ancient ritual and imagined mythology.",
+    imageUrl: imageAssets.fantasy2,
+    category: "Fantasy",
+  },
 ];
