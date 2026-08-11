@@ -32,8 +32,8 @@ import dwarf from "./images/digital/dwarf.png";
 import christ from "./images/digital/christ.png";
 import cat from "./images/digital/cat.png";
 import ai from "./images/digital/ai.png";
-import abstract from "./images/digital/abstract.png";
-import colorBoy from "./images/digital/Color-boy.jpg";
+import abstract from "./images/digital/Abstract.png";
+import colorBoy from "./images/digital/color-boy.jpg";
 import blueTone from "./images/digital/blue-tone.jpg";
 
 import artBrush from "./images/art-brush.png";
