@@ -13,6 +13,7 @@ import ContactSection from "../contact/ContactSection";
 import Footer from "../footer/Footer";
 import { contactDetails } from "@/data/contact";
 import ScrollToTop from "../scroll-to-top/ScrollToTop";
+import DailySketchbook from "../daily-sketchbook/DailySketchbook";
 
 const ArtGallery = () => {
   const navigate = useNavigate();
@@ -270,7 +271,19 @@ const ArtGallery = () => {
           activeCategory={selectedCategory}
         />
 
-        {selectedCategory === "Art CV" ? (
+        {selectedCategory === "Daily Sketching" ? (
+          <AnimatePresence mode="wait">
+            <motion.div
+              key="daily-sketching"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.55 }}
+            >
+              <DailySketchbook />
+            </motion.div>
+          </AnimatePresence>
+        ) : selectedCategory === "Art CV" ? (
           <motion.div
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}

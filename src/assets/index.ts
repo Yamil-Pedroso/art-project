@@ -41,7 +41,13 @@ import blueTone from "./images/digital/blue-tone.jpg";
 
 import artBrush from "./images/art-brush.png";
 
+// Avatars
 import yamiAtelier from "./images/avatar/yami_atelier.jpg";
+import yamiDraw from "./images/avatar/yami_draw.jpg";
+
+// Daily Sketch Collection
+import dailySketch1 from "./images/daily-sketching/dailySketch1.jpg";
+import dailySketch2 from "./images/daily-sketching/dailySketch2.jpg";
 
 // Fantasy Collection
 import fantasy1 from "./images/fantasy/fantasy1.jpg";
@@ -97,6 +103,7 @@ interface ImageAssets {
 const imageAssets: ImageAssets = {
   hero,
   yamiAtelier,
+  yamiDraw,
   art1,
   art2,
   art3,
@@ -172,6 +179,8 @@ const imageAssets: ImageAssets = {
   drawing22,
   drawing23,
   drawing24,
+  dailySketch1,
+  dailySketch2,
 };
 
 export default imageAssets;

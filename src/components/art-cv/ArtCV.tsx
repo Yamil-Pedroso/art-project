@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { cvData, artShow } from "@/data/cvData";
+import imageAssets from "@/assets";
 
 interface ExhibitionListProps {
   eyebrow: string;
@@ -126,8 +127,8 @@ const ArtCV = () => {
         </motion.div>
       </div>
 
-      <div className="grid gap-10 px-6 py-16 sm:px-10 sm:py-20 lg:grid-cols-[0.65fr_1.35fr] lg:gap-16 lg:px-14 lg:py-24 xl:px-20">
-        <div>
+      <div className="grid gap-10 px-6 py-16 sm:px-10 sm:py-20 lg:grid-cols-[0.65fr_1.35fr] lg:gap-x-16 lg:gap-y-12 lg:px-14 lg:py-24 xl:grid-cols-[0.52fr_0.68fr_1.1fr] xl:gap-x-14 xl:px-20">
+        <div className="lg:col-start-1 lg:row-start-1">
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#b5502d]">
             Curriculum vitae
           </p>
@@ -139,7 +140,67 @@ const ArtCV = () => {
           </p>
         </div>
 
-        <div>
+        <motion.figure
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="relative flex h-full flex-col overflow-hidden bg-[#172019] shadow-[0_24px_65px_rgba(23,32,25,0.18)] lg:col-start-1 lg:row-start-2 xl:col-start-2 xl:row-start-1"
+        >
+          <div className="relative aspect-[3/4] min-h-[28rem] overflow-hidden xl:min-h-0">
+            <img
+              src={imageAssets.yamiDraw}
+              alt="Yami drawing in Venice with a sketchbook"
+              className="absolute inset-0 h-full w-full object-cover object-top transition duration-700 hover:scale-[1.025]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#172019]/85 via-transparent to-transparent" />
+            <figcaption className="absolute inset-x-0 bottom-0 p-6 text-[#f5f2eb] sm:p-7">
+              <span className="block text-[10px] font-semibold uppercase tracking-[0.28em] text-[#d99272]">
+                Travel sketchbook
+              </span>
+              <span className="mt-2 block text-xl font-semibold tracking-[-0.02em]">
+                Drawing in Venice
+              </span>
+            </figcaption>
+          </div>
+
+          <div className="flex flex-1 flex-col justify-between gap-16 px-6 py-8 text-[#f5f2eb] sm:px-7 sm:py-9 xl:gap-12">
+            <div className="flex items-center justify-between border-b border-white/15 pb-4 text-[9px] font-semibold uppercase tracking-[0.26em] text-white/45">
+              <span>Field notes</span>
+              <span>01 / Venice</span>
+            </div>
+
+            <div>
+              <span
+                aria-hidden="true"
+                className="block h-px w-10 bg-[#d17450]"
+              />
+              <p className="mt-5 max-w-xs text-2xl font-medium leading-[1.18] tracking-[-0.035em] text-white sm:text-3xl xl:text-2xl 2xl:text-3xl">
+                Drawing as a way of looking longer.
+              </p>
+              <p className="mt-5 text-sm leading-relaxed text-[#929b95]">
+                Observing place, gesture and memory through the intimacy of a
+                travel sketchbook.
+              </p>
+            </div>
+
+            <div className="flex items-end justify-between gap-4 border-t border-white/15 pt-5">
+              <div>
+                <span className="block text-[9px] font-semibold uppercase tracking-[0.24em] text-white/40">
+                  Practice
+                </span>
+                <span className="mt-1.5 block text-xs font-medium uppercase tracking-[0.14em] text-white/75">
+                  Drawing · Observation
+                </span>
+              </div>
+              <span className="text-4xl font-light leading-none text-white/10">
+                01
+              </span>
+            </div>
+          </div>
+        </motion.figure>
+
+        <div className="lg:col-start-2 lg:row-span-2 lg:row-start-1 xl:col-start-3 xl:row-span-1">
           <p className="text-lg leading-[1.85] text-[#4c5550] sm:text-xl sm:leading-[1.85]">
             {profile.description}
           </p>

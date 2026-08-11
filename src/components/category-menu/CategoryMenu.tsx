@@ -14,6 +14,7 @@ const categories = [
   "Drawings",
   "Digital Art",
   "Rarisity",
+  "Daily Sketching",
   "Exhibitions & Collectors",
   "Art CV",
 ] as const;
