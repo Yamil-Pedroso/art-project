@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Route as ArtWorkDetailsRoute } from "@/routes/work-details/$workId";
 import { useNavigate } from "@tanstack/react-router";
@@ -14,6 +14,12 @@ import Footer from "../footer/Footer";
 import { contactDetails } from "@/data/contact";
 import ScrollToTop from "../scroll-to-top/ScrollToTop";
 import DailySketchbook from "../daily-sketchbook/DailySketchbook";
+import NewArtworkNotification from "../new-artwork-notification/NewArtworkNotification";
+import { getCurrentNewArtwork } from "@/lib/newArtwork";
+import NotificationCenter from "../notification-center/NotificationCenter";
+import { getPortfolioUpdates } from "@/data/portfolioUpdates";
+import { useSeenPortfolioUpdates } from "@/hooks/useSeenPortfolioUpdates";
+import type { PortfolioUpdate } from "@/types/Types";
 
 const ArtGallery = () => {
   const navigate = useNavigate();
@@ -21,12 +27,36 @@ const ArtGallery = () => {
 
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const currentNewArtwork = useMemo(
+    () => getCurrentNewArtwork(artworks),
+    []
+  );
+  const portfolioUpdates = useMemo(
+    () => getPortfolioUpdates(artworks),
+    []
+  );
+  const { seenIds, markAsSeen, hasUnseenUpdates } =
+    useSeenPortfolioUpdates(portfolioUpdates);
+  const currentArtworkUpdate = portfolioUpdates.find(
+    (update) => update.artworkId === currentNewArtwork?.id
+  );
 
   const handleArtworkClick = (workId: number) => {
     navigate({
       to: ArtWorkDetailsRoute.to,
       params: { workId: String(workId) },
     });
+  };
+
+  const handleUpdateSelect = (update: PortfolioUpdate) => {
+    markAsSeen(update.id);
+
+    if (update.artworkId !== undefined) {
+      handleArtworkClick(update.artworkId);
+      return;
+    }
+
+    if (update.href) window.location.assign(update.href);
   };
 
   const scrollToGalleryContent = () => {
@@ -103,58 +133,69 @@ const ArtGallery = () => {
               </span>
             </a>
 
-            <div className="hidden items-center gap-7 text-xs font-semibold uppercase tracking-[0.14em] text-[#4c5550] lg:flex xl:gap-9">
-              <a href="#home" className="transition hover:text-[#b5502d]">
-                Home
-              </a>
-              <a
-                href="#gallery-content"
-                onClick={() => handleNavCategory("All")}
-                className="transition hover:text-[#b5502d]"
-              >
-                Gallery
-              </a>
-              <a
-                href="#gallery-content"
-                onClick={() => handleNavCategory("Exhibitions & Collectors")}
-                className="transition hover:text-[#b5502d]"
-              >
-                Exhibitions
-              </a>
-              <a
-                href="#gallery-content"
-                onClick={() => handleNavCategory("Art Curriculum")}
-                className="transition hover:text-[#b5502d]"
-              >
-                Art Curriculum
-              </a>
-              <a
-                href="#contact"
-                className="rounded-full bg-[#172019] px-5 py-3 text-white transition hover:-translate-y-0.5 hover:bg-[#b5502d]"
-              >
-                Contact
-              </a>
-            </div>
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="hidden items-center gap-7 text-xs font-semibold uppercase tracking-[0.14em] text-[#4c5550] lg:flex xl:gap-9">
+                <a href="#home" className="transition hover:text-[#b5502d]">
+                  Home
+                </a>
+                <a
+                  href="#gallery-content"
+                  onClick={() => handleNavCategory("All")}
+                  className="transition hover:text-[#b5502d]"
+                >
+                  Gallery
+                </a>
+                <a
+                  href="#gallery-content"
+                  onClick={() => handleNavCategory("Exhibitions & Collectors")}
+                  className="transition hover:text-[#b5502d]"
+                >
+                  Exhibitions
+                </a>
+                <a
+                  href="#gallery-content"
+                  onClick={() => handleNavCategory("Art Curriculum")}
+                  className="transition hover:text-[#b5502d]"
+                >
+                  Art Curriculum
+                </a>
+                <a
+                  href="#contact"
+                  className="rounded-full bg-[#172019] px-5 py-3 text-white transition hover:-translate-y-0.5 hover:bg-[#b5502d]"
+                >
+                  Contact
+                </a>
+              </div>
 
-            <button
-              type="button"
-              onClick={() => setIsMenuOpen((isOpen) => !isOpen)}
-              aria-expanded={isMenuOpen}
-              aria-controls="mobile-navigation"
-              aria-label={isMenuOpen ? "Close navigation" : "Open navigation"}
-              className="flex h-11 w-11 cursor-pointer flex-col items-center justify-center gap-1.5 rounded-full border border-[#172019]/15 text-[#172019] lg:hidden"
-            >
-              <span
-                className={`h-px w-5 bg-current transition ${
-                  isMenuOpen ? "translate-y-[3.5px] rotate-45" : ""
-                }`}
+              <NotificationCenter
+                updates={portfolioUpdates}
+                seenIds={seenIds}
+                hasUnseenUpdates={hasUnseenUpdates}
+                onSelect={handleUpdateSelect}
               />
-              <span
-                className={`h-px w-5 bg-current transition ${
-                  isMenuOpen ? "-translate-y-[3.5px] -rotate-45" : ""
-                }`}
-              />
-            </button>
+
+              <button
+                type="button"
+                onClick={() => setIsMenuOpen((isOpen) => !isOpen)}
+                aria-expanded={isMenuOpen}
+                aria-controls="mobile-navigation"
+                aria-label={
+                  isMenuOpen ? "Close navigation" : "Open navigation"
+                }
+                className="flex h-11 w-11 cursor-pointer flex-col items-center justify-center gap-1.5 rounded-full border border-[#172019]/15 text-[#172019] lg:hidden"
+              >
+                <span
+                  className={`h-px w-5 bg-current transition ${
+                    isMenuOpen ? "translate-y-[3.5px] rotate-45" : ""
+                  }`}
+                />
+                <span
+                  className={`h-px w-5 bg-current transition ${
+                    isMenuOpen ? "-translate-y-[3.5px] -rotate-45" : ""
+                  }`}
+                />
+              </button>
+            </div>
           </nav>
 
           <AnimatePresence>
@@ -345,6 +386,17 @@ const ArtGallery = () => {
       <ContactSection />
       <Footer />
       <ScrollToTop />
+      <NewArtworkNotification
+        artwork={currentNewArtwork}
+        updateId={currentArtworkUpdate?.id}
+        isSeen={
+          currentArtworkUpdate
+            ? seenIds.has(currentArtworkUpdate.id)
+            : true
+        }
+        onSeen={markAsSeen}
+        onView={handleArtworkClick}
+      />
     </main>
   );
 };

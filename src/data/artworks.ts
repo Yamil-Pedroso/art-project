@@ -589,4 +589,26 @@ export const artworks: ArtWorkProps[] = [
     imageUrl: imageAssets.fantasy2,
     category: "Fantasy",
   },
+  {
+    id: 61,
+    title: "Creature 1",
+    medium: "Oil on oil/acrylic paper",
+    dimensions: "Variable",
+    description:
+      "A guardian of the forest emerges from the shadows, holding a staff and a watchful eye.",
+    imageUrl: imageAssets.fantasy3,
+    category: "Fantasy",
+  },
+  {
+    id: 62,
+    title: "Creature 2",
+    medium: "Acrylic on oil/acrylic paper",
+    dimensions: "Variable",
+    description:
+      "A golden city emerges from the mist, surrounded by towering trees and a river of gold.",
+    imageUrl: imageAssets.fantasy4,
+    category: "Fantasy",
+    markAsNew: true,
+    publishedAt: "2026-08-12",
+  },
 ];

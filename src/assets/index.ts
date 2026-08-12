@@ -2,7 +2,7 @@ import hero from "./images/hero/hero.png";
 
 import art1 from "./images/art-works/art1.jpg";
 import art2 from "./images/art-works/art2.jpg";
-import art3 from "./images/art-works/art3.webp";
+import art3 from "./images/art-works/art3.jpg";
 
 import pet1 from "./images/pets/pet1.webp";
 import pet2 from "./images/pets/pet2.webp";
@@ -52,6 +52,8 @@ import dailySketch2 from "./images/daily-sketching/dailySketch2.jpg";
 // Fantasy Collection
 import fantasy1 from "./images/fantasy/fantasy1.jpg";
 import fantasy2 from "./images/fantasy/fantasy2.jpg";
+import fantasy3 from "./images/fantasy/fantasy3.jpg";
+import fantasy4 from "./images/fantasy/fantasy4.jpg";
 
 // Rarisity Collection
 import rarity1 from "./images/rarisity/1.webp";
@@ -140,6 +142,8 @@ const imageAssets: ImageAssets = {
   artBrush,
   fantasy1,
   fantasy2,
+  fantasy3,
+  fantasy4,
   rarity1,
   rarity2,
   rarity3,

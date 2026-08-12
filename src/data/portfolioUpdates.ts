@@ -1,0 +1,43 @@
+import type { ArtWorkProps, PortfolioUpdate } from "@/types/Types";
+import { isWithinUpdatePeriod } from "@/lib/newArtwork";
+
+/**
+ * Future series, exhibition, news and studio updates can live here.
+ * Artwork updates are generated automatically from the artwork data below.
+ */
+export const editorialUpdates: PortfolioUpdate[] = [];
+
+export const getPortfolioUpdates = (
+  artworks: ArtWorkProps[],
+  now = new Date()
+) => {
+  const artworkUpdates: PortfolioUpdate[] = artworks.flatMap((artwork) => {
+    if (
+      !artwork.markAsNew ||
+      artwork.id === undefined ||
+      !artwork.publishedAt
+    ) {
+      return [];
+    }
+
+    return [
+      {
+        id: `artwork:${artwork.id}`,
+        type: "artwork",
+        title: artwork.title || "Untitled artwork",
+        description: artwork.medium,
+        publishedAt: artwork.publishedAt,
+        imageUrl: artwork.imageUrl,
+        artworkId: artwork.id,
+      },
+    ];
+  });
+
+  return [...editorialUpdates, ...artworkUpdates]
+    .filter((update) => isWithinUpdatePeriod(update.publishedAt, now))
+    .sort(
+      (first, second) =>
+        new Date(second.publishedAt).getTime() -
+        new Date(first.publishedAt).getTime()
+    );
+};

@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { artworks } from "@/data/artworks";
 import { motion } from "framer-motion";
+import { isWithinNewArtworkPeriod } from "@/lib/newArtwork";
 
 const UICard = ({
   artwork,
@@ -13,6 +14,7 @@ const UICard = ({
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const cardRef = useRef<HTMLElement>(null);
+  const showNewBadge = isWithinNewArtworkPeriod(artwork);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -61,6 +63,11 @@ const UICard = ({
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#172019]/45 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
           </div>
+          {showNewBadge && (
+            <span className="absolute left-3 top-3 z-10 border border-white/30 bg-[#172019]/82 px-2.5 py-1.5 text-[9px] font-semibold uppercase tracking-[0.2em] text-white shadow-sm backdrop-blur sm:left-4 sm:top-4">
+              New
+            </span>
+          )}
           <span className="absolute bottom-0 left-1/2 z-10 inline-flex -translate-x-1/2 translate-y-1/2 items-center whitespace-nowrap rounded-full bg-[#b5502d] px-6 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-white shadow-[0_10px_30px_rgba(181,80,45,0.3)] transition duration-300 group-hover:-translate-y-1 group-hover:bg-[#172019] sm:text-sm">
             View artwork
             <span aria-hidden="true" className="ml-2 text-base">
