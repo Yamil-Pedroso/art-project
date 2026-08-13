@@ -6,9 +6,9 @@ export interface ArtWorkProps {
   description?: string;
   imageUrl?: string;
   category?: string;
-  /** Equivalent to the future admin option “Mark as new”. */
+  /** Optional manual override; the highest new ID is detected automatically. */
   markAsNew?: boolean;
-  /** ISO publication date used to expire the NEW badge automatically. */
+  /** Optional ISO date; automatic publications use the deployment date. */
   publishedAt?: string;
 }
 

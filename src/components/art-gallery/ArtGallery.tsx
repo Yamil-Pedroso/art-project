@@ -15,7 +15,10 @@ import { contactDetails } from "@/data/contact";
 import ScrollToTop from "../scroll-to-top/ScrollToTop";
 import DailySketchbook from "../daily-sketchbook/DailySketchbook";
 import NewArtworkNotification from "../new-artwork-notification/NewArtworkNotification";
-import { getCurrentNewArtwork } from "@/lib/newArtwork";
+import {
+  getCurrentNewArtwork,
+  isWithinUpdatePeriod,
+} from "@/lib/newArtwork";
 import NotificationCenter from "../notification-center/NotificationCenter";
 import { getPortfolioUpdates } from "@/data/portfolioUpdates";
 import { useSeenPortfolioUpdates } from "@/hooks/useSeenPortfolioUpdates";
@@ -35,7 +38,13 @@ const ArtGallery = () => {
     () => getPortfolioUpdates(artworks),
     []
   );
-  const { seenIds, markAsSeen, hasUnseenUpdates } =
+  const {
+    seenIds,
+    markAsSeen,
+    dismissUpdate,
+    visibleUpdates,
+    hasUnseenUpdates,
+  } =
     useSeenPortfolioUpdates(portfolioUpdates);
   const currentArtworkUpdate = portfolioUpdates.find(
     (update) => update.artworkId === currentNewArtwork?.id
@@ -168,10 +177,11 @@ const ArtGallery = () => {
               </div>
 
               <NotificationCenter
-                updates={portfolioUpdates}
+                updates={visibleUpdates}
                 seenIds={seenIds}
                 hasUnseenUpdates={hasUnseenUpdates}
                 onSelect={handleUpdateSelect}
+                onDismiss={dismissUpdate}
               />
 
               <button
@@ -376,6 +386,10 @@ const ArtGallery = () => {
                   key={artwork.id}
                   artwork={artwork}
                   index={index}
+                  isLatestArtwork={
+                    artwork.id === currentNewArtwork?.id &&
+                    isWithinUpdatePeriod(__PORTFOLIO_BUILD_DATE__)
+                  }
                   onClick={() => handleArtworkClick(artwork.id as number)}
                 />
               ))}

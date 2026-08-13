@@ -1,6 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { FiArrowRight, FiArrowUpRight, FiBell, FiX } from "react-icons/fi";
+import {
+  FiArrowRight,
+  FiArrowUpRight,
+  FiBell,
+  FiTrash2,
+  FiX,
+} from "react-icons/fi";
 import type { PortfolioUpdate, PortfolioUpdateType } from "@/types/Types";
 
 const CHECKED_UPDATES_PROMPT_KEY =
@@ -11,6 +17,7 @@ interface NotificationCenterProps {
   seenIds: Set<string>;
   hasUnseenUpdates: boolean;
   onSelect: (update: PortfolioUpdate) => void;
+  onDismiss: (updateId: string) => void;
 }
 
 const copy = {
@@ -20,6 +27,7 @@ const copy = {
     open: "Open what's new",
     close: "Close what's new",
     view: "View artwork",
+    remove: "Remove notification",
     empty: "There are no recent updates at the moment.",
     subscribeTitle: "Would you like to discover my next works?",
     subscribeAction: "Receive updates by email",
@@ -38,6 +46,7 @@ const copy = {
     open: "Abrir novedades",
     close: "Cerrar novedades",
     view: "Ver obra",
+    remove: "Eliminar notificación",
     empty: "No hay novedades recientes por el momento.",
     subscribeTitle: "¿Quieres conocer mis próximas obras?",
     subscribeAction: "Recibir novedades por email",
@@ -57,6 +66,7 @@ const NotificationCenter = ({
   seenIds,
   hasUnseenUpdates,
   onSelect,
+  onDismiss,
 }: NotificationCenterProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [shouldAnimateBell, setShouldAnimateBell] = useState(false);
@@ -218,11 +228,11 @@ const NotificationCenter = ({
                       text.types[update.type as PortfolioUpdateType];
 
                     return (
-                      <li key={update.id}>
+                      <li key={update.id} className="relative">
                         <button
                           type="button"
                           onClick={() => handleSelect(update)}
-                          className="group flex w-full cursor-pointer gap-4 px-5 py-4 text-left transition hover:bg-white/55 focus-visible:bg-white/70 focus-visible:outline-none sm:px-6"
+                          className="group flex w-full cursor-pointer gap-4 py-4 pl-5 pr-14 text-left transition hover:bg-white/55 focus-visible:bg-white/70 focus-visible:outline-none sm:pl-6 sm:pr-16"
                         >
                           {update.imageUrl && (
                             <span className="h-[4.5rem] w-[4.5rem] shrink-0 overflow-hidden bg-[#e7e1d6]">
@@ -263,6 +273,15 @@ const NotificationCenter = ({
                               />
                             </span>
                           </span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => onDismiss(update.id)}
+                          aria-label={`${text.remove}: ${update.title}`}
+                          title={text.remove}
+                          className="absolute right-3 top-3 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full text-[#8a8f8b] transition hover:bg-[#172019]/6 hover:text-[#b5502d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b5502d]/40 sm:right-4"
+                        >
+                          <FiTrash2 aria-hidden="true" className="h-3.5 w-3.5" />
                         </button>
                       </li>
                     );

@@ -6,6 +6,9 @@ import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 
 // https://vite.dev/config/
 export default defineConfig({
+  define: {
+    __PORTFOLIO_BUILD_DATE__: JSON.stringify(new Date().toISOString()),
+  },
   plugins: [
     TanStackRouterVite({ target: "react", autoCodeSplitting: true }),
     react(),

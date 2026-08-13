@@ -7,14 +7,17 @@ const UICard = ({
   artwork,
   index,
   onClick,
+  isLatestArtwork = false,
 }: {
   artwork: (typeof artworks)[0];
   index: number;
   onClick: () => void;
+  isLatestArtwork?: boolean;
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const cardRef = useRef<HTMLElement>(null);
-  const showNewBadge = isWithinNewArtworkPeriod(artwork);
+  const showNewBadge =
+    isLatestArtwork || isWithinNewArtworkPeriod(artwork);
 
   useEffect(() => {
     const observer = new IntersectionObserver(

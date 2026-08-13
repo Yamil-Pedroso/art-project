@@ -16,26 +16,15 @@ export const isWithinUpdatePeriod = (
   return age >= 0 && age <= duration;
 };
 
-const publicationTime = (artwork: ArtWorkProps) => {
-  if (!artwork.publishedAt) return 0;
-  const time = new Date(artwork.publishedAt).getTime();
-  return Number.isNaN(time) ? 0 : time;
-};
-
-export const getCurrentNewArtwork = (artworks: ArtWorkProps[]) =>
+export const getLatestArtwork = (artworks: ArtWorkProps[]) =>
   artworks
     .filter(
-      (artwork) =>
-        artwork.markAsNew &&
-        artwork.id !== undefined &&
-        artwork.imageUrl &&
-        artwork.publishedAt &&
-        isWithinUpdatePeriod(artwork.publishedAt)
+      (artwork) => artwork.id !== undefined && Boolean(artwork.imageUrl)
     )
-    .sort((first, second) => {
-      const dateDifference = publicationTime(second) - publicationTime(first);
-      return dateDifference || (second.id || 0) - (first.id || 0);
-    })[0];
+    .sort((first, second) => (second.id || 0) - (first.id || 0))[0];
+
+export const getCurrentNewArtwork = (artworks: ArtWorkProps[]) =>
+  getLatestArtwork(artworks);
 
 export const isWithinNewArtworkPeriod = (
   artwork: ArtWorkProps,

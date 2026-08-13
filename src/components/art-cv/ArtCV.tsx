@@ -220,6 +220,69 @@ const ArtCV = () => {
         </div>
       </div>
 
+      <motion.figure
+        initial={{ opacity: 0, y: 28 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.18 }}
+        transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+        className="grid overflow-hidden border-t border-white/10 bg-[#172019] text-[#f5f2eb] lg:min-h-[36rem] lg:grid-cols-[1.45fr_0.75fr]"
+      >
+        <div className="relative min-h-[24rem] overflow-hidden sm:min-h-[34rem] lg:min-h-full">
+          <img
+            src={imageAssets.yamiDraw1}
+            alt="Yami painting at the Rembrandt House Museum in Amsterdam"
+            loading="lazy"
+            decoding="async"
+            className="absolute inset-0 h-full w-full object-cover object-center transition duration-700 hover:scale-[1.02]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#172019]/60 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-transparent lg:to-[#172019]/30" />
+          <figcaption className="absolute bottom-6 left-6 right-6 sm:bottom-9 sm:left-9 lg:hidden">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.27em] text-[#e1a284]">
+              The Rembrandt House Museum · Amsterdam
+            </span>
+          </figcaption>
+        </div>
+
+        <div className="relative flex flex-col justify-between gap-14 px-6 py-12 sm:px-10 sm:py-14 lg:px-12 lg:py-16 xl:px-16">
+          <div className="flex items-center justify-between border-b border-white/15 pb-5 text-[9px] font-semibold uppercase tracking-[0.26em] text-white/45">
+            <span>Field notes</span>
+            <span>02 / Amsterdam</span>
+          </div>
+
+          <div>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#d99272]">
+              The Rembrandt House Museum
+            </p>
+            <h3 className="mt-5 max-w-md text-4xl font-semibold leading-[1.02] tracking-[-0.045em] text-white sm:text-5xl lg:text-4xl xl:text-5xl">
+              Painting where history still feels present.
+            </h3>
+            <span
+              aria-hidden="true"
+              className="mt-7 block h-px w-12 bg-[#d17450]"
+            />
+            <p className="mt-6 max-w-md text-base leading-relaxed text-[#aeb6b0] sm:text-lg">
+              A moment of practice inside Rembrandt’s house in Amsterdam,
+              connecting direct observation with the techniques and legacy of
+              the old masters.
+            </p>
+          </div>
+
+          <div className="flex items-end justify-between gap-4 border-t border-white/15 pt-5">
+            <div>
+              <span className="block text-[9px] font-semibold uppercase tracking-[0.24em] text-white/40">
+                Practice
+              </span>
+              <span className="mt-1.5 block text-xs font-medium uppercase tracking-[0.14em] text-white/75">
+                Painting · Tradition · Study
+              </span>
+            </div>
+            <span className="text-5xl font-light leading-none text-white/10">
+              02
+            </span>
+          </div>
+        </div>
+      </motion.figure>
+
       <div className="border-t border-[#172019]/10 bg-[#f5f2eb] px-6 py-16 sm:px-10 sm:py-20 lg:px-14 lg:py-24 xl:px-20">
         <div className="mb-14 max-w-3xl">
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#b5502d]">

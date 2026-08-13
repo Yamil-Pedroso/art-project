@@ -570,6 +570,17 @@ export const artworks: ArtWorkProps[] = [
     category: "Drawings",
   },
   {
+    id: 63,
+    title: "Spontaneous",
+    medium: "Ink and marker on paper",
+    dimensions: "Variable",
+    description: "Lorem Ipsum",
+    imageUrl: imageAssets.drawing25,
+    category: "Drawings",
+    markAsNew: true,
+    publishedAt: "2026-08-12",
+  },
+  {
     id: 59,
     title: "The Jester and the Goldfish",
     medium: "Oil on canvas",

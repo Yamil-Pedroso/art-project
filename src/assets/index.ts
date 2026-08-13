@@ -44,6 +44,7 @@ import artBrush from "./images/art-brush.png";
 // Avatars
 import yamiAtelier from "./images/avatar/yami_atelier.jpg";
 import yamiDraw from "./images/avatar/yami_draw.jpg";
+import yamiDraw1 from "./images/avatar/yami_draw1.jpg";
 
 // Daily Sketch Collection
 import dailySketch1 from "./images/daily-sketching/dailySketch1.jpg";
@@ -97,6 +98,7 @@ import drawing21 from "./images/drawings/draw21.jpg";
 import drawing22 from "./images/drawings/draw22.jpg";
 import drawing23 from "./images/drawings/draw23.jpg";
 import drawing24 from "./images/drawings/draw24.jpg";
+import drawing25 from "./images/drawings/draw25.jpg";
 
 interface ImageAssets {
   [key: string]: string;
@@ -106,6 +108,7 @@ const imageAssets: ImageAssets = {
   hero,
   yamiAtelier,
   yamiDraw,
+  yamiDraw1,
   art1,
   art2,
   art3,
@@ -183,6 +186,7 @@ const imageAssets: ImageAssets = {
   drawing22,
   drawing23,
   drawing24,
+  drawing25,
   dailySketch1,
   dailySketch2,
 };
