@@ -622,4 +622,34 @@ export const artworks: ArtWorkProps[] = [
     markAsNew: true,
     publishedAt: "2026-08-12",
   },
+  {
+    id: 64,
+    title: "Raven & Harlequin Studies",
+    medium: "Ink on paper",
+    dimensions: "Variable",
+    description:
+      "A sketchbook spread pairing studies of ravens in motion with an intricate theatrical figure, explored through energetic linework and dense cross-hatching.",
+    imageUrl: imageAssets.drawing26,
+    category: "Drawings",
+  },
+  {
+    id: 65,
+    title: "Blades & Forest Creature",
+    medium: "Ink on paper",
+    dimensions: "Variable",
+    description:
+      "Weapons, armor and an expressive woodland creature share a sketchbook spread shaped by fantasy, ornament and spontaneous observation.",
+    imageUrl: imageAssets.drawing27,
+    category: "Drawings",
+  },
+  {
+    id: 66,
+    title: "Close Encounter",
+    medium: "Portrait study",
+    dimensions: "Variable",
+    description:
+      "A playful studio portrait bringing artist and imagined subject face to face, where observation, character and science-fiction imagery meet.",
+    imageUrl: imageAssets.portrait1,
+    category: "Portraits",
+  },
 ];
