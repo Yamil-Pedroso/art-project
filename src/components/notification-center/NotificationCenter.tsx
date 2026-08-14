@@ -4,6 +4,7 @@ import {
   FiArrowRight,
   FiArrowUpRight,
   FiBell,
+  FiCheck,
   FiTrash2,
   FiX,
 } from "react-icons/fi";
@@ -70,7 +71,10 @@ const NotificationCenter = ({
 }: NotificationCenterProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [shouldAnimateBell, setShouldAnimateBell] = useState(false);
+  const [showRemovedConfirmation, setShowRemovedConfirmation] =
+    useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const confirmationTimerRef = useRef<number | null>(null);
   const language =
     typeof document !== "undefined" &&
     document.documentElement.lang.toLowerCase().startsWith("es")
@@ -119,9 +123,31 @@ const NotificationCenter = ({
     };
   }, [isOpen]);
 
+  useEffect(
+    () => () => {
+      if (confirmationTimerRef.current !== null) {
+        window.clearTimeout(confirmationTimerRef.current);
+      }
+    },
+    []
+  );
+
   const handleSelect = (update: PortfolioUpdate) => {
     setIsOpen(false);
     onSelect(update);
+  };
+
+  const handleDismiss = (updateId: string) => {
+    onDismiss(updateId);
+    setShowRemovedConfirmation(true);
+
+    if (confirmationTimerRef.current !== null) {
+      window.clearTimeout(confirmationTimerRef.current);
+    }
+    confirmationTimerRef.current = window.setTimeout(
+      () => setShowRemovedConfirmation(false),
+      2800
+    );
   };
 
   const togglePanel = () => {
@@ -276,7 +302,7 @@ const NotificationCenter = ({
                         </button>
                         <motion.button
                           type="button"
-                          onClick={() => onDismiss(update.id)}
+                          onClick={() => handleDismiss(update.id)}
                           aria-label={`${text.remove}: ${update.title}`}
                           title={text.remove}
                           whileTap={{ scale: 0.88 }}
@@ -310,6 +336,27 @@ const NotificationCenter = ({
                 </span>
               </button>
             </div>
+
+            <AnimatePresence>
+              {showRemovedConfirmation && (
+                <motion.div
+                  role="status"
+                  aria-live="polite"
+                  initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 8, scale: 0.98 }}
+                  transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                  className="absolute bottom-4 left-4 right-4 z-20 flex items-center gap-3 border border-white/10 bg-[#172019]/96 px-4 py-3 text-[#f5f2eb] shadow-[0_14px_38px_rgba(23,32,25,0.24)] backdrop-blur sm:left-5 sm:right-5"
+                >
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#b5502d] text-white">
+                    <FiCheck aria-hidden="true" className="h-3.5 w-3.5" />
+                  </span>
+                  <span className="text-xs font-semibold tracking-[0.02em]">
+                    Notification successfully removed.
+                  </span>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.section>
         )}
       </AnimatePresence>
