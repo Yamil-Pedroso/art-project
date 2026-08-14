@@ -274,15 +274,19 @@ const NotificationCenter = ({
                             </span>
                           </span>
                         </button>
-                        <button
+                        <motion.button
                           type="button"
                           onClick={() => onDismiss(update.id)}
                           aria-label={`${text.remove}: ${update.title}`}
                           title={text.remove}
-                          className="absolute right-3 top-3 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full text-[#8a8f8b] transition hover:bg-[#172019]/6 hover:text-[#b5502d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b5502d]/40 sm:right-4"
+                          whileTap={{ scale: 0.88 }}
+                          className="notification-trash absolute right-3 top-3 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full text-[#8a8f8b] transition-colors hover:bg-[#172019]/6 hover:text-[#b5502d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b5502d]/40 sm:right-4"
                         >
-                          <FiTrash2 aria-hidden="true" className="h-3.5 w-3.5" />
-                        </button>
+                          <FiTrash2
+                            aria-hidden="true"
+                            className="notification-trash-icon h-3.5 w-3.5"
+                          />
+                        </motion.button>
                       </li>
                     );
                   })}

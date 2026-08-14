@@ -16,6 +16,44 @@ body {
   overflow-x: hidden;
 }
 
+@keyframes notification-trash-wiggle {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  18% {
+    transform: translateY(-2px) rotate(-18deg);
+  }
+  36% {
+    transform: translateY(1px) rotate(15deg);
+  }
+  54% {
+    transform: translateY(-1px) rotate(-11deg);
+  }
+  72% {
+    transform: translateY(0) rotate(7deg);
+  }
+  88% {
+    transform: translateY(-1px) rotate(-3deg);
+  }
+}
+
+.notification-trash-icon {
+  transform-origin: 50% 20%;
+}
+
+.notification-trash:hover .notification-trash-icon,
+.notification-trash:focus-visible .notification-trash-icon {
+  animation: notification-trash-wiggle 650ms ease-in-out 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .notification-trash:hover .notification-trash-icon,
+  .notification-trash:focus-visible .notification-trash-icon {
+    animation: none;
+  }
+}
+
 @layer utilities {
   .hide-scrollbar {
     scrollbar-width: none;
