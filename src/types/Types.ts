@@ -14,6 +14,7 @@ export interface ArtWorkProps {
 
 export type PortfolioUpdateType =
   | "artwork"
+  | "sketch"
   | "series"
   | "exhibition"
   | "news"
@@ -28,6 +29,7 @@ export interface PortfolioUpdate {
   description?: string;
   imageUrl?: string;
   artworkId?: number;
+  galleryCategory?: string;
   href?: string;
 }
 

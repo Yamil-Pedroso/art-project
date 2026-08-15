@@ -1,32 +1,34 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FiArrowUpRight, FiX } from "react-icons/fi";
-import type { ArtWorkProps } from "@/types/Types";
+import type { PortfolioUpdate } from "@/types/Types";
 
 interface NewArtworkNotificationProps {
-  artwork?: ArtWorkProps;
-  updateId?: string;
+  update?: PortfolioUpdate;
   isSeen: boolean;
   onSeen: (updateId: string) => void;
-  onView: (workId: number) => void;
+  onView: (update: PortfolioUpdate) => void;
 }
 
 const copy = {
   en: {
-    eyebrow: "New artwork",
-    action: "View artwork",
-    close: "Dismiss new artwork notification",
+    artworkEyebrow: "New artwork",
+    artworkAction: "View artwork",
+    sketchEyebrow: "New daily sketch",
+    sketchAction: "View sketchbook",
+    close: "Dismiss notification",
   },
   es: {
-    eyebrow: "Nueva obra",
-    action: "Ver obra",
-    close: "Cerrar notificación de nueva obra",
+    artworkEyebrow: "Nueva obra",
+    artworkAction: "Ver obra",
+    sketchEyebrow: "Nuevo sketch diario",
+    sketchAction: "Ver libreta",
+    close: "Cerrar notificación",
   },
 };
 
 const NewArtworkNotification = ({
-  artwork,
-  updateId,
+  update,
   isSeen,
   onSeen,
   onView,
@@ -38,31 +40,34 @@ const NewArtworkNotification = ({
       ? "es"
       : "en";
   const text = copy[language];
+  const isSketch = update?.type === "sketch";
+  const eyebrow = isSketch ? text.sketchEyebrow : text.artworkEyebrow;
+  const action = isSketch ? text.sketchAction : text.artworkAction;
 
   useEffect(() => {
-    if (!artwork?.id || !updateId || isSeen) {
+    if (!update?.id || !update.imageUrl || isSeen) {
       setIsVisible(false);
       return;
     }
 
     const timer = window.setTimeout(() => setIsVisible(true), 900);
     return () => window.clearTimeout(timer);
-  }, [artwork?.id, isSeen, updateId]);
+  }, [isSeen, update?.id, update?.imageUrl]);
 
   const rememberAsSeen = () => {
-    if (updateId) onSeen(updateId);
+    if (update?.id) onSeen(update.id);
     setIsVisible(false);
   };
 
   const handleView = () => {
-    if (!artwork?.id) return;
+    if (!update) return;
     rememberAsSeen();
-    onView(artwork.id);
+    onView(update);
   };
 
   return (
     <AnimatePresence>
-      {isVisible && artwork?.id && artwork.imageUrl && (
+      {isVisible && update?.id && update.imageUrl && (
         <motion.aside
           role="status"
           aria-live="polite"
@@ -75,7 +80,7 @@ const NewArtworkNotification = ({
           <div className="flex min-h-28">
             <div className="relative w-24 shrink-0 overflow-hidden bg-[#2b342e] sm:w-28">
               <img
-                src={artwork.imageUrl}
+                src={update.imageUrl}
                 alt=""
                 loading="lazy"
                 decoding="async"
@@ -86,17 +91,17 @@ const NewArtworkNotification = ({
 
             <div className="min-w-0 flex-1 px-4 py-4 pr-10">
               <p className="text-[9px] font-semibold uppercase tracking-[0.26em] text-[#d99272]">
-                {text.eyebrow}
+                {eyebrow}
               </p>
               <p className="mt-1.5 truncate text-base font-semibold tracking-[-0.02em]">
-                {artwork.title}
+                {update.title}
               </p>
               <button
                 type="button"
                 onClick={handleView}
                 className="group mt-3 inline-flex cursor-pointer items-center text-[10px] font-semibold uppercase tracking-[0.18em] text-[#d7ddd8] transition hover:text-[#d99272]"
               >
-                {text.action}
+                {action}
                 <FiArrowUpRight className="ml-2 h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </button>
             </div>

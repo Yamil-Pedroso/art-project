@@ -28,6 +28,7 @@ const copy = {
     open: "Open what's new",
     close: "Close what's new",
     view: "View artwork",
+    viewSketch: "View sketchbook",
     remove: "Remove notification",
     empty: "There are no recent updates at the moment.",
     subscribeTitle: "Would you like to discover my next works?",
@@ -35,6 +36,7 @@ const copy = {
     soon: "Soon",
     types: {
       artwork: "New artwork",
+      sketch: "New daily sketch",
       series: "New series",
       exhibition: "Exhibition",
       news: "Journal",
@@ -47,6 +49,7 @@ const copy = {
     open: "Abrir novedades",
     close: "Cerrar novedades",
     view: "Ver obra",
+    viewSketch: "Ver libreta",
     remove: "Eliminar notificación",
     empty: "No hay novedades recientes por el momento.",
     subscribeTitle: "¿Quieres conocer mis próximas obras?",
@@ -54,6 +57,7 @@ const copy = {
     soon: "Próximamente",
     types: {
       artwork: "Nueva obra",
+      sketch: "Nuevo sketch diario",
       series: "Nueva serie",
       exhibition: "Exposición",
       news: "Noticias",
@@ -292,6 +296,8 @@ const NotificationCenter = ({
                             <span className="mt-2 inline-flex items-center text-[10px] font-semibold uppercase tracking-[0.14em] text-[#4c5550] transition group-hover:text-[#b5502d]">
                               {update.type === "artwork"
                                 ? text.view
+                                : update.type === "sketch"
+                                  ? text.viewSketch
                                 : typeLabel}
                               <FiArrowUpRight
                                 aria-hidden="true"

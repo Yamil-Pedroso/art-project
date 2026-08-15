@@ -21,6 +21,7 @@ import {
 } from "@/lib/newArtwork";
 import NotificationCenter from "../notification-center/NotificationCenter";
 import { getPortfolioUpdates } from "@/data/portfolioUpdates";
+import { dailySketchPages } from "@/data/dailySketches";
 import { useSeenPortfolioUpdates } from "@/hooks/useSeenPortfolioUpdates";
 import type { PortfolioUpdate } from "@/types/Types";
 
@@ -35,7 +36,7 @@ const ArtGallery = () => {
     []
   );
   const portfolioUpdates = useMemo(
-    () => getPortfolioUpdates(artworks),
+    () => getPortfolioUpdates(artworks, dailySketchPages),
     []
   );
   const {
@@ -46,8 +47,8 @@ const ArtGallery = () => {
     hasUnseenUpdates,
   } =
     useSeenPortfolioUpdates(portfolioUpdates);
-  const currentArtworkUpdate = portfolioUpdates.find(
-    (update) => update.artworkId === currentNewArtwork?.id
+  const currentFloatingUpdate = visibleUpdates.find(
+    (update) => !seenIds.has(update.id)
   );
 
   const handleArtworkClick = (workId: number) => {
@@ -62,6 +63,11 @@ const ArtGallery = () => {
 
     if (update.artworkId !== undefined) {
       handleArtworkClick(update.artworkId);
+      return;
+    }
+
+    if (update.galleryCategory) {
+      handleNavCategory(update.galleryCategory);
       return;
     }
 
@@ -401,15 +407,14 @@ const ArtGallery = () => {
       <Footer />
       <ScrollToTop />
       <NewArtworkNotification
-        artwork={currentNewArtwork}
-        updateId={currentArtworkUpdate?.id}
+        update={currentFloatingUpdate}
         isSeen={
-          currentArtworkUpdate
-            ? seenIds.has(currentArtworkUpdate.id)
+          currentFloatingUpdate
+            ? seenIds.has(currentFloatingUpdate.id)
             : true
         }
         onSeen={markAsSeen}
-        onView={handleArtworkClick}
+        onView={handleUpdateSelect}
       />
     </main>
   );
