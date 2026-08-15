@@ -16,7 +16,7 @@ body {
   overflow-x: hidden;
 }
 
-@keyframes notification-trash-wiggle {
+@keyframes notification-hide-wiggle {
   0%,
   100% {
     transform: translateY(0) rotate(0deg);
@@ -38,18 +38,18 @@ body {
   }
 }
 
-.notification-trash-icon {
+.notification-hide-icon {
   transform-origin: 50% 20%;
 }
 
-.notification-trash:hover .notification-trash-icon,
-.notification-trash:focus-visible .notification-trash-icon {
-  animation: notification-trash-wiggle 650ms ease-in-out 1;
+.notification-hide:hover .notification-hide-icon,
+.notification-hide:focus-visible .notification-hide-icon {
+  animation: notification-hide-wiggle 650ms ease-in-out 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .notification-trash:hover .notification-trash-icon,
-  .notification-trash:focus-visible .notification-trash-icon {
+  .notification-hide:hover .notification-hide-icon,
+  .notification-hide:focus-visible .notification-hide-icon {
     animation: none;
   }
 }

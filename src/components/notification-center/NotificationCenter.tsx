@@ -5,7 +5,7 @@ import {
   FiArrowUpRight,
   FiBell,
   FiCheck,
-  FiTrash2,
+  FiEyeOff,
   FiX,
 } from "react-icons/fi";
 import type { PortfolioUpdate, PortfolioUpdateType } from "@/types/Types";
@@ -29,7 +29,7 @@ const copy = {
     close: "Close what's new",
     view: "View artwork",
     viewSketch: "View sketchbook",
-    remove: "Remove notification",
+    remove: "Hide this notification",
     empty: "There are no recent updates at the moment.",
     subscribeTitle: "Would you like to discover my next works?",
     subscribeAction: "Receive updates by email",
@@ -50,7 +50,7 @@ const copy = {
     close: "Cerrar novedades",
     view: "Ver obra",
     viewSketch: "Ver libreta",
-    remove: "Eliminar notificación",
+    remove: "Ocultar esta notificación",
     empty: "No hay novedades recientes por el momento.",
     subscribeTitle: "¿Quieres conocer mis próximas obras?",
     subscribeAction: "Recibir novedades por email",
@@ -312,11 +312,11 @@ const NotificationCenter = ({
                           aria-label={`${text.remove}: ${update.title}`}
                           title={text.remove}
                           whileTap={{ scale: 0.88 }}
-                          className="notification-trash absolute right-3 top-3 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full text-[#8a8f8b] transition-colors hover:bg-[#172019]/6 hover:text-[#b5502d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b5502d]/40 sm:right-4"
+                          className="notification-hide absolute right-3 top-3 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full text-[#8a8f8b] transition-colors hover:bg-[#172019]/6 hover:text-[#b5502d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b5502d]/40 sm:right-4"
                         >
-                          <FiTrash2
+                          <FiEyeOff
                             aria-hidden="true"
-                            className="notification-trash-icon h-3.5 w-3.5"
+                            className="notification-hide-icon h-3.5 w-3.5"
                           />
                         </motion.button>
                       </li>
@@ -358,7 +358,7 @@ const NotificationCenter = ({
                     <FiCheck aria-hidden="true" className="h-3.5 w-3.5" />
                   </span>
                   <span className="text-xs font-semibold tracking-[0.02em]">
-                    Notification successfully removed.
+                    Notification hidden for you.
                   </span>
                 </motion.div>
               )}
