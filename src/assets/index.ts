@@ -2,7 +2,10 @@ import hero from "./images/hero/hero.webp";
 
 import art1 from "./images/art-works/art1.webp";
 import art2 from "./images/art-works/art2.webp";
-import art3 from "./images/art-works/art3.webp";
+
+// Still Life Study Collection
+import still1 from "./images/still-life-study/still1.webp";
+import still2 from "./images/still-life-study/still2.webp";
 
 import pet1 from "./images/pets/pet1.webp";
 import pet2 from "./images/pets/pet2.webp";
@@ -113,6 +116,8 @@ import drawing27 from "./images/drawings/draw27.webp";
 
 // Portrait Collection
 import portrait1 from "./images/portrait/portrait1.webp";
+import portrait2 from "./images/portrait/portrait2.webp";
+import portrait3 from "./images/portrait/portrait3.webp";
 
 interface ImageAssets {
   [key: string]: string;
@@ -125,7 +130,8 @@ const imageAssets: ImageAssets = {
   yamiDraw1,
   art1,
   art2,
-  art3,
+  still1,
+  still2,
   exhib1,
   exhib2,
   exhib3,
@@ -204,6 +210,8 @@ const imageAssets: ImageAssets = {
   drawing26,
   drawing27,
   portrait1,
+  portrait2,
+  portrait3,
   dailySketch1,
   dailySketch2,
   dailySketch3,

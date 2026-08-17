@@ -13,6 +13,8 @@ const categoryMessages: Record<string, string> = {
     "New faces and personal stories are currently being brought to life.",
   Landscapes:
     "A new series inspired by place, memory and atmosphere is in progress.",
+  "Still Life Study":
+    "Quiet arrangements of objects, light and texture are currently being explored in the studio.",
   Drawings:
     "Studies, gestures and works on paper will be added to this collection soon.",
 };

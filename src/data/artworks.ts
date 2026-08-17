@@ -29,8 +29,8 @@ export const artworks: ArtWorkProps[] = [
     dimensions: "45 × 60 cm",
     description:
       "A cast-iron still life of humble glory. Three fried eggs, perfectly imperfect. A quiet tribute to hunger, ritual, and the poetry of simplicity.",
-    imageUrl: imageAssets.art3,
-    category: "Master copies",
+    imageUrl: imageAssets.still1,
+    category: "Still Life Study",
   },
   {
     id: 4,
@@ -651,5 +651,43 @@ export const artworks: ArtWorkProps[] = [
       "A playful studio portrait bringing artist and imagined subject face to face, where observation, character and science-fiction imagery meet.",
     imageUrl: imageAssets.portrait1,
     category: "Portraits",
+  },
+  {
+    id: 67,
+    title: "1450 Witch in the Sabbath",
+    medium: "Portrait study",
+    dimensions: "Variable",
+    description:
+      "An evolving portrait study currently taking shape through successive layers, tonal decisions and expressive detail.",
+    imageUrl: imageAssets.portrait2,
+    category: "Portraits",
+    status: "In process",
+    markAsNew: true,
+    publishedAt: "2026-08-17",
+  },
+  {
+    id: 68,
+    title: "Pandemic",
+    medium: "Portrait study",
+    dimensions: "Variable",
+    description:
+      "A portrait shaped by the atmosphere and emotional memory of an extraordinary collective moment.",
+    imageUrl: imageAssets.portrait3,
+    category: "Portraits",
+    markAsNew: true,
+    publishedAt: "2026-08-17",
+  },
+  {
+    id: 69,
+    title: "Still Life Study II",
+    medium: "Oil on canvas",
+    dimensions: "Variable",
+    description:
+      "An evolving still-life study of glass, olives and foliage, exploring restrained color, reflected light and the quiet presence of everyday objects.",
+    imageUrl: imageAssets.still2,
+    category: "Still Life Study",
+    status: "In process",
+    markAsNew: true,
+    publishedAt: "2026-08-17",
   },
 ];

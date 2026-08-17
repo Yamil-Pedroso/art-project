@@ -6,6 +6,8 @@ export interface ArtWorkProps {
   description?: string;
   imageUrl?: string;
   category?: string;
+  /** Editorial state displayed over artwork imagery when applicable. */
+  status?: "In process";
   /** Optional manual override; the highest new ID is detected automatically. */
   markAsNew?: boolean;
   /** Optional ISO date; automatic publications use the deployment date. */

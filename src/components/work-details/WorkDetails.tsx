@@ -227,6 +227,11 @@ const WorkDetails = () => {
                 />
               </svg>
             </button>
+            {artwork.status && (
+              <span className="absolute left-4 top-4 z-30 border border-[#b5502d]/25 bg-[#f5f2eb]/92 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#b5502d] shadow-sm backdrop-blur sm:left-7 sm:top-7">
+                {artwork.status}
+              </span>
+            )}
             <span className="absolute bottom-4 left-4 z-20 bg-[#f5f2eb]/90 px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#59615c] backdrop-blur sm:bottom-7 sm:left-7">
               Original artwork
             </span>

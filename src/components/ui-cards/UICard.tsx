@@ -71,6 +71,11 @@ const UICard = ({
               New
             </span>
           )}
+          {artwork.status && (
+            <span className="absolute right-3 top-3 z-10 border border-[#b5502d]/25 bg-[#f5f2eb]/92 px-2.5 py-1.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-[#b5502d] shadow-sm backdrop-blur sm:right-4 sm:top-4">
+              {artwork.status}
+            </span>
+          )}
           <span className="absolute bottom-0 left-1/2 z-10 inline-flex -translate-x-1/2 translate-y-1/2 items-center whitespace-nowrap rounded-full bg-[#b5502d] px-6 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-white shadow-[0_10px_30px_rgba(181,80,45,0.3)] transition duration-300 group-hover:-translate-y-1 group-hover:bg-[#172019] sm:text-sm">
             View artwork
             <span aria-hidden="true" className="ml-2 text-base">
