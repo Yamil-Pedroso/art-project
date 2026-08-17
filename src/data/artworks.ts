@@ -178,6 +178,7 @@ export const artworks: ArtWorkProps[] = [
       "A master-copy study exploring dramatic light, collective attention and the expressive tension of a timeless figurative composition.",
     imageUrl: imageAssets.master1,
     category: "Master copies",
+    status: "In process",
   },
   {
     id: 20,
