@@ -589,6 +589,7 @@ export const artworks: ArtWorkProps[] = [
       "A quiet jester shelters a small golden companion, turning an unlikely encounter into a tender scene of solitude, wonder and trust.",
     imageUrl: imageAssets.fantasy1,
     category: "Fantasy",
+    status: "In process",
   },
   {
     id: 60,
