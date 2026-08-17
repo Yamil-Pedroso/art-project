@@ -47,6 +47,15 @@ const WorkDetails = () => {
   const nextArtwork =
     artworks[currentIndex === artworks.length - 1 ? 0 : currentIndex + 1];
   const collectionNumber = String(currentIndex + 1).padStart(2, "0");
+  const processPhases = [
+    artwork.phase1,
+    artwork.phase2,
+    artwork.phase3,
+    artwork.phase4,
+    artwork.phase5,
+  ].flatMap((imageUrl, index) =>
+    imageUrl ? [{ imageUrl, number: index + 1 }] : []
+  );
 
   const handleZoomMove = (event: MouseEvent<HTMLElement>) => {
     const bounds = event.currentTarget.getBoundingClientRect();
@@ -294,6 +303,55 @@ const WorkDetails = () => {
               </dd>
             </div>
           </dl>
+
+          {processPhases.length > 0 && (
+            <motion.section
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: 0.24 }}
+              aria-labelledby="creative-process-title"
+              className="mt-9"
+            >
+              <div className="flex items-end justify-between gap-5">
+                <div>
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#b5502d]">
+                    Behind the artwork
+                  </p>
+                  <h2
+                    id="creative-process-title"
+                    className="mt-1.5 text-2xl font-semibold tracking-[-0.03em] text-[#172019]"
+                  >
+                    Creative process
+                  </h2>
+                </div>
+                <span className="pb-1 text-xs text-[#8a8f8b]">
+                  {processPhases.length} {processPhases.length === 1 ? "stage" : "stages"}
+                </span>
+              </div>
+
+              <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-5">
+                {processPhases.map((phase) => (
+                  <figure
+                    key={phase.number}
+                    className="group overflow-hidden border border-[#172019]/10 bg-[#e5e0d6]"
+                  >
+                    <div className="aspect-square overflow-hidden">
+                      <img
+                        src={phase.imageUrl}
+                        alt={`${artwork.title || "Artwork"}, process phase ${phase.number}`}
+                        loading="lazy"
+                        decoding="async"
+                        className="h-full w-full object-cover transition duration-500 ease-out group-hover:scale-[1.04]"
+                      />
+                    </div>
+                    <figcaption className="border-t border-[#172019]/10 bg-[#f5f2eb]/85 px-2 py-2 text-center text-[9px] font-semibold uppercase tracking-[0.16em] text-[#69706c]">
+                      Phase {String(phase.number).padStart(2, "0")}
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+            </motion.section>
+          )}
 
           <nav
             aria-label="Browse artworks"

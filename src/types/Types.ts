@@ -8,6 +8,12 @@ export interface ArtWorkProps {
   category?: string;
   /** Editorial state displayed over artwork imagery when applicable. */
   status?: "In process";
+  /** Up to five optional images documenting the artwork's creative process. */
+  phase1?: string;
+  phase2?: string;
+  phase3?: string;
+  phase4?: string;
+  phase5?: string;
   /** Optional manual override; the highest new ID is detected automatically. */
   markAsNew?: boolean;
   /** Optional ISO date; automatic publications use the deployment date. */
