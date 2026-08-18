@@ -11,6 +11,7 @@ const categories = [
   "Master copies",
   "Portraits",
   "Landscapes",
+  "Anatomy Study",
   "Still Life Study",
   "Drawings",
   "Digital Art",
