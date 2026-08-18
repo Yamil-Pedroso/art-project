@@ -25,6 +25,8 @@ import { getPortfolioUpdates } from "@/data/portfolioUpdates";
 import { dailySketchPages } from "@/data/dailySketches";
 import { useSeenPortfolioUpdates } from "@/hooks/useSeenPortfolioUpdates";
 import type { PortfolioUpdate } from "@/types/Types";
+import FeaturedArtworkSlider from "../featured-artwork-slider/FeaturedArtworkSlider";
+import ThemeToggle from "../theme-toggle/ThemeToggle";
 
 const ArtGallery = () => {
   const navigate = useNavigate();
@@ -104,6 +106,16 @@ const ArtGallery = () => {
       : artworks.filter(
           (art) => art.category === selectedCategory && art.id !== undefined
         );
+  const latestThreeArtworks = useMemo(
+    () =>
+      [...artworks]
+        .filter(
+          (artwork) => artwork.id !== undefined && Boolean(artwork.imageUrl)
+        )
+        .sort((first, second) => (second.id || 0) - (first.id || 0))
+        .slice(0, 3),
+    []
+  );
   const showsArtworkCards =
     selectedCategory !== "Daily Sketching" &&
     selectedCategory !== "Art Curriculum" &&
@@ -206,6 +218,8 @@ const ArtGallery = () => {
                 onDismiss={dismissUpdate}
               />
 
+              <ThemeToggle />
+
               <button
                 type="button"
                 onClick={() => setIsMenuOpen((isOpen) => !isOpen)}
@@ -307,7 +321,7 @@ const ArtGallery = () => {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.08 }}
-            className="max-w-4xl text-5xl font-semibold leading-[0.98] tracking-[-0.045em] text-[#172019] sm:text-6xl lg:text-8xl"
+            className="theme-hero-title max-w-4xl text-5xl font-semibold leading-[0.98] tracking-[-0.045em] text-[#172019] sm:text-6xl lg:text-8xl"
           >
             Stories shaped in color, texture and light.
           </motion.h1>
@@ -315,7 +329,7 @@ const ArtGallery = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.18 }}
-            className="mt-7 max-w-2xl text-lg leading-relaxed text-[#354039] sm:text-xl"
+            className="theme-hero-description mt-7 max-w-2xl text-lg leading-relaxed text-[#354039] sm:text-xl"
           >
             A personal collection of original works where Caribbean roots meet
             European influences across physical and digital mediums.
@@ -334,6 +348,11 @@ const ArtGallery = () => {
           </motion.a>
         </div>
       </section>
+
+      <FeaturedArtworkSlider
+        artworks={latestThreeArtworks}
+        onArtworkSelect={handleArtworkClick}
+      />
 
       <section
         id="gallery"
@@ -454,7 +473,7 @@ const ArtGallery = () => {
                 transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
                 className={`grid w-full ${
                   viewMode === "list"
-                    ? "grid-cols-1 gap-y-7"
+                    ? "mx-auto max-w-[90rem] grid-cols-1 gap-y-14 sm:gap-y-16 lg:gap-y-20"
                     : viewMode === "compact"
                       ? "grid-cols-1 gap-x-7 gap-y-14 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"
                       : "grid-cols-1 gap-x-6 gap-y-14 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"

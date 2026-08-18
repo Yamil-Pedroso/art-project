@@ -20,6 +20,7 @@ const UICard = ({
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const cardRef = useRef<HTMLElement>(null);
+  const revealTimerRef = useRef<number | null>(null);
   const showNewBadge =
     isLatestArtwork || isWithinNewArtworkPeriod(artwork);
   const isListView = viewMode === "list";
@@ -29,18 +30,23 @@ const UICard = ({
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setTimeout(() => {
+          const shortStagger = (index % 4) * 35;
+          revealTimerRef.current = window.setTimeout(() => {
             setIsVisible(true);
-          }, index * 100);
+          }, shortStagger);
+          observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.1, rootMargin: "50px" }
+      { threshold: 0.01, rootMargin: "160px 0px" }
     );
 
     const currentCard = cardRef.current;
     if (currentCard) observer.observe(currentCard);
     return () => {
       if (currentCard) observer.unobserve(currentCard);
+      if (revealTimerRef.current !== null) {
+        window.clearTimeout(revealTimerRef.current);
+      }
     };
   }, [index]);
 
@@ -50,9 +56,9 @@ const UICard = ({
       ref={cardRef}
       initial={false}
       animate={
-        isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }
+        isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
       }
-      transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
       className="group w-full"
     >
       <button
@@ -60,7 +66,7 @@ const UICard = ({
         onClick={onClick}
         className={`w-full cursor-pointer text-left ${
           isListView
-            ? "sm:grid sm:grid-cols-[minmax(12rem,17rem)_minmax(0,1fr)] sm:items-center sm:gap-8"
+            ? "sm:grid sm:grid-cols-[minmax(16rem,42%)_minmax(0,1fr)] sm:items-center sm:gap-10 lg:gap-14 xl:gap-16"
             : ""
         }`}
         aria-label={`View details for ${artwork.title}`}
@@ -107,12 +113,18 @@ const UICard = ({
 
         <div
           className={`px-3 pb-2 pt-9 ${
-            isListView ? "sm:px-0 sm:py-4 sm:text-left" : "text-center"
+            isListView
+              ? "sm:px-0 sm:py-6 sm:text-left lg:py-8"
+              : "text-center"
           }`}
         >
           <h3
             className={`font-semibold tracking-[-0.02em] text-[#172019] transition-colors duration-300 group-hover:text-[#b5502d] ${
-              isCompactView ? "text-xl" : isListView ? "text-2xl" : "text-xl"
+              isCompactView
+                ? "text-xl"
+                : isListView
+                  ? "text-2xl sm:text-3xl lg:text-4xl"
+                  : "text-xl"
             }`}
           >
             {artwork.title}
@@ -131,7 +143,7 @@ const UICard = ({
             )}
           </div>
           {isListView && artwork.description && (
-            <p className="mt-4 hidden max-w-2xl text-sm leading-relaxed text-[#59615c] sm:block">
+            <p className="mt-5 hidden max-w-2xl text-base leading-relaxed text-[#59615c] sm:block lg:mt-6 lg:text-lg lg:leading-relaxed">
               {artwork.description}
             </p>
           )}

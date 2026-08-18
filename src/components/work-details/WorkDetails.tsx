@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { Route } from "../../routes/work-details/$workId";
 import { artworks } from "@/data/artworks";
+import ThemeToggle from "../theme-toggle/ThemeToggle";
 
 interface ZoomPosition {
   x: number;
@@ -110,9 +111,12 @@ const WorkDetails = () => {
           </span>
           Back to gallery
         </Link>
-        <p className="hidden text-xs font-semibold uppercase tracking-[0.24em] text-[#8a8f8b] sm:block">
-          Artist portfolio
-        </p>
+        <div className="flex items-center gap-3">
+          <p className="hidden text-xs font-semibold uppercase tracking-[0.24em] text-[#8a8f8b] sm:block">
+            Artist portfolio
+          </p>
+          <ThemeToggle />
+        </div>
       </header>
 
       <div className="relative grid w-full gap-12 px-5 py-8 sm:px-8 sm:py-10 lg:grid-cols-[minmax(0,1.12fr)_minmax(22rem,0.88fr)] lg:gap-14 lg:px-12 lg:py-12 xl:gap-20 xl:px-16">

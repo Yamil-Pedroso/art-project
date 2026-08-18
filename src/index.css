@@ -14,6 +14,92 @@ body,
 body {
   margin: 0;
   overflow-x: hidden;
+  background: #f5f2eb;
+  color: #172019;
+}
+
+html[data-theme="dark"] body {
+  background: #101310;
+  color: #f5f2eb;
+}
+
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
+  transition-property: background-color, border-color, color, fill, stroke !important;
+  transition-duration: 520ms !important;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+html[data-theme="dark"] [class*="bg-[#f5f2eb]"],
+html[data-theme="dark"] [class*="bg-[#f4eddf]"],
+html[data-theme="dark"] [class*="bg-[#f4ecda]"],
+html[data-theme="dark"] [class*="bg-[#e9e4da]"],
+html[data-theme="dark"] [class*="bg-[#e8e6db]"],
+html[data-theme="dark"] [class*="bg-[#e8e3d9]"],
+html[data-theme="dark"] [class*="bg-[#e7e1d6]"],
+html[data-theme="dark"] [class*="bg-[#e5e0d6]"],
+html[data-theme="dark"] [class*="bg-[#dfdbd1]"],
+html[data-theme="dark"] [class*="bg-[#ded9ce]"],
+html[data-theme="dark"] [class*="bg-[#dcd6ca]"],
+html[data-theme="dark"] [class*="bg-[#dcd5c8]"] {
+  background-color: #151915 !important;
+}
+
+html[data-theme="dark"] [class*="bg-white/"] {
+  background-color: rgb(255 255 255 / 0.055) !important;
+}
+
+html[data-theme="dark"] [class~="bg-white"] {
+  background-color: #1b1f1b !important;
+}
+
+html[data-theme="dark"] [class~="bg-[#172019]"] {
+  background-color: #b5502d !important;
+}
+
+html[data-theme="dark"] [class*="text-[#172019]"],
+html[data-theme="dark"] [class*="text-[#101511]"],
+html[data-theme="dark"] [class*="text-[#354039]"] {
+  color: #f5f2eb !important;
+}
+
+html[data-theme="dark"] [class*="text-[#4c5550]"],
+html[data-theme="dark"] [class*="text-[#59615c]"],
+html[data-theme="dark"] [class*="text-[#69706c]"],
+html[data-theme="dark"] [class*="text-[#6d746f]"],
+html[data-theme="dark"] [class*="text-[#737975]"],
+html[data-theme="dark"] [class*="text-[#747b76]"],
+html[data-theme="dark"] [class*="text-[#777d79]"],
+html[data-theme="dark"] [class*="text-[#7b817d]"],
+html[data-theme="dark"] [class*="text-[#858c87]"],
+html[data-theme="dark"] [class*="text-[#8a8f8b]"] {
+  color: rgb(245 242 235 / 0.66) !important;
+}
+
+html[data-theme="dark"] [class*="border-[#172019]"],
+html[data-theme="dark"] [class*="divide-[#172019]"] {
+  border-color: rgb(255 255 255 / 0.14) !important;
+}
+
+html[data-theme="dark"] [class*="ring-offset-[#f5f2eb]"] {
+  --tw-ring-offset-color: #101310 !important;
+}
+
+html[data-theme="dark"] [class*="hover:text-[#b5502d]"]:hover {
+  color: #d99272 !important;
+}
+
+html[data-theme="dark"] [class*="hover:bg-[#b5502d]"]:hover {
+  background-color: #d17450 !important;
+}
+
+html[data-theme="dark"] .theme-hero-title {
+  color: #172019 !important;
+}
+
+html[data-theme="dark"] .theme-hero-description {
+  color: #354039 !important;
 }
 
 @keyframes notification-hide-wiggle {
@@ -38,6 +124,39 @@ body {
   }
 }
 
+.category-brush-stroke {
+  position: absolute;
+  left: -7%;
+  top: 50%;
+  z-index: 0;
+  width: 114%;
+  height: 116%;
+  color: #0b0c0b;
+  opacity: 0;
+  filter: drop-shadow(0 2px 2px rgb(0 0 0 / 0.16));
+  transform: translate(-108%, -50%) scaleX(0.38) rotate(-3deg);
+  transform-origin: left center;
+  transition:
+    transform 260ms cubic-bezier(0.2, 0.86, 0.24, 1),
+    opacity 80ms linear;
+}
+
+.category-brush-button:hover .category-brush-stroke,
+.category-brush-button:focus-visible .category-brush-stroke {
+  opacity: 1;
+  transform: translate(0, -50%) scaleX(1) rotate(-2deg);
+}
+
+html[data-theme="dark"] .category-brush-stroke {
+  color: #d17450;
+  filter: drop-shadow(0 2px 3px rgb(0 0 0 / 0.32));
+}
+
+html[data-theme="dark"] .category-brush-button:hover,
+html[data-theme="dark"] .category-brush-button:focus-visible {
+  color: #ffffff !important;
+}
+
 .notification-hide-icon {
   transform-origin: 50% 20%;
 }
@@ -51,6 +170,11 @@ body {
   .notification-hide:hover .notification-hide-icon,
   .notification-hide:focus-visible .notification-hide-icon {
     animation: none;
+  }
+
+  .category-brush-stroke {
+    transition: opacity 150ms ease;
+    transform: translate(0, -50%) scaleX(1);
   }
 }
 
