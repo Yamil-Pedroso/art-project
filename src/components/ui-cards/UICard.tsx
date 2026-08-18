@@ -3,7 +3,7 @@ import { artworks } from "@/data/artworks";
 import { motion } from "framer-motion";
 import { isWithinNewArtworkPeriod } from "@/lib/newArtwork";
 
-export type ArtworkViewMode = "gallery" | "compact" | "list";
+export type ArtworkViewMode = "gallery" | "compact" | "list" | "masonry";
 
 const UICard = ({
   artwork,
@@ -25,6 +25,7 @@ const UICard = ({
     isLatestArtwork || isWithinNewArtworkPeriod(artwork);
   const isListView = viewMode === "list";
   const isCompactView = viewMode === "compact";
+  const isMasonryView = viewMode === "masonry";
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -59,7 +60,7 @@ const UICard = ({
         isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
       }
       transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
-      className="group w-full"
+      className={`group w-full ${isMasonryView ? "mb-7 break-inside-avoid sm:mb-8" : ""}`}
     >
       <button
         type="button"
@@ -76,14 +77,20 @@ const UICard = ({
         >
           <div
             className={`w-full overflow-hidden bg-[#ded9ce] ${
-              isCompactView ? "aspect-[3/4]" : "aspect-[4/3]"
+              isMasonryView
+                ? ""
+                : isCompactView
+                  ? "aspect-[3/4]"
+                  : "aspect-[4/3]"
             }`}
           >
             <img
               src={artwork.imageUrl}
               alt={artwork.title}
               loading="lazy"
-              className="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-[1.04]"
+              className={`${
+                isMasonryView ? "block h-auto" : "h-full object-cover"
+              } w-full transition duration-700 ease-out group-hover:scale-[1.04]`}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#172019]/45 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
           </div>
@@ -99,7 +106,7 @@ const UICard = ({
           )}
           <span
             className={`absolute bottom-0 left-1/2 z-10 inline-flex -translate-x-1/2 translate-y-1/2 items-center whitespace-nowrap rounded-full bg-[#b5502d] font-semibold uppercase text-white shadow-[0_10px_30px_rgba(181,80,45,0.3)] transition duration-300 group-hover:-translate-y-1 group-hover:bg-[#172019] ${
-              isCompactView
+              isCompactView || isMasonryView
                 ? "px-5 py-3 text-xs tracking-[0.13em]"
                 : "px-6 py-3 text-xs tracking-[0.14em] sm:text-sm"
             }`}
@@ -120,7 +127,7 @@ const UICard = ({
         >
           <h3
             className={`font-semibold tracking-[-0.02em] text-[#172019] transition-colors duration-300 group-hover:text-[#b5502d] ${
-              isCompactView
+              isCompactView || isMasonryView
                 ? "text-xl"
                 : isListView
                   ? "text-2xl sm:text-3xl lg:text-4xl"

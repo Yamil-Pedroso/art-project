@@ -21,6 +21,14 @@ interface ProcessPhase extends DisplayMedia {
   number: number;
 }
 
+interface ProcessPhaseGalleryProps {
+  artworkTitle?: string;
+  className?: string;
+  headingId: string;
+  onPhaseSelect: (phaseNumber: number) => void;
+  phases: ProcessPhase[];
+}
+
 const createProcessPhases = (
   artwork: (typeof artworks)[number] | undefined
 ): ProcessPhase[] =>
@@ -41,6 +49,74 @@ const createProcessPhases = (
         ]
       : []
   );
+
+const ProcessPhaseGallery = ({
+  artworkTitle,
+  className = "",
+  headingId,
+  onPhaseSelect,
+  phases,
+}: ProcessPhaseGalleryProps) => {
+  if (phases.length === 0) return null;
+
+  return (
+    <motion.section
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.55, delay: 0.24 }}
+      aria-labelledby={headingId}
+      className={className}
+    >
+      <div className="flex items-end justify-between gap-5">
+        <div>
+          <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#b5502d]">
+            Behind the artwork
+          </p>
+          <h2
+            id={headingId}
+            className="mt-1.5 text-2xl font-semibold tracking-[-0.03em] text-[#172019]"
+          >
+            Creative process
+          </h2>
+        </div>
+        <span className="pb-1 text-xs text-[#8a8f8b]">
+          {phases.length} {phases.length === 1 ? "stage" : "stages"}
+        </span>
+      </div>
+
+      <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+        {phases.map((phase) => (
+          <motion.button
+            key={phase.number}
+            type="button"
+            layout
+            onClick={() => onPhaseSelect(phase.number)}
+            whileTap={{ scale: 0.97 }}
+            aria-label={`Show ${phase.label} in the main artwork viewer`}
+            className="group cursor-pointer overflow-hidden border border-[#172019]/10 bg-[#e5e0d6] text-left transition hover:-translate-y-1 hover:border-[#b5502d]/45 hover:shadow-[0_12px_30px_rgba(23,32,25,0.14)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b5502d]/50"
+          >
+            <div className="aspect-square overflow-hidden">
+              <motion.img
+                key={phase.imageUrl}
+                src={phase.imageUrl}
+                alt={`${artworkTitle || "Artwork"}, ${phase.label}`}
+                loading="lazy"
+                decoding="async"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.28 }}
+                className="h-full w-full object-cover transition duration-500 ease-out group-hover:scale-[1.04]"
+              />
+            </div>
+            <span className="block border-t border-[#172019]/10 bg-[#f5f2eb]/85 px-2 py-2 text-center text-[9px] font-semibold uppercase tracking-[0.16em] text-[#69706c]">
+              {phase.label}
+            </span>
+          </motion.button>
+        ))}
+      </div>
+    </motion.section>
+  );
+};
 
 const WorkDetails = () => {
   const { workId } = Route.useParams();
@@ -317,6 +393,14 @@ const WorkDetails = () => {
               {activeMedia.label}
             </span>
           </div>
+
+          <ProcessPhaseGallery
+            artworkTitle={artwork.title}
+            className="mt-6 lg:hidden"
+            headingId="creative-process-mobile"
+            onPhaseSelect={handlePhaseSelect}
+            phases={processPhases}
+          />
         </motion.section>
 
         <motion.section
@@ -376,63 +460,13 @@ const WorkDetails = () => {
             </div>
           </dl>
 
-          {processPhases.length > 0 && (
-            <motion.section
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.24 }}
-              aria-labelledby="creative-process-title"
-              className="mt-9"
-            >
-              <div className="flex items-end justify-between gap-5">
-                <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#b5502d]">
-                    Behind the artwork
-                  </p>
-                  <h2
-                    id="creative-process-title"
-                    className="mt-1.5 text-2xl font-semibold tracking-[-0.03em] text-[#172019]"
-                  >
-                    Creative process
-                  </h2>
-                </div>
-                <span className="pb-1 text-xs text-[#8a8f8b]">
-                  {processPhases.length} {processPhases.length === 1 ? "stage" : "stages"}
-                </span>
-              </div>
-
-              <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-5">
-                {processPhases.map((phase) => (
-                  <motion.button
-                    key={phase.number}
-                    type="button"
-                    layout
-                    onClick={() => handlePhaseSelect(phase.number)}
-                    whileTap={{ scale: 0.97 }}
-                    aria-label={`Show ${phase.label} in the main artwork viewer`}
-                    className="group cursor-pointer overflow-hidden border border-[#172019]/10 bg-[#e5e0d6] text-left transition hover:-translate-y-1 hover:border-[#b5502d]/45 hover:shadow-[0_12px_30px_rgba(23,32,25,0.14)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b5502d]/50"
-                  >
-                    <div className="aspect-square overflow-hidden">
-                      <motion.img
-                        key={phase.imageUrl}
-                        src={phase.imageUrl}
-                        alt={`${artwork.title || "Artwork"}, ${phase.label}`}
-                        loading="lazy"
-                        decoding="async"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.28 }}
-                        className="h-full w-full object-cover transition duration-500 ease-out group-hover:scale-[1.04]"
-                      />
-                    </div>
-                    <span className="block border-t border-[#172019]/10 bg-[#f5f2eb]/85 px-2 py-2 text-center text-[9px] font-semibold uppercase tracking-[0.16em] text-[#69706c]">
-                      {phase.label}
-                    </span>
-                  </motion.button>
-                ))}
-              </div>
-            </motion.section>
-          )}
+          <ProcessPhaseGallery
+            artworkTitle={artwork.title}
+            className="mt-9 hidden lg:block"
+            headingId="creative-process-desktop"
+            onPhaseSelect={handlePhaseSelect}
+            phases={processPhases}
+          />
 
           <nav
             aria-label="Browse artworks"

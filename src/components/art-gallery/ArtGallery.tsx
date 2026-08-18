@@ -1,8 +1,8 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Route as ArtWorkDetailsRoute } from "@/routes/work-details/$workId";
 import { useNavigate } from "@tanstack/react-router";
-import { FiColumns, FiGrid, FiList } from "react-icons/fi";
+import { FiColumns, FiGrid, FiLayout, FiList } from "react-icons/fi";
 import { artworks } from "@/data/artworks";
 import imageAssets from "@/assets";
 import CategoryMenu from "../category-menu/CategoryMenu";
@@ -28,13 +28,36 @@ import type { PortfolioUpdate } from "@/types/Types";
 import FeaturedArtworkSlider from "../featured-artwork-slider/FeaturedArtworkSlider";
 import ThemeToggle from "../theme-toggle/ThemeToggle";
 
+const ARTWORK_VIEW_STORAGE_KEY = "yami-atelier-artwork-view-mode";
+const artworkViewModes: ArtworkViewMode[] = [
+  "compact",
+  "gallery",
+  "list",
+  "masonry",
+];
+
+const getInitialArtworkViewMode = (): ArtworkViewMode => {
+  if (typeof window === "undefined") return "compact";
+
+  try {
+    const storedMode = window.localStorage.getItem(ARTWORK_VIEW_STORAGE_KEY);
+    return artworkViewModes.includes(storedMode as ArtworkViewMode)
+      ? (storedMode as ArtworkViewMode)
+      : "compact";
+  } catch {
+    return "compact";
+  }
+};
+
 const ArtGallery = () => {
   const navigate = useNavigate();
   const galleryContentRef = useRef<HTMLDivElement>(null);
 
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [viewMode, setViewMode] = useState<ArtworkViewMode>("compact");
+  const [viewMode, setViewMode] = useState<ArtworkViewMode>(
+    getInitialArtworkViewMode
+  );
   const currentNewArtwork = useMemo(
     () => getCurrentNewArtwork(artworks),
     []
@@ -54,6 +77,14 @@ const ArtGallery = () => {
   const currentFloatingUpdate = visibleUpdates.find(
     (update) => !seenIds.has(update.id)
   );
+
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(ARTWORK_VIEW_STORAGE_KEY, viewMode);
+    } catch {
+      // The selected view still works when browser storage is unavailable.
+    }
+  }, [viewMode]);
 
   const handleArtworkClick = (workId: number) => {
     navigate({
@@ -129,6 +160,7 @@ const ArtGallery = () => {
     { mode: "compact", label: "Vertical gallery", icon: FiGrid },
     { mode: "gallery", label: "Gallery view", icon: FiColumns },
     { mode: "list", label: "List view", icon: FiList },
+    { mode: "masonry", label: "Irregular mosaic", icon: FiLayout },
   ];
 
   return (
@@ -471,13 +503,17 @@ const ArtGallery = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-                className={`grid w-full ${
-                  viewMode === "list"
-                    ? "mx-auto max-w-[90rem] grid-cols-1 gap-y-14 sm:gap-y-16 lg:gap-y-20"
-                    : viewMode === "compact"
-                      ? "grid-cols-1 gap-x-7 gap-y-14 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"
-                      : "grid-cols-1 gap-x-6 gap-y-14 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"
-                }`}
+                className={
+                  viewMode === "masonry"
+                    ? "w-full columns-1 gap-6 sm:columns-2 lg:columns-3 2xl:columns-4"
+                    : `grid w-full ${
+                        viewMode === "list"
+                          ? "mx-auto max-w-[90rem] grid-cols-1 gap-y-14 sm:gap-y-16 lg:gap-y-20"
+                          : viewMode === "compact"
+                            ? "grid-cols-1 gap-x-7 gap-y-14 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"
+                            : "grid-cols-1 gap-x-6 gap-y-14 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"
+                      }`
+                }
               >
                 {filteredArtworks.map((artwork, index) => (
                   <UICard
