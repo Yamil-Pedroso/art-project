@@ -118,6 +118,7 @@ import drawing27 from "./images/drawings/draw27.webp";
 import portrait1 from "./images/portrait/portrait1.webp";
 import portrait2 from "./images/portrait/portrait2.webp";
 import portrait3 from "./images/portrait/portrait3.webp";
+import portrait2Phase1 from "./images/portrait/phases/portrait2/phase1.webp";
 
 interface ImageAssets {
   [key: string]: string;
@@ -212,6 +213,7 @@ const imageAssets: ImageAssets = {
   portrait1,
   portrait2,
   portrait3,
+  portrait2Phase1,
   dailySketch1,
   dailySketch2,
   dailySketch3,

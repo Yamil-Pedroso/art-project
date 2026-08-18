@@ -664,6 +664,7 @@ export const artworks: ArtWorkProps[] = [
     imageUrl: imageAssets.portrait2,
     category: "Portraits",
     status: "In process",
+    phase1: imageAssets.portrait2Phase1,
     markAsNew: true,
     publishedAt: "2026-08-17",
   },

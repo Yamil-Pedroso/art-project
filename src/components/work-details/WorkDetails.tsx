@@ -1,4 +1,4 @@
-import { useState, type MouseEvent } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
 import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { Route } from "../../routes/work-details/$workId";
@@ -12,14 +12,61 @@ interface ZoomPosition {
   yPercent: number;
 }
 
+interface DisplayMedia {
+  imageUrl: string;
+  label: string;
+}
+
+interface ProcessPhase extends DisplayMedia {
+  number: number;
+}
+
+const createProcessPhases = (
+  artwork: (typeof artworks)[number] | undefined
+): ProcessPhase[] =>
+  [
+    artwork?.phase1,
+    artwork?.phase2,
+    artwork?.phase3,
+    artwork?.phase4,
+    artwork?.phase5,
+  ].flatMap((imageUrl, index) =>
+    imageUrl
+      ? [
+          {
+            imageUrl,
+            number: index + 1,
+            label: `Phase ${String(index + 1).padStart(2, "0")}`,
+          },
+        ]
+      : []
+  );
+
 const WorkDetails = () => {
-  const [zoomPosition, setZoomPosition] = useState<ZoomPosition | null>(null);
-  const [isImageZoomed, setIsImageZoomed] = useState(false);
   const { workId } = Route.useParams();
   const currentIndex = artworks.findIndex(
     (artwork) => artwork.id === Number(workId)
   );
   const artwork = artworks[currentIndex];
+  const [zoomPosition, setZoomPosition] = useState<ZoomPosition | null>(null);
+  const [isImageZoomed, setIsImageZoomed] = useState(false);
+  const [activeMedia, setActiveMedia] = useState<DisplayMedia>(() => ({
+    imageUrl: artwork?.imageUrl || "",
+    label: "Original artwork",
+  }));
+  const [processPhases, setProcessPhases] = useState<ProcessPhase[]>(() =>
+    createProcessPhases(artwork)
+  );
+
+  useEffect(() => {
+    setActiveMedia({
+      imageUrl: artwork?.imageUrl || "",
+      label: "Original artwork",
+    });
+    setProcessPhases(createProcessPhases(artwork));
+    setZoomPosition(null);
+    setIsImageZoomed(false);
+  }, [artwork]);
 
   if (!artwork) {
     return (
@@ -48,15 +95,7 @@ const WorkDetails = () => {
   const nextArtwork =
     artworks[currentIndex === artworks.length - 1 ? 0 : currentIndex + 1];
   const collectionNumber = String(currentIndex + 1).padStart(2, "0");
-  const processPhases = [
-    artwork.phase1,
-    artwork.phase2,
-    artwork.phase3,
-    artwork.phase4,
-    artwork.phase5,
-  ].flatMap((imageUrl, index) =>
-    imageUrl ? [{ imageUrl, number: index + 1 }] : []
-  );
+  const displayedImageUrl = activeMedia.imageUrl || artwork.imageUrl || "";
 
   const handleZoomMove = (event: MouseEvent<HTMLElement>) => {
     const bounds = event.currentTarget.getBoundingClientRect();
@@ -90,6 +129,31 @@ const WorkDetails = () => {
     }
 
     setIsImageZoomed((isZoomed) => !isZoomed);
+  };
+
+  const handlePhaseSelect = (phaseNumber: number) => {
+    const selectedPhase = processPhases.find(
+      (phase) => phase.number === phaseNumber
+    );
+    if (!selectedPhase || !activeMedia.imageUrl) return;
+
+    setProcessPhases((currentPhases) =>
+      currentPhases.map((phase) =>
+        phase.number === phaseNumber
+          ? {
+              ...phase,
+              imageUrl: activeMedia.imageUrl,
+              label: activeMedia.label,
+            }
+          : phase
+      )
+    );
+    setActiveMedia({
+      imageUrl: selectedPhase.imageUrl,
+      label: selectedPhase.label,
+    });
+    setZoomPosition(null);
+    setIsImageZoomed(false);
   };
 
   return (
@@ -129,7 +193,7 @@ const WorkDetails = () => {
           <div className="relative flex min-h-[52svh] items-center justify-center overflow-hidden bg-[#dfdbd1] p-4 shadow-[0_28px_80px_rgba(35,39,36,0.14)] sm:min-h-[62svh] sm:p-7 lg:h-[calc(100svh-10rem)] lg:min-h-[38rem]">
             <div
               className="absolute inset-0 scale-110 bg-cover bg-center opacity-[0.16] blur-3xl"
-              style={{ backgroundImage: `url(${artwork.imageUrl})` }}
+              style={{ backgroundImage: `url(${displayedImageUrl})` }}
             />
             <div
               onMouseMove={handleZoomMove}
@@ -155,10 +219,14 @@ const WorkDetails = () => {
                 isImageZoomed ? "cursor-zoom-out" : "cursor-zoom-in"
               }`}
             >
-              <img
-                src={artwork.imageUrl}
-                alt={artwork.title}
+              <motion.img
+                key={displayedImageUrl}
+                src={displayedImageUrl}
+                alt={`${artwork.title || "Artwork"} — ${activeMedia.label}`}
                 draggable={false}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.32 }}
                 className="block max-h-[calc(100svh-13.5rem)] max-w-full select-none object-contain transition-transform duration-300 ease-out lg:max-h-[calc(100svh-13.5rem)]"
                 style={
                   isImageZoomed
@@ -179,7 +247,7 @@ const WorkDetails = () => {
                   style={{
                     left: zoomPosition.x,
                     top: zoomPosition.y,
-                    backgroundImage: `url(${artwork.imageUrl})`,
+                    backgroundImage: `url(${displayedImageUrl})`,
                     backgroundSize: "340% 340%",
                     backgroundPosition: `${zoomPosition.xPercent}% ${zoomPosition.yPercent}%`,
                   }}
@@ -246,7 +314,7 @@ const WorkDetails = () => {
               </span>
             )}
             <span className="absolute bottom-4 left-4 z-20 bg-[#f5f2eb]/90 px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#59615c] backdrop-blur sm:bottom-7 sm:left-7">
-              Original artwork
+              {activeMedia.label}
             </span>
           </div>
         </motion.section>
@@ -335,23 +403,32 @@ const WorkDetails = () => {
 
               <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-5">
                 {processPhases.map((phase) => (
-                  <figure
+                  <motion.button
                     key={phase.number}
-                    className="group overflow-hidden border border-[#172019]/10 bg-[#e5e0d6]"
+                    type="button"
+                    layout
+                    onClick={() => handlePhaseSelect(phase.number)}
+                    whileTap={{ scale: 0.97 }}
+                    aria-label={`Show ${phase.label} in the main artwork viewer`}
+                    className="group cursor-pointer overflow-hidden border border-[#172019]/10 bg-[#e5e0d6] text-left transition hover:-translate-y-1 hover:border-[#b5502d]/45 hover:shadow-[0_12px_30px_rgba(23,32,25,0.14)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b5502d]/50"
                   >
                     <div className="aspect-square overflow-hidden">
-                      <img
+                      <motion.img
+                        key={phase.imageUrl}
                         src={phase.imageUrl}
-                        alt={`${artwork.title || "Artwork"}, process phase ${phase.number}`}
+                        alt={`${artwork.title || "Artwork"}, ${phase.label}`}
                         loading="lazy"
                         decoding="async"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.28 }}
                         className="h-full w-full object-cover transition duration-500 ease-out group-hover:scale-[1.04]"
                       />
                     </div>
-                    <figcaption className="border-t border-[#172019]/10 bg-[#f5f2eb]/85 px-2 py-2 text-center text-[9px] font-semibold uppercase tracking-[0.16em] text-[#69706c]">
-                      Phase {String(phase.number).padStart(2, "0")}
-                    </figcaption>
-                  </figure>
+                    <span className="block border-t border-[#172019]/10 bg-[#f5f2eb]/85 px-2 py-2 text-center text-[9px] font-semibold uppercase tracking-[0.16em] text-[#69706c]">
+                      {phase.label}
+                    </span>
+                  </motion.button>
                 ))}
               </div>
             </motion.section>
