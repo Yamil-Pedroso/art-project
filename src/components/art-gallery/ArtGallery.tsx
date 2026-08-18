@@ -2,10 +2,11 @@ import { useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Route as ArtWorkDetailsRoute } from "@/routes/work-details/$workId";
 import { useNavigate } from "@tanstack/react-router";
+import { FiColumns, FiGrid, FiList } from "react-icons/fi";
 import { artworks } from "@/data/artworks";
 import imageAssets from "@/assets";
 import CategoryMenu from "../category-menu/CategoryMenu";
-import UICard from "../ui-cards/UICard";
+import UICard, { type ArtworkViewMode } from "../ui-cards/UICard";
 import ArtCV from "../art-cv/ArtCV";
 import ExhibitionCollector from "../exhibition-collectors/Exhibition&Collector";
 import EmptyCollection from "./EmptyCollection";
@@ -31,6 +32,7 @@ const ArtGallery = () => {
 
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [viewMode, setViewMode] = useState<ArtworkViewMode>("compact");
   const currentNewArtwork = useMemo(
     () => getCurrentNewArtwork(artworks),
     []
@@ -102,6 +104,20 @@ const ArtGallery = () => {
       : artworks.filter(
           (art) => art.category === selectedCategory && art.id !== undefined
         );
+  const showsArtworkCards =
+    selectedCategory !== "Daily Sketching" &&
+    selectedCategory !== "Art Curriculum" &&
+    selectedCategory !== "Exhibitions & Collectors" &&
+    filteredArtworks.length > 0;
+  const viewOptions: Array<{
+    mode: ArtworkViewMode;
+    label: string;
+    icon: typeof FiGrid;
+  }> = [
+    { mode: "compact", label: "Vertical gallery", icon: FiGrid },
+    { mode: "gallery", label: "Gallery view", icon: FiColumns },
+    { mode: "list", label: "List view", icon: FiList },
+  ];
 
   return (
     <main className="min-h-screen w-full overflow-x-hidden bg-[#f5f2eb]">
@@ -347,6 +363,49 @@ const ArtGallery = () => {
           id="gallery-content"
           className="scroll-mt-5 sm:scroll-mt-7"
         >
+          {showsArtworkCards && (
+            <div className="mb-8 flex items-center justify-end gap-3 sm:mb-10">
+              <span className="hidden text-[10px] font-semibold uppercase tracking-[0.22em] text-[#7b817d] sm:inline">
+                View
+              </span>
+              <div
+                role="group"
+                aria-label="Choose artwork layout"
+                className="inline-flex items-center gap-1 rounded-full border border-[#172019]/10 bg-white/55 p-1.5"
+              >
+                {viewOptions.map(({ mode, label, icon: Icon }) => {
+                  const isActive = viewMode === mode;
+
+                  return (
+                    <button
+                      key={mode}
+                      type="button"
+                      onClick={() => setViewMode(mode)}
+                      aria-label={label}
+                      aria-pressed={isActive}
+                      title={label}
+                      className={`relative flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b5502d]/45 ${
+                        isActive
+                          ? "text-white"
+                          : "text-[#69706c] hover:bg-[#172019]/5 hover:text-[#b5502d]"
+                      }`}
+                    >
+                      {isActive && (
+                        <motion.span
+                          layoutId="active-artwork-view"
+                          aria-hidden="true"
+                          className="absolute inset-0 rounded-full bg-[#172019]"
+                          transition={{ type: "spring", stiffness: 420, damping: 32 }}
+                        />
+                      )}
+                      <Icon aria-hidden="true" className="relative z-10 h-4 w-4" />
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
           {selectedCategory === "Daily Sketching" ? (
             <AnimatePresence mode="wait">
               <motion.div
@@ -386,20 +445,36 @@ const ArtGallery = () => {
               }}
             />
           ) : (
-            <div className="grid w-full grid-cols-1 gap-x-6 gap-y-14 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-              {filteredArtworks.map((artwork, index) => (
-                <UICard
-                  key={artwork.id}
-                  artwork={artwork}
-                  index={index}
-                  isLatestArtwork={
-                    artwork.id === currentNewArtwork?.id &&
-                    isWithinUpdatePeriod(__PORTFOLIO_BUILD_DATE__)
-                  }
-                  onClick={() => handleArtworkClick(artwork.id as number)}
-                />
-              ))}
-            </div>
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={viewMode}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+                className={`grid w-full ${
+                  viewMode === "list"
+                    ? "grid-cols-1 gap-y-7"
+                    : viewMode === "compact"
+                      ? "grid-cols-1 gap-x-7 gap-y-14 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"
+                      : "grid-cols-1 gap-x-6 gap-y-14 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"
+                }`}
+              >
+                {filteredArtworks.map((artwork, index) => (
+                  <UICard
+                    key={artwork.id}
+                    artwork={artwork}
+                    index={index}
+                    viewMode={viewMode}
+                    isLatestArtwork={
+                      artwork.id === currentNewArtwork?.id &&
+                      isWithinUpdatePeriod(__PORTFOLIO_BUILD_DATE__)
+                    }
+                    onClick={() => handleArtworkClick(artwork.id as number)}
+                  />
+                ))}
+              </motion.div>
+            </AnimatePresence>
           )}
         </div>
       </section>
