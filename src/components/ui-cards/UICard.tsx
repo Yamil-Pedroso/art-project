@@ -51,6 +51,18 @@ const UICard = ({
     };
   }, [index]);
 
+  const artworkCallToAction = (
+    <span className="flex w-full items-center justify-between bg-[#172019] px-4 py-2.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-white transition-colors duration-300 group-hover:bg-[#b5502d] sm:px-5 sm:py-3">
+      <span>View artwork</span>
+      <span
+        aria-hidden="true"
+        className="inline-flex h-7 w-7 items-center justify-center border border-white/25 text-sm transition duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:border-white/50"
+      >
+        ↗
+      </span>
+    </span>
+  );
+
   return (
     <motion.article
       layout
@@ -72,59 +84,51 @@ const UICard = ({
         }`}
         aria-label={`View details for ${artwork.title}`}
       >
-        <div
-          className="relative w-full shadow-[0_18px_50px_rgba(37,41,38,0.10)]"
-        >
-          <div
-            className={`w-full overflow-hidden bg-[#ded9ce] ${
-              isMasonryView
-                ? ""
-                : isCompactView
-                  ? "aspect-[3/4]"
-                  : "aspect-[4/3]"
-            }`}
-          >
-            <img
-              src={artwork.imageUrl}
-              alt={artwork.title}
-              loading="lazy"
-              className={`${
-                isMasonryView ? "block h-auto" : "h-full object-cover"
-              } w-full transition duration-700 ease-out group-hover:scale-[1.04]`}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#172019]/45 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+        <div className="w-full shadow-[0_18px_50px_rgba(37,41,38,0.10)]">
+          <div className="relative w-full">
+            <div
+              className={`w-full overflow-hidden bg-[#ded9ce] ${
+                isMasonryView
+                  ? ""
+                  : isCompactView
+                    ? "aspect-[3/4]"
+                    : "aspect-[4/3]"
+              }`}
+            >
+              <img
+                src={artwork.imageUrl}
+                alt={artwork.title}
+                loading="lazy"
+                className={`${
+                  isMasonryView ? "block h-auto" : "h-full object-cover"
+                } w-full transition duration-700 ease-out group-hover:scale-[1.04]`}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#172019]/45 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+            </div>
+            {showNewBadge && (
+              <span className="absolute left-3 top-3 z-10 border border-white/30 bg-[#172019]/82 px-2.5 py-1.5 text-[9px] font-semibold uppercase tracking-[0.2em] text-white shadow-sm backdrop-blur sm:left-4 sm:top-4">
+                New
+              </span>
+            )}
+            {artwork.status && (
+              <span className="absolute right-3 top-3 z-10 border border-[#b5502d]/25 bg-[#f5f2eb]/92 px-2.5 py-1.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-[#b5502d] shadow-sm backdrop-blur sm:right-4 sm:top-4">
+                {artwork.status}
+              </span>
+            )}
           </div>
-          {showNewBadge && (
-            <span className="absolute left-3 top-3 z-10 border border-white/30 bg-[#172019]/82 px-2.5 py-1.5 text-[9px] font-semibold uppercase tracking-[0.2em] text-white shadow-sm backdrop-blur sm:left-4 sm:top-4">
-              New
-            </span>
-          )}
-          {artwork.status && (
-            <span className="absolute right-3 top-3 z-10 border border-[#b5502d]/25 bg-[#f5f2eb]/92 px-2.5 py-1.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-[#b5502d] shadow-sm backdrop-blur sm:right-4 sm:top-4">
-              {artwork.status}
-            </span>
-          )}
-          <span
-            className={`absolute bottom-0 left-1/2 z-10 inline-flex -translate-x-1/2 translate-y-1/2 items-center whitespace-nowrap rounded-full bg-[#b5502d] font-semibold uppercase text-white shadow-[0_10px_30px_rgba(181,80,45,0.3)] transition duration-300 group-hover:-translate-y-1 group-hover:bg-[#172019] ${
-              isCompactView || isMasonryView
-                ? "px-5 py-3 text-xs tracking-[0.13em]"
-                : "px-6 py-3 text-xs tracking-[0.14em] sm:text-sm"
-            }`}
-          >
-            View artwork
-            <span aria-hidden="true" className="ml-2 text-base">
-              ↗
-            </span>
-          </span>
+          {!isListView && artworkCallToAction}
         </div>
 
         <div
-          className={`px-3 pb-2 pt-9 ${
+          className={`px-3 pb-2 pt-6 ${
             isListView
               ? "sm:px-0 sm:py-6 sm:text-left lg:py-8"
               : "text-center"
           }`}
         >
+          {isListView && (
+            <span className="mb-6 block w-full">{artworkCallToAction}</span>
+          )}
           <h3
             className={`font-semibold tracking-[-0.02em] text-[#172019] transition-colors duration-300 group-hover:text-[#b5502d] ${
               isCompactView || isMasonryView

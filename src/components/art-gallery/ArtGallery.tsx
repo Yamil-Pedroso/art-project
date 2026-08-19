@@ -131,12 +131,13 @@ const ArtGallery = () => {
     scrollToGalleryContent();
   };
 
-  const filteredArtworks =
-    selectedCategory === "All"
-      ? artworks.filter((art) => art.id !== undefined) // para excluir el CV
-      : artworks.filter(
-          (art) => art.category === selectedCategory && art.id !== undefined
-        );
+  const filteredArtworks = artworks
+    .filter(
+      (artwork) =>
+        artwork.id !== undefined &&
+        (selectedCategory === "All" || artwork.category === selectedCategory)
+    )
+    .sort((first, second) => (second.id || 0) - (first.id || 0));
   const latestThreeArtworks = useMemo(
     () =>
       [...artworks]
