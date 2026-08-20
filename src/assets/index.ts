@@ -7,6 +7,9 @@ import art2 from "./images/art-works/art2.webp";
 import still1 from "./images/still-life-study/still1.webp";
 import still2 from "./images/still-life-study/still2.webp";
 
+// Landscape Collection
+import landscape1 from "./images/landscapes/landscape1.webp";
+
 import pet1 from "./images/pets/pet1.webp";
 import pet2 from "./images/pets/pet2.webp";
 import pet3 from "./images/pets/pet3.webp";
@@ -30,6 +33,7 @@ import exhib14 from "./images/exhibitions-collectors/exhib14.webp";
 import master1 from "./images/master-copy/mc_01.webp";
 
 import digital1 from "./images/digital/digital.webp";
+import youngGirl from "./images/digital/young_girl.webp";
 import cagueiro from "./images/digital/cagueiro.webp";
 import earth from "./images/digital/earth.webp";
 import guije_rana from "./images/digital/guije_rana.webp";
@@ -67,6 +71,7 @@ import fantasy1 from "./images/fantasy/fantasy1.webp";
 import fantasy2 from "./images/fantasy/fantasy2.webp";
 import fantasy3 from "./images/fantasy/fantasy3.webp";
 import fantasy4 from "./images/fantasy/fantasy4.webp";
+import fantasy5 from "./images/fantasy/fantasy5.webp";
 
 // Rarisity Collection
 import rarity1 from "./images/rarisity/1.webp";
@@ -118,6 +123,7 @@ import drawing27 from "./images/drawings/draw27.webp";
 import portrait1 from "./images/portrait/portrait1.webp";
 import portrait2 from "./images/portrait/portrait2.webp";
 import portrait3 from "./images/portrait/portrait3.webp";
+import portrait4 from "./images/portrait/portrait4.webp";
 import portrait2Phase1 from "./images/portrait/phases/portrait2/phase1.webp";
 
 interface ImageAssets {
@@ -133,6 +139,7 @@ const imageAssets: ImageAssets = {
   art2,
   still1,
   still2,
+  landscape1,
   exhib1,
   exhib2,
   exhib3,
@@ -152,6 +159,7 @@ const imageAssets: ImageAssets = {
   pet2,
   pet3,
   digital1,
+  youngGirl,
   cagueiro,
   earth,
   guije_rana,
@@ -168,6 +176,7 @@ const imageAssets: ImageAssets = {
   fantasy2,
   fantasy3,
   fantasy4,
+  fantasy5,
   rarity1,
   rarity2,
   rarity3,
@@ -213,6 +222,7 @@ const imageAssets: ImageAssets = {
   portrait1,
   portrait2,
   portrait3,
+  portrait4,
   portrait2Phase1,
   dailySketch1,
   dailySketch2,
