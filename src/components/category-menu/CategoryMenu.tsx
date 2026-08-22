@@ -14,6 +14,7 @@ const categories = [
   "Anatomy Study",
   "Still Life Study",
   "Drawings",
+  "Charcoal",
   "Digital Art",
   "Rarisity",
   "Daily Sketching",

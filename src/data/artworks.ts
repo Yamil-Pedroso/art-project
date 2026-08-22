@@ -756,4 +756,28 @@ export const artworks: ArtWorkProps[] = [
     markAsNew: true,
     publishedAt: "2026-08-22",
   },
+  {
+    id: 75,
+    title: "Against the Current",
+    medium: "Charcoal on paper",
+    dimensions: "Dim. pending",
+    description:
+      "A solitary fish rises through soft graphite-like shadows and decisive charcoal marks, transforming a simple natural study into an image of motion, resistance and quiet persistence.",
+    imageUrl: imageAssets.charcoal1,
+    category: "Charcoal",
+    markAsNew: true,
+    publishedAt: "2026-08-22",
+  },
+  {
+    id: 76,
+    title: "The Last Laugh",
+    medium: "Oil on canvas",
+    dimensions: "Dim. pending",
+    description:
+      "A laughing clown holds joy and unease in the same expression, where vivid accents, dark shadows and painted tears turn performance into an intimate psychological portrait.",
+    imageUrl: imageAssets.portrait5,
+    category: "Portraits",
+    markAsNew: true,
+    publishedAt: "2026-08-22",
+  },
 ];

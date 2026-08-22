@@ -10,6 +10,9 @@ import still2 from "./images/still-life-study/still2.webp";
 // Landscape Collection
 import landscape1 from "./images/landscapes/landscape1.webp";
 
+// Charcoal Collection
+import charcoal1 from "./images/charcoal/charcoal1.webp";
+
 import pet1 from "./images/pets/pet1.webp";
 import pet2 from "./images/pets/pet2.webp";
 import pet3 from "./images/pets/pet3.webp";
@@ -129,6 +132,7 @@ import portrait1 from "./images/portrait/portrait1.webp";
 import portrait2 from "./images/portrait/portrait2.webp";
 import portrait3 from "./images/portrait/portrait3.webp";
 import portrait4 from "./images/portrait/portrait4.webp";
+import portrait5 from "./images/portrait/portrait5.webp";
 import portrait2Phase1 from "./images/portrait/phases/portrait2/phase1.webp";
 
 interface ImageAssets {
@@ -145,6 +149,7 @@ const imageAssets: ImageAssets = {
   still1,
   still2,
   landscape1,
+  charcoal1,
   exhib1,
   exhib2,
   exhib3,
@@ -232,6 +237,7 @@ const imageAssets: ImageAssets = {
   portrait2,
   portrait3,
   portrait4,
+  portrait5,
   portrait2Phase1,
   dailySketch1,
   dailySketch2,
