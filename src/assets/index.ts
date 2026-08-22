@@ -32,19 +32,24 @@ import exhib14 from "./images/exhibitions-collectors/exhib14.webp";
 // Master copy collection
 import master1 from "./images/master-copy/mc_01.webp";
 
-import digital1 from "./images/digital/digital.webp";
-import youngGirl from "./images/digital/young_girl.webp";
-import cagueiro from "./images/digital/cagueiro.webp";
-import earth from "./images/digital/earth.webp";
-import guije_rana from "./images/digital/guije_rana.webp";
-import guije from "./images/digital/guije.webp";
-import dwarf from "./images/digital/dwarf.webp";
-import christ from "./images/digital/christ.webp";
-import cat from "./images/digital/cat.webp";
-import ai from "./images/digital/ai.webp";
-import abstract from "./images/digital/Abstract.webp";
-import colorBoy from "./images/digital/color-boy.webp";
-import blueTone from "./images/digital/blue-tone.webp";
+// Digital Art Collection
+import digital1 from "./images/digital/digital1.webp";
+import digital2 from "./images/digital/digital2.webp";
+import digital3 from "./images/digital/digital3.webp";
+import digital4 from "./images/digital/digital4.webp";
+import digital5 from "./images/digital/digital5.webp";
+import digital6 from "./images/digital/digital6.webp";
+import digital7 from "./images/digital/digital7.webp";
+import digital8 from "./images/digital/digital8.webp";
+import digital9 from "./images/digital/digital9.webp";
+import digital10 from "./images/digital/digital10.webp";
+import digital11 from "./images/digital/digital11.webp";
+import digital12 from "./images/digital/digital12.webp";
+import digital13 from "./images/digital/digital13.webp";
+import digital14 from "./images/digital/digital14.webp";
+import digital14Phase1 from "./images/digital/phases/digital14/phase1.webp";
+import digital14Phase2 from "./images/digital/phases/digital14/phase2.webp";
+import digital14Phase3 from "./images/digital/phases/digital14/phase3.webp";
 
 import artBrush from "./images/art-brush.webp";
 
@@ -159,18 +164,22 @@ const imageAssets: ImageAssets = {
   pet2,
   pet3,
   digital1,
-  youngGirl,
-  cagueiro,
-  earth,
-  guije_rana,
-  guije,
-  dwarf,
-  christ,
-  cat,
-  ai,
-  abstract,
-  colorBoy,
-  blueTone,
+  digital2,
+  digital3,
+  digital4,
+  digital5,
+  digital6,
+  digital7,
+  digital8,
+  digital9,
+  digital10,
+  digital11,
+  digital12,
+  digital13,
+  digital14,
+  digital14Phase1,
+  digital14Phase2,
+  digital14Phase3,
   artBrush,
   fantasy1,
   fantasy2,

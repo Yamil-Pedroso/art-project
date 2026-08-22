@@ -76,7 +76,7 @@ export const artworks: ArtWorkProps[] = [
     medium: "Digital Art",
     dimensions: "",
     description: "Lorem Ipsum",
-    imageUrl: imageAssets.cagueiro,
+    imageUrl: imageAssets.digital2,
     category: "Digital Art",
   },
   {
@@ -85,7 +85,7 @@ export const artworks: ArtWorkProps[] = [
     medium: "Digital Art",
     dimensions: "",
     description: "Lorem Ipsum",
-    imageUrl: imageAssets.earth,
+    imageUrl: imageAssets.digital3,
     category: "Digital Art",
   },
   {
@@ -94,7 +94,7 @@ export const artworks: ArtWorkProps[] = [
     medium: "Digital Art",
     dimensions: "",
     description: "Lorem Ipsum",
-    imageUrl: imageAssets.guije_rana,
+    imageUrl: imageAssets.digital4,
     category: "Digital Art",
   },
   {
@@ -103,7 +103,7 @@ export const artworks: ArtWorkProps[] = [
     medium: "Digital Art",
     dimensions: "",
     description: "Lorem Ipsum",
-    imageUrl: imageAssets.guije,
+    imageUrl: imageAssets.digital5,
     category: "Digital Art",
   },
   {
@@ -112,7 +112,7 @@ export const artworks: ArtWorkProps[] = [
     medium: "Digital Art",
     dimensions: "",
     description: "Lorem Ipsum",
-    imageUrl: imageAssets.dwarf,
+    imageUrl: imageAssets.digital6,
     category: "Digital Art",
   },
   {
@@ -121,7 +121,7 @@ export const artworks: ArtWorkProps[] = [
     medium: "Digital Art",
     dimensions: "",
     description: "Lorem Ipsum",
-    imageUrl: imageAssets.christ,
+    imageUrl: imageAssets.digital7,
     category: "Digital Art",
   },
   {
@@ -130,7 +130,7 @@ export const artworks: ArtWorkProps[] = [
     medium: "Digital Art",
     dimensions: "",
     description: "Lorem Ipsum",
-    imageUrl: imageAssets.cat,
+    imageUrl: imageAssets.digital8,
     category: "Digital Art",
   },
   {
@@ -139,7 +139,7 @@ export const artworks: ArtWorkProps[] = [
     medium: "Digital Art",
     dimensions: "",
     description: "Lorem Ipsum",
-    imageUrl: imageAssets.ai,
+    imageUrl: imageAssets.digital9,
     category: "Digital Art",
   },
   {
@@ -148,7 +148,7 @@ export const artworks: ArtWorkProps[] = [
     medium: "Digital Art",
     dimensions: "",
     description: "Lorem Ipsum",
-    imageUrl: imageAssets.abstract,
+    imageUrl: imageAssets.digital10,
     category: "Digital Art",
   },
   {
@@ -157,7 +157,7 @@ export const artworks: ArtWorkProps[] = [
     medium: "Digital Art",
     dimensions: "",
     description: "Lorem Ipsum",
-    imageUrl: imageAssets.colorBoy,
+    imageUrl: imageAssets.digital11,
     category: "Digital Art",
   },
   {
@@ -166,7 +166,7 @@ export const artworks: ArtWorkProps[] = [
     medium: "Digital Art",
     dimensions: "",
     description: "Lorem Ipsum",
-    imageUrl: imageAssets.blueTone,
+    imageUrl: imageAssets.digital12,
     category: "Digital Art",
   },
   {
@@ -736,9 +736,24 @@ export const artworks: ArtWorkProps[] = [
     dimensions: "Dim. pending",
     description:
       "A direct, luminous gaze emerges from layered marks and deep shadow, balancing graphic spontaneity with the stillness of an intimate portrait.",
-    imageUrl: imageAssets.youngGirl,
+    imageUrl: imageAssets.digital13,
     category: "Digital Art",
     markAsNew: true,
     publishedAt: "2026-08-20",
+  },
+  {
+    id: 74,
+    title: "Color Study",
+    medium: "Digital painting",
+    dimensions: "Dim. pending",
+    description:
+      "A mounted figure advances through successive layers of line, shape and restrained earth tones in a study of movement, balance and evolving color.",
+    imageUrl: imageAssets.digital14,
+    category: "Digital Art",
+    phase1: imageAssets.digital14Phase1,
+    phase2: imageAssets.digital14Phase2,
+    phase3: imageAssets.digital14Phase3,
+    markAsNew: true,
+    publishedAt: "2026-08-22",
   },
 ];
