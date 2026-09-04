@@ -33,7 +33,8 @@ import exhib13 from "./images/exhibitions-collectors/exhib13.webp";
 import exhib14 from "./images/exhibitions-collectors/exhib14.webp";
 
 // Master copy collection
-import master1 from "./images/master-copy/mc_01.webp";
+import master1 from "./images/master-copies/master1.webp";
+import master2 from "./images/master-copies/master2.webp";
 
 // Digital Art Collection
 import digital1 from "./images/digital/digital1.webp";
@@ -80,6 +81,7 @@ import fantasy2 from "./images/fantasy/fantasy2.webp";
 import fantasy3 from "./images/fantasy/fantasy3.webp";
 import fantasy4 from "./images/fantasy/fantasy4.webp";
 import fantasy5 from "./images/fantasy/fantasy5.webp";
+import fantasy6 from "./images/fantasy/fantasy6.webp";
 
 // Rarisity Collection
 import rarity1 from "./images/rarisity/1.webp";
@@ -133,6 +135,7 @@ import portrait2 from "./images/portrait/portrait2.webp";
 import portrait3 from "./images/portrait/portrait3.webp";
 import portrait4 from "./images/portrait/portrait4.webp";
 import portrait5 from "./images/portrait/portrait5.webp";
+import portrait6 from "./images/portrait/portrait6.webp";
 import portrait2Phase1 from "./images/portrait/phases/portrait2/phase1.webp";
 
 interface ImageAssets {
@@ -165,6 +168,7 @@ const imageAssets: ImageAssets = {
   exhib13,
   exhib14,
   master1,
+  master2,
   pet1,
   pet2,
   pet3,
@@ -191,6 +195,7 @@ const imageAssets: ImageAssets = {
   fantasy3,
   fantasy4,
   fantasy5,
+  fantasy6,
   rarity1,
   rarity2,
   rarity3,
@@ -238,6 +243,7 @@ const imageAssets: ImageAssets = {
   portrait3,
   portrait4,
   portrait5,
+  portrait6,
   portrait2Phase1,
   dailySketch1,
   dailySketch2,

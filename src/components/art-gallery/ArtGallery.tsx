@@ -137,7 +137,15 @@ const ArtGallery = () => {
         artwork.id !== undefined &&
         (selectedCategory === "All" || artwork.category === selectedCategory)
     )
-    .sort((first, second) => (second.id || 0) - (first.id || 0));
+    .sort((first, second) => {
+      if (selectedCategory === "Master copies") {
+        // Keep Anatomy Lesson first only within its own collection.
+        const priority = Number(second.id === 19) - Number(first.id === 19);
+        if (priority !== 0) return priority;
+      }
+
+      return (second.id || 0) - (first.id || 0);
+    });
   const latestThreeArtworks = useMemo(
     () =>
       [...artworks]

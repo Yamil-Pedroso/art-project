@@ -780,4 +780,43 @@ export const artworks: ArtWorkProps[] = [
     markAsNew: true,
     publishedAt: "2026-08-22",
   },
+  {
+    id: 77,
+    title: "Behind the Mask",
+    medium: "Painting",
+    dimensions: "Dim. pending",
+    description:
+      "A dark sculptural mask frames a face in muted greens and warm ochres, exploring the tension between concealment and expression.",
+    imageUrl: imageAssets.portrait6,
+    category: "Portraits",
+    status: "In process",
+    markAsNew: true,
+    publishedAt: "2026-09-04",
+  },
+  {
+    id: 78,
+    title: "The Dragon's Gift",
+    medium: "Painting",
+    dimensions: "Dim. pending",
+    description:
+      "A traveler and a green dragon meet around a glowing red egg, sharing a quiet moment of trust and wonder.",
+    imageUrl: imageAssets.fantasy6,
+    category: "Fantasy",
+    status: "In process",
+    markAsNew: true,
+    publishedAt: "2026-09-04",
+  },
+  {
+    id: 79,
+    title: "Portrait of an Elder — Master Study",
+    medium: "Painting",
+    dimensions: "Dim. pending",
+    description:
+      "A master-copy portrait study exploring warm light, deep shadows and the expressive folds of an elderly face in profile.",
+    imageUrl: imageAssets.master2,
+    category: "Master copies",
+    status: "In process",
+    markAsNew: true,
+    publishedAt: "2026-09-04",
+  },
 ];
