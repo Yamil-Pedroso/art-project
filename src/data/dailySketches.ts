@@ -55,5 +55,6 @@ export const dailySketchPages: DailySketchPage[] = [
   },
   {
     id: 12,
+    imageUrl: imageAssets.dailySketch12,
   },
 ];

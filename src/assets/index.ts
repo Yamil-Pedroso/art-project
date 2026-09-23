@@ -74,6 +74,7 @@ import dailySketch8 from "./images/daily-sketching/dailySketch8.webp";
 import dailySketch9 from "./images/daily-sketching/dailySketch9.webp";
 import dailySketch10 from "./images/daily-sketching/dailySketch10.webp";
 import dailySketch11 from "./images/daily-sketching/dailySketch11.webp";
+import dailySketch12 from "./images/daily-sketching/dailySketch12.webp";
 
 // Fantasy Collection
 import fantasy1 from "./images/fantasy/fantasy1.webp";
@@ -256,6 +257,7 @@ const imageAssets: ImageAssets = {
   dailySketch9,
   dailySketch10,
   dailySketch11,
+  dailySketch12,
 };
 
 export default imageAssets;

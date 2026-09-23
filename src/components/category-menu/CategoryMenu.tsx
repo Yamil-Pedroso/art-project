@@ -6,6 +6,7 @@ interface CategoryMenuProps {
 const categories = [
   "All",
   "Fantasy",
+  "Conceptual",
   "Pets",
   "Old Cars",
   "Master copies",
