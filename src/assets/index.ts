@@ -129,6 +129,7 @@ import drawing24 from "./images/drawings/draw24.webp";
 import drawing25 from "./images/drawings/draw25.webp";
 import drawing26 from "./images/drawings/draw26.webp";
 import drawing27 from "./images/drawings/draw27.webp";
+import drawing28 from "./images/drawings/draw28.webp";
 
 // Portrait Collection
 import portrait1 from "./images/portrait/portrait1.webp";
@@ -239,6 +240,7 @@ const imageAssets: ImageAssets = {
   drawing25,
   drawing26,
   drawing27,
+  drawing28,
   portrait1,
   portrait2,
   portrait3,

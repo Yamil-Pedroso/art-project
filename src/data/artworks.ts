@@ -819,4 +819,16 @@ export const artworks: ArtWorkProps[] = [
     markAsNew: true,
     publishedAt: "2026-09-04",
   },
+  {
+    id: 80,
+    title: "Horned Sentinel",
+    medium: "Ink on paper",
+    dimensions: "Dim. pending",
+    description:
+      "A powerful bull emerges through layered cross-hatching and confident ink lines, balancing monumental horns with a steady, watchful presence.",
+    imageUrl: imageAssets.drawing28,
+    category: "Drawings",
+    markAsNew: true,
+    publishedAt: "2026-10-05",
+  },
 ];
