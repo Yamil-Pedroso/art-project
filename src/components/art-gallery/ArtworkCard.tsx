@@ -25,7 +25,7 @@ const ArtworkCard = ({
       {
         threshold: 0.1,
         rootMargin: "50px",
-      }
+      },
     );
 
     const currentCard = cardRef.current;

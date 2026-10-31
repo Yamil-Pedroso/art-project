@@ -75,6 +75,11 @@ import dailySketch9 from "./images/daily-sketching/dailySketch9.webp";
 import dailySketch10 from "./images/daily-sketching/dailySketch10.webp";
 import dailySketch11 from "./images/daily-sketching/dailySketch11.webp";
 import dailySketch12 from "./images/daily-sketching/dailySketch12.webp";
+import dailySketch13 from "./images/daily-sketching/dailySketch13.webp";
+import dailySketch14 from "./images/daily-sketching/dailySketch14.webp";
+import dailySketch15 from "./images/daily-sketching/dailySketch15.webp";
+import dailySketch16 from "./images/daily-sketching/dailySketch16.webp";
+import dailySketch17 from "./images/daily-sketching/dailySketch17.webp";
 
 // Fantasy Collection
 import fantasy1 from "./images/fantasy/fantasy1.webp";
@@ -260,6 +265,11 @@ const imageAssets: ImageAssets = {
   dailySketch10,
   dailySketch11,
   dailySketch12,
+  dailySketch13,
+  dailySketch14,
+  dailySketch15,
+  dailySketch16,
+  dailySketch17,
 };
 
 export default imageAssets;

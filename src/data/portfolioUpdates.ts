@@ -1,5 +1,8 @@
 import type { ArtWorkProps, PortfolioUpdate } from "@/types/Types";
-import { getLatestArtwork, isWithinUpdatePeriod } from "@/lib/newArtwork";
+import {
+  isWithinNewArtworkPeriod,
+  isWithinUpdatePeriod,
+} from "@/lib/newArtwork";
 import type { DailySketchPage } from "@/data/dailySketches";
 
 /**
@@ -13,19 +16,15 @@ export const getPortfolioUpdates = (
   sketchPages: DailySketchPage[] = [],
   now = new Date()
 ) => {
-  const latestArtwork = getLatestArtwork(artworks);
   const artworkUpdates: PortfolioUpdate[] = artworks.flatMap((artwork) => {
-    const isLatestArtwork = artwork.id === latestArtwork?.id;
     if (
-      (!artwork.markAsNew && !isLatestArtwork) ||
+      !isWithinNewArtworkPeriod(artwork, now) ||
       artwork.id === undefined ||
-      !artwork.imageUrl
+      !artwork.imageUrl ||
+      !artwork.publishedAt
     ) {
       return [];
     }
-
-    const publicationDate =
-      artwork.publishedAt || __PORTFOLIO_BUILD_DATE__;
 
     return [
       {
@@ -33,7 +32,7 @@ export const getPortfolioUpdates = (
         type: "artwork",
         title: artwork.title || "Untitled artwork",
         description: artwork.medium,
-        publishedAt: publicationDate,
+        publishedAt: artwork.publishedAt,
         imageUrl: artwork.imageUrl,
         artworkId: artwork.id,
       },

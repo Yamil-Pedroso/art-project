@@ -16,10 +16,6 @@ import { contactDetails } from "@/data/contact";
 import ScrollToTop from "../scroll-to-top/ScrollToTop";
 import DailySketchbook from "../daily-sketchbook/DailySketchbook";
 import NewArtworkNotification from "../new-artwork-notification/NewArtworkNotification";
-import {
-  getCurrentNewArtwork,
-  isWithinUpdatePeriod,
-} from "@/lib/newArtwork";
 import NotificationCenter from "../notification-center/NotificationCenter";
 import { getPortfolioUpdates } from "@/data/portfolioUpdates";
 import { dailySketchPages } from "@/data/dailySketches";
@@ -56,15 +52,11 @@ const ArtGallery = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [viewMode, setViewMode] = useState<ArtworkViewMode>(
-    getInitialArtworkViewMode
-  );
-  const currentNewArtwork = useMemo(
-    () => getCurrentNewArtwork(artworks),
-    []
+    getInitialArtworkViewMode,
   );
   const portfolioUpdates = useMemo(
     () => getPortfolioUpdates(artworks, dailySketchPages),
-    []
+    [],
   );
   const {
     seenIds,
@@ -72,10 +64,9 @@ const ArtGallery = () => {
     dismissUpdate,
     visibleUpdates,
     hasUnseenUpdates,
-  } =
-    useSeenPortfolioUpdates(portfolioUpdates);
+  } = useSeenPortfolioUpdates(portfolioUpdates);
   const currentFloatingUpdate = visibleUpdates.find(
-    (update) => !seenIds.has(update.id)
+    (update) => !seenIds.has(update.id),
   );
 
   useEffect(() => {
@@ -135,7 +126,7 @@ const ArtGallery = () => {
     .filter(
       (artwork) =>
         artwork.id !== undefined &&
-        (selectedCategory === "All" || artwork.category === selectedCategory)
+        (selectedCategory === "All" || artwork.category === selectedCategory),
     )
     .sort((first, second) => {
       if (selectedCategory === "Master copies") {
@@ -150,11 +141,11 @@ const ArtGallery = () => {
     () =>
       [...artworks]
         .filter(
-          (artwork) => artwork.id !== undefined && Boolean(artwork.imageUrl)
+          (artwork) => artwork.id !== undefined && Boolean(artwork.imageUrl),
         )
         .sort((first, second) => (second.id || 0) - (first.id || 0))
         .slice(0, 3),
-    []
+    [],
   );
   const showsArtworkCards =
     selectedCategory !== "Daily Sketching" &&
@@ -266,9 +257,7 @@ const ArtGallery = () => {
                 onClick={() => setIsMenuOpen((isOpen) => !isOpen)}
                 aria-expanded={isMenuOpen}
                 aria-controls="mobile-navigation"
-                aria-label={
-                  isMenuOpen ? "Close navigation" : "Open navigation"
-                }
+                aria-label={isMenuOpen ? "Close navigation" : "Open navigation"}
                 className="flex h-11 w-11 cursor-pointer flex-col items-center justify-center gap-1.5 rounded-full border border-[#172019]/15 text-[#172019] lg:hidden"
               >
                 <span
@@ -408,8 +397,8 @@ const ArtGallery = () => {
           </h2>
           <div className="mx-auto my-5 h-px w-20 bg-[#b5502d]/55" />
           <p className="mx-auto max-w-2xl text-base leading-relaxed text-[#59615c] sm:text-lg">
-            Explore original pieces across traditional and digital mediums,
-            each shaped by memory, imagination and lived experience.
+            Explore original pieces across traditional and digital mediums, each
+            shaped by memory, imagination and lived experience.
           </p>
         </div>
 
@@ -455,10 +444,17 @@ const ArtGallery = () => {
                           layoutId="active-artwork-view"
                           aria-hidden="true"
                           className="absolute inset-0 rounded-full bg-[#172019]"
-                          transition={{ type: "spring", stiffness: 420, damping: 32 }}
+                          transition={{
+                            type: "spring",
+                            stiffness: 420,
+                            damping: 32,
+                          }}
                         />
                       )}
-                      <Icon aria-hidden="true" className="relative z-10 h-4 w-4" />
+                      <Icon
+                        aria-hidden="true"
+                        className="relative z-10 h-4 w-4"
+                      />
                     </button>
                   );
                 })}
@@ -530,10 +526,6 @@ const ArtGallery = () => {
                     artwork={artwork}
                     index={index}
                     viewMode={viewMode}
-                    isLatestArtwork={
-                      artwork.id === currentNewArtwork?.id &&
-                      isWithinUpdatePeriod(__PORTFOLIO_BUILD_DATE__)
-                    }
                     onClick={() => handleArtworkClick(artwork.id as number)}
                   />
                 ))}
@@ -548,9 +540,7 @@ const ArtGallery = () => {
       <NewArtworkNotification
         update={currentFloatingUpdate}
         isSeen={
-          currentFloatingUpdate
-            ? seenIds.has(currentFloatingUpdate.id)
-            : true
+          currentFloatingUpdate ? seenIds.has(currentFloatingUpdate.id) : true
         }
         onSeen={markAsSeen}
         onView={handleUpdateSelect}

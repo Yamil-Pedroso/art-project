@@ -16,16 +16,6 @@ export const isWithinUpdatePeriod = (
   return age >= 0 && age <= duration;
 };
 
-export const getLatestArtwork = (artworks: ArtWorkProps[]) =>
-  artworks
-    .filter(
-      (artwork) => artwork.id !== undefined && Boolean(artwork.imageUrl)
-    )
-    .sort((first, second) => (second.id || 0) - (first.id || 0))[0];
-
-export const getCurrentNewArtwork = (artworks: ArtWorkProps[]) =>
-  getLatestArtwork(artworks);
-
 export const isWithinNewArtworkPeriod = (
   artwork: ArtWorkProps,
   now = new Date()

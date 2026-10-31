@@ -9,20 +9,19 @@ const UICard = ({
   artwork,
   index,
   onClick,
-  isLatestArtwork = false,
+  now = new Date(),
   viewMode = "gallery",
 }: {
   artwork: (typeof artworks)[0];
   index: number;
   onClick: () => void;
-  isLatestArtwork?: boolean;
+  now?: Date;
   viewMode?: ArtworkViewMode;
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const cardRef = useRef<HTMLElement>(null);
   const revealTimerRef = useRef<number | null>(null);
-  const showNewBadge =
-    isLatestArtwork || isWithinNewArtworkPeriod(artwork);
+  const showNewBadge = isWithinNewArtworkPeriod(artwork, now);
   const isListView = viewMode === "list";
   const isCompactView = viewMode === "compact";
   const isMasonryView = viewMode === "masonry";
@@ -38,7 +37,7 @@ const UICard = ({
           observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.01, rootMargin: "160px 0px" }
+      { threshold: 0.01, rootMargin: "160px 0px" },
     );
 
     const currentCard = cardRef.current;
@@ -68,9 +67,7 @@ const UICard = ({
       layout
       ref={cardRef}
       initial={false}
-      animate={
-        isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
-      }
+      animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
       className={`group w-full ${isMasonryView ? "mb-7 break-inside-avoid sm:mb-8" : ""}`}
     >
@@ -110,6 +107,20 @@ const UICard = ({
                 New
               </span>
             )}
+
+            {/*<span>
+              {isWithinNewArtworkPeriod(artwork, now) && (
+                <span className="absolute bottom-3 left-3 z-10 bg-[#172019]/82 px-2.5 py-1.5 text-[9px] text-white sm:bottom-4 sm:left-4">
+                  {now.toLocaleDateString("es-ES")}
+                </span>
+              )}
+            </span>*/}
+
+            <span className="absolute bottom-3 left-3 z-10 bg-[#172019]/82 px-2.5 py-1.5 text-[9px] text-white sm:bottom-4 sm:left-4">
+              {artwork.publishedAt &&
+                new Date(artwork.publishedAt).toLocaleDateString("es-ES")}
+            </span>
+
             {artwork.status && (
               <span className="absolute right-3 top-3 z-10 border border-[#b5502d]/25 bg-[#f5f2eb]/92 px-2.5 py-1.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-[#b5502d] shadow-sm backdrop-blur sm:right-4 sm:top-4">
                 {artwork.status}
@@ -121,9 +132,7 @@ const UICard = ({
 
         <div
           className={`px-3 pb-2 pt-6 ${
-            isListView
-              ? "sm:px-0 sm:py-6 sm:text-left lg:py-8"
-              : "text-center"
+            isListView ? "sm:px-0 sm:py-6 sm:text-left lg:py-8" : "text-center"
           }`}
         >
           {isListView && (
@@ -148,7 +157,10 @@ const UICard = ({
             <span>{artwork.medium}</span>
             {artwork.dimensions && (
               <>
-                <span aria-hidden="true" className="h-1 w-1 rounded-full bg-[#b5502d]/60" />
+                <span
+                  aria-hidden="true"
+                  className="h-1 w-1 rounded-full bg-[#b5502d]/60"
+                />
                 <span>{artwork.dimensions}</span>
               </>
             )}

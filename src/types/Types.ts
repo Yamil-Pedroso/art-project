@@ -14,9 +14,9 @@ export interface ArtWorkProps {
   phase3?: string;
   phase4?: string;
   phase5?: string;
-  /** Optional manual override; the highest new ID is detected automatically. */
+  /** Enables the temporary NEW state when a publication date is provided. */
   markAsNew?: boolean;
-  /** Optional ISO date; automatic publications use the deployment date. */
+  /** ISO publication date used as the source of truth for the NEW period. */
   publishedAt?: string;
 }
 
