@@ -1,15 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import ArtGallery from "@/components/art-gallery/ArtGallery";
-//import UICard from "@/components/ui-cards/UICard";
+import ArtPortfolioPage from "@/pages/traditional-and-digital-art/ArtPortfolioPage";
 
 export const Route = createFileRoute("/")({
-  component: RouteComponent,
+  component: ArtPortfolioPage,
 });
-
-function RouteComponent() {
-  return (
-    <div className="flex h-full w-full flex-col">
-      <ArtGallery />
-    </div>
-  );
-}

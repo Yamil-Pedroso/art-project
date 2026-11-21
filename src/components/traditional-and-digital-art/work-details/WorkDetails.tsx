@@ -1,9 +1,9 @@
 import { useEffect, useState, type MouseEvent } from "react";
 import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { Route } from "../../routes/work-details/$workId";
+import { Route } from "@/routes/work-details/$workId";
 import { artworks } from "@/data/artworks";
-import ThemeToggle from "../theme-toggle/ThemeToggle";
+import ThemeToggle from "@/components/theme-toggle/ThemeToggle";
 
 interface ZoomPosition {
   x: number;

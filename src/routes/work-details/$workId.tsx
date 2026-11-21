@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import WorkDetailsPage from "@/pages/WorkDetailsPage";
+import WorkDetailsPage from "@/pages/traditional-and-digital-art/WorkDetailsPage";
 
 export const Route = createFileRoute("/work-details/$workId")({
   component: RouteComponent,

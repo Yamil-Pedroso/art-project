@@ -4,7 +4,7 @@ import { Route as ArtWorkDetailsRoute } from "@/routes/work-details/$workId";
 import { useNavigate } from "@tanstack/react-router";
 import { FiColumns, FiGrid, FiLayout, FiList } from "react-icons/fi";
 import { artworks } from "@/data/artworks";
-import imageAssets from "@/assets";
+import Hero from "../hero/Hero";
 import CategoryMenu from "../category-menu/CategoryMenu";
 import UICard, { type ArtworkViewMode } from "../ui-cards/UICard";
 import ArtCV from "../art-cv/ArtCV";
@@ -22,7 +22,7 @@ import { dailySketchPages } from "@/data/dailySketches";
 import { useSeenPortfolioUpdates } from "@/hooks/useSeenPortfolioUpdates";
 import type { PortfolioUpdate } from "@/types/Types";
 import FeaturedArtworkSlider from "../featured-artwork-slider/FeaturedArtworkSlider";
-import ThemeToggle from "../theme-toggle/ThemeToggle";
+import ThemeToggle from "@/components/theme-toggle/ThemeToggle";
 
 const ARTWORK_VIEW_STORAGE_KEY = "yami-atelier-artwork-view-mode";
 const artworkViewModes: ArtworkViewMode[] = [
@@ -328,56 +328,7 @@ const ArtGallery = () => {
         </div>
       </header>
 
-      <section
-        id="home"
-        className="relative isolate flex min-h-[86svh] w-full items-center overflow-hidden px-5 pb-24 pt-48 sm:px-10 sm:pt-52 lg:min-h-[92svh] lg:px-16 lg:pt-48 xl:px-24"
-      >
-        <img
-          src={imageAssets.hero}
-          alt="Textura abstracta de pintura al óleo"
-          className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
-        />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#f4eddf]/95 via-[#f4eddf]/72 to-[#172019]/20" />
-        <div className="w-full max-w-4xl">
-          <motion.p
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55 }}
-            className="mb-5 text-sm font-semibold uppercase tracking-[0.3em] text-[#b5502d] sm:text-base"
-          >
-            Traditional & digital artist
-          </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.08 }}
-            className="theme-hero-title max-w-4xl text-5xl font-semibold leading-[0.98] tracking-[-0.045em] text-[#172019] sm:text-6xl lg:text-8xl"
-          >
-            Stories shaped in color, texture and light.
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.18 }}
-            className="theme-hero-description mt-7 max-w-2xl text-lg leading-relaxed text-[#354039] sm:text-xl"
-          >
-            A personal collection of original works where Caribbean roots meet
-            European influences across physical and digital mediums.
-          </motion.p>
-          <motion.a
-            href="#gallery"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.28 }}
-            className="mt-9 inline-flex items-center rounded-full bg-[#172019] px-7 py-3.5 text-sm font-semibold uppercase tracking-[0.12em] text-white transition hover:-translate-y-0.5 hover:bg-[#b5502d]"
-          >
-            Explore the collection
-            <span aria-hidden="true" className="ml-3 text-lg">
-              ↓
-            </span>
-          </motion.a>
-        </div>
-      </section>
+      <Hero />
 
       <FeaturedArtworkSlider
         artworks={latestThreeArtworks}
