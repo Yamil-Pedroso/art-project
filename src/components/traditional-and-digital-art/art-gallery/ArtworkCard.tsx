@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { useState, useEffect, useRef } from "react";
 import { artworks } from "@/data/artworks";
 
@@ -10,6 +11,8 @@ const ArtworkCard = ({
   index: number;
   onClick: () => void;
 }) => {
+  const { t } = useTranslation();
+
   const [isVisible, setIsVisible] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -65,10 +68,11 @@ const ArtworkCard = ({
 
         <div className="space-y-2 mb-4">
           <p className="text-sm text-gray-600 font-medium">
-            <span className="text-gray-800">Medium:</span> {artwork.medium}
+            <span className="text-gray-800">{t("ui.medium")}</span>{" "}
+            {artwork.medium}
           </p>
           <p className="text-sm text-gray-600 font-medium">
-            <span className="text-gray-800">Dimensions:</span>{" "}
+            <span className="text-gray-800">{t("ui.dimensions")}</span>{" "}
             {artwork.dimensions}
           </p>
         </div>
@@ -82,7 +86,7 @@ const ArtworkCard = ({
             onClick={onClick}
             className="text-gray-500 hover:text-neutral-700 text-sm font-semibold transition-colors duration-200 cursor-pointer"
           >
-            View Details →
+            {t("ui.viewDetails")}
           </button>
         </div>
       </div>

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import imageAssets from "@/assets";
 
@@ -6,28 +7,12 @@ interface EmptyCollectionProps {
   onExploreAll: () => void;
 }
 
-const categoryMessages: Record<string, string> = {
-  Fantasy:
-    "New worlds, characters and visual stories are taking shape in the studio.",
-  Portraits:
-    "New faces and personal stories are currently being brought to life.",
-  Landscapes:
-    "A new series inspired by place, memory and atmosphere is in progress.",
-  "Anatomy Study":
-    "Studies of structure, movement and the expressive architecture of the human form are taking shape.",
-  "Still Life Study":
-    "Quiet arrangements of objects, light and texture are currently being explored in the studio.",
-  Drawings:
-    "Studies, gestures and works on paper will be added to this collection soon.",
-};
+const EmptyCollection = ({ category, onExploreAll }: EmptyCollectionProps) => {
+  const { t } = useTranslation();
 
-const EmptyCollection = ({
-  category,
-  onExploreAll,
-}: EmptyCollectionProps) => {
-  const message =
-    categoryMessages[category] ||
-    "A new body of work is currently taking shape and will be revealed here soon.";
+  const message = t(`emptyCollection.${category}`, {
+    defaultValue: t("emptyCollection.fallback"),
+  });
 
   return (
     <motion.section
@@ -45,7 +30,7 @@ const EmptyCollection = ({
       <div className="absolute inset-0 -z-20 bg-gradient-to-br from-[#f5f2eb]/95 via-[#f5f2eb]/80 to-[#d9c9b7]/70" />
       <div className="absolute left-1/2 top-1/2 -z-10 w-[120%] -translate-x-1/2 -translate-y-1/2 overflow-hidden">
         <p className="select-none whitespace-nowrap text-[20vw] font-semibold uppercase leading-none tracking-[-0.07em] text-[#172019]/[0.035]">
-          {category}
+          {t(`categories.${category}`)}
         </p>
       </div>
 
@@ -71,13 +56,15 @@ const EmptyCollection = ({
         </div>
 
         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#b5502d] sm:text-sm">
-          From the studio
+          {t("ui.fromTheStudio")}
         </p>
         <h3 className="mt-4 text-4xl font-semibold tracking-[-0.04em] text-[#172019] sm:text-6xl">
-          {category} collection
+          {t("emptyCollection.heading", {
+            category: t(`categories.${category}`),
+          })}
         </h3>
         <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-[#59615c] sm:text-xl">
-          {message} Check back soon to discover the finished pieces.
+          {message} {t("ui.checkBackSoonToDiscoverTheFinishedPieces")}
         </p>
 
         <button
@@ -85,7 +72,7 @@ const EmptyCollection = ({
           onClick={onExploreAll}
           className="group mt-9 inline-flex cursor-pointer items-center rounded-full bg-[#172019] px-7 py-3.5 text-sm font-semibold uppercase tracking-[0.12em] text-white transition hover:-translate-y-0.5 hover:bg-[#b5502d]"
         >
-          Explore all artworks
+          {t("ui.exploreAllArtworks")}
           <span
             aria-hidden="true"
             className="ml-3 transition-transform group-hover:translate-x-1"

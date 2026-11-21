@@ -1,3 +1,4 @@
+import i18n from "@/i18n";
 import type { ArtWorkProps, PortfolioUpdate } from "@/types/Types";
 import {
   isWithinNewArtworkPeriod,
@@ -14,7 +15,7 @@ export const editorialUpdates: PortfolioUpdate[] = [];
 export const getPortfolioUpdates = (
   artworks: ArtWorkProps[],
   sketchPages: DailySketchPage[] = [],
-  now = new Date()
+  now = new Date(),
 ) => {
   const artworkUpdates: PortfolioUpdate[] = artworks.flatMap((artwork) => {
     if (
@@ -30,7 +31,7 @@ export const getPortfolioUpdates = (
       {
         id: `artwork:${artwork.id}`,
         type: "artwork",
-        title: artwork.title || "Untitled artwork",
+        title: artwork.title || i18n.t("common.untitled"),
         description: artwork.medium,
         publishedAt: artwork.publishedAt,
         imageUrl: artwork.imageUrl,
@@ -49,9 +50,10 @@ export const getPortfolioUpdates = (
           type: "sketch",
           title:
             latestSketch.title ||
-            `Daily sketch · Page ${String(latestSketch.id).padStart(2, "0")}`,
-          description:
-            latestSketch.note || "A new page in the daily sketchbook.",
+            i18n.t("sketchbook.updateTitle", {
+              number: String(latestSketch.id).padStart(2, "0"),
+            }),
+          description: latestSketch.note || i18n.t("sketchbook.updateNote"),
           publishedAt: __PORTFOLIO_BUILD_DATE__,
           imageUrl: latestSketch.imageUrl,
           galleryCategory: "Daily Sketching",

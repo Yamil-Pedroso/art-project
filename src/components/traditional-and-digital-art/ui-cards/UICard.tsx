@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { useState, useRef, useEffect } from "react";
 import { artworks } from "@/data/artworks";
 import { motion } from "framer-motion";
@@ -18,6 +19,8 @@ const UICard = ({
   now?: Date;
   viewMode?: ArtworkViewMode;
 }) => {
+  const { t, i18n } = useTranslation();
+
   const [isVisible, setIsVisible] = useState(false);
   const cardRef = useRef<HTMLElement>(null);
   const revealTimerRef = useRef<number | null>(null);
@@ -52,7 +55,7 @@ const UICard = ({
 
   const artworkCallToAction = (
     <span className="flex w-full items-center justify-between bg-[#172019] px-4 py-2.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-white transition-colors duration-300 group-hover:bg-[#b5502d] sm:px-5 sm:py-3">
-      <span>View artwork</span>
+      <span>{t("ui.viewArtwork")}</span>
       <span
         aria-hidden="true"
         className="inline-flex h-7 w-7 items-center justify-center border border-white/25 text-sm transition duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:border-white/50"
@@ -79,7 +82,7 @@ const UICard = ({
             ? "sm:grid sm:grid-cols-[minmax(16rem,42%)_minmax(0,1fr)] sm:items-center sm:gap-10 lg:gap-14 xl:gap-16"
             : ""
         }`}
-        aria-label={`View details for ${artwork.title}`}
+        aria-label={t("common.viewDetailsFor", { title: artwork.title })}
       >
         <div className="w-full shadow-[0_18px_50px_rgba(37,41,38,0.10)]">
           <div className="relative w-full">
@@ -104,26 +107,29 @@ const UICard = ({
             </div>
             {showNewBadge && (
               <span className="absolute left-3 top-3 z-10 border border-white/30 bg-[#172019]/82 px-2.5 py-1.5 text-[9px] font-semibold uppercase tracking-[0.2em] text-white shadow-sm backdrop-blur sm:left-4 sm:top-4">
-                New
+                {t("ui.new")}
               </span>
             )}
 
             {/*<span>
               {isWithinNewArtworkPeriod(artwork, now) && (
                 <span className="absolute bottom-3 left-3 z-10 bg-[#172019]/82 px-2.5 py-1.5 text-[9px] text-white sm:bottom-4 sm:left-4">
-                  {now.toLocaleDateString("es-ES")}
+                  {now.toLocaleDateString(i18n.resolvedLanguage === "de" ? "de-CH" : "en-GB", {timeZone: "UTC"})}
                 </span>
               )}
             </span>*/}
 
             <span className="absolute bottom-3 left-3 z-10 bg-[#172019]/82 px-2.5 py-1.5 text-[9px] text-white sm:bottom-4 sm:left-4">
               {artwork.publishedAt &&
-                new Date(artwork.publishedAt).toLocaleDateString("es-ES")}
+                new Date(artwork.publishedAt).toLocaleDateString(
+                  i18n.resolvedLanguage === "de" ? "de-CH" : "en-GB",
+                  { timeZone: "UTC" },
+                )}
             </span>
 
             {artwork.status && (
               <span className="absolute right-3 top-3 z-10 border border-[#b5502d]/25 bg-[#f5f2eb]/92 px-2.5 py-1.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-[#b5502d] shadow-sm backdrop-blur sm:right-4 sm:top-4">
-                {artwork.status}
+                {t("common.inProcess")}
               </span>
             )}
           </div>

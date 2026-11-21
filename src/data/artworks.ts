@@ -1,581 +1,301 @@
 import type { ArtWorkProps } from "@/types/Types";
 import imageAssets from "@/assets";
+import englishContent from "@/i18n/locales/en/content.json";
 
-export const artworks: ArtWorkProps[] = [
+const artworkRecords: ArtWorkProps[] = [
   {
     id: 1,
-    title: "Stroll through Havana: 1958",
-    medium: "Oil on canvas",
-    dimensions: "100 × 100 cm",
-    description:
-      "An aged American classic glides through the colorful chaos of Havana’s streets, its chrome reflecting the sun and stories of a time long gone.",
     imageUrl: imageAssets.art1,
     category: "Old Cars",
   },
   {
     id: 2,
-    title: "Old Havana Cathedral: 1959",
-    medium: "Oil on canvas",
-    dimensions: "100 × 100 cm",
-    description:
-      "Faded paint, bold lines, and a quiet engine—this car isn’t just transportation, it’s a survivor, rolling past vibrant walls and timeless melodies.",
     imageUrl: imageAssets.art2,
     category: "Old Cars",
   },
   {
     id: 3,
-    title: "Medieval lunch",
-    medium: "Oil on canvas",
-    dimensions: "45 × 60 cm",
-    description:
-      "A cast-iron still life of humble glory. Three fried eggs, perfectly imperfect. A quiet tribute to hunger, ritual, and the poetry of simplicity.",
     imageUrl: imageAssets.still1,
     category: "Still Life Study",
   },
   {
     id: 4,
-    title: "Oil on cardboard",
-    medium: "Oil on canvas",
-    dimensions: "45 × 60 cm",
-    description:
-      "Eyes filled with silent devotion, fur brushed by light—this humble dog becomes a monument of loyalty. More than a portrait, it’s a quiet gaze into companionship made eternal.",
     imageUrl: imageAssets.pet1,
     category: "Pets",
   },
   {
     id: 5,
-    title: "Cuty",
-    medium: "Oil on canvas",
-    dimensions: "45 × 60 cm",
-    description: "Lorem Ipsum",
     imageUrl: imageAssets.pet3,
     category: "Pets",
   },
   {
     id: 6,
-    title: "Trust",
-    medium: "Oil cardboard",
-    dimensions: "45 × 60 cm",
-    description:
-      "A tender muzzle, patient eyes, and the soft geometry of trust. This dog, captured in stillness, holds the warmth of home within the frame.",
     imageUrl: imageAssets.pet2,
     category: "Pets",
   },
   {
     id: 7,
-    title: "Dream of the Sea",
-    medium: "Digital Art",
-    dimensions: "",
-    description: "Lorem Ipsum",
     imageUrl: imageAssets.digital1,
     category: "Digital Art",
   },
   {
     id: 8,
-    title: "Cagueiro",
-    medium: "Digital Art",
-    dimensions: "",
-    description: "Lorem Ipsum",
     imageUrl: imageAssets.digital2,
     category: "Digital Art",
   },
   {
     id: 9,
-    title: "Earth",
-    medium: "Digital Art",
-    dimensions: "",
-    description: "Lorem Ipsum",
     imageUrl: imageAssets.digital3,
     category: "Digital Art",
   },
   {
     id: 10,
-    title: "Güije & Rana",
-    medium: "Digital Art",
-    dimensions: "",
-    description: "Lorem Ipsum",
     imageUrl: imageAssets.digital4,
     category: "Digital Art",
   },
   {
     id: 11,
-    title: "Güije",
-    medium: "Digital Art",
-    dimensions: "",
-    description: "Lorem Ipsum",
     imageUrl: imageAssets.digital5,
     category: "Digital Art",
   },
   {
     id: 12,
-    title: "Dwarf",
-    medium: "Digital Art",
-    dimensions: "",
-    description: "Lorem Ipsum",
     imageUrl: imageAssets.digital6,
     category: "Digital Art",
   },
   {
     id: 13,
-    title: "Christ",
-    medium: "Digital Art",
-    dimensions: "",
-    description: "Lorem Ipsum",
     imageUrl: imageAssets.digital7,
     category: "Digital Art",
   },
   {
     id: 14,
-    title: "Cat",
-    medium: "Digital Art",
-    dimensions: "",
-    description: "Lorem Ipsum",
     imageUrl: imageAssets.digital8,
     category: "Digital Art",
   },
   {
     id: 15,
-    title: "AI Cataclysm",
-    medium: "Digital Art",
-    dimensions: "",
-    description: "Lorem Ipsum",
     imageUrl: imageAssets.digital9,
     category: "Digital Art",
   },
   {
     id: 16,
-    title: "Abstract",
-    medium: "Digital Art",
-    dimensions: "",
-    description: "Lorem Ipsum",
     imageUrl: imageAssets.digital10,
     category: "Digital Art",
   },
   {
     id: 17,
-    title: "Color Boy",
-    medium: "Digital Art",
-    dimensions: "",
-    description: "Lorem Ipsum",
     imageUrl: imageAssets.digital11,
     category: "Digital Art",
   },
   {
     id: 18,
-    title: "Blue Tone",
-    medium: "Digital Art",
-    dimensions: "",
-    description: "Lorem Ipsum",
     imageUrl: imageAssets.digital12,
     category: "Digital Art",
   },
   {
     id: 19,
-    title: "Anatomy Lesson — Master Study",
-    medium: "Oil on canvas",
-    dimensions: "",
-    description:
-      "A master-copy study exploring dramatic light, collective attention and the expressive tension of a timeless figurative composition.",
     imageUrl: imageAssets.master1,
     category: "Master copies",
     status: "In process",
   },
   {
     id: 20,
-    title: "The Gathering",
-    medium: "Digital illustration",
-    dimensions: "Dim. pending",
-    description:
-      "Three curious figures gather around a mysterious table in a playful study of connection and shared ritual.",
     imageUrl: imageAssets.rarity1,
     category: "Rarisity",
   },
   {
     id: 21,
-    title: "The Guide",
-    medium: "Digital illustration",
-    dimensions: "Dim. pending",
-    description:
-      "A tall wanderer leads a small blue community through a strange landscape alive with color and possibility.",
     imageUrl: imageAssets.rarity2,
     category: "Rarisity",
   },
   {
     id: 22,
-    title: "Orbiting Joy",
-    medium: "Digital illustration",
-    dimensions: "Dim. pending",
-    description:
-      "A joyful green presence moves through an imagined cosmos populated by flowers, signals and distant planets.",
     imageUrl: imageAssets.rarity3,
     category: "Rarisity",
   },
   {
     id: 23,
-    title: "Night Companions",
-    medium: "Digital illustration",
-    dimensions: "Dim. pending",
-    description:
-      "Two fragile companions share a quiet night, suspended between tenderness, solitude and dream.",
     imageUrl: imageAssets.rarity4,
     category: "Rarisity",
   },
   {
     id: 24,
-    title: "The Shadow Within",
-    medium: "Digital illustration",
-    dimensions: "Dim. pending",
-    description:
-      "A psychological portrait where doubled figures suggest memory, protection and the unseen self.",
     imageUrl: imageAssets.rarity5,
     category: "Rarisity",
   },
   {
     id: 25,
-    title: "Messenger",
-    medium: "Digital illustration",
-    dimensions: "Dim. pending",
-    description:
-      "A many-armed messenger navigates an aquatic world, carrying gestures and stories in every direction.",
     imageUrl: imageAssets.rarity6,
     category: "Rarisity",
   },
   {
     id: 26,
-    title: "Red Garden",
-    medium: "Digital illustration",
-    dimensions: "Dim. pending",
-    description:
-      "A solitary figure emerges among luminous flowers in a vivid red garden charged with mystery.",
     imageUrl: imageAssets.rarity7,
     category: "Rarisity",
   },
   {
     id: 27,
-    title: "Two Worlds",
-    medium: "Digital illustration",
-    dimensions: "Dim. pending",
-    description:
-      "Two unusual beings hold distant worlds above them, balancing wonder with quiet uncertainty.",
     imageUrl: imageAssets.rarity8,
     category: "Rarisity",
   },
   {
     id: 28,
-    title: "The Offering",
-    medium: "Digital illustration",
-    dimensions: "Dim. pending",
-    description:
-      "A small encounter unfolds around a blue vessel, transforming a simple offering into an enigmatic ceremony.",
     imageUrl: imageAssets.rarity9,
     category: "Rarisity",
   },
   {
     id: 29,
-    title: "Bright Company",
-    medium: "Digital illustration",
-    dimensions: "Dim. pending",
-    description:
-      "A radiant group portrait celebrates individuality, companionship and the energy of belonging.",
     imageUrl: imageAssets.rarity10,
     category: "Rarisity",
   },
   {
     id: 30,
-    title: "Self-Embrace",
-    medium: "Digital illustration",
-    dimensions: "Dim. pending",
-    description:
-      "An orange figure folds inward in a tender reflection on vulnerability, care and self-acceptance.",
     imageUrl: imageAssets.rarity11,
     category: "Rarisity",
   },
   {
     id: 31,
-    title: "Kindred",
-    medium: "Digital illustration",
-    dimensions: "Dim. pending",
-    description:
-      "Two wide-eyed companions mirror one another in a portrait of kinship and shared curiosity.",
     imageUrl: imageAssets.rarity12,
     category: "Rarisity",
   },
   {
     id: 32,
-    title: "The Visitor",
-    medium: "Digital illustration",
-    dimensions: "Dim. pending",
-    description:
-      "A mysterious visitor and a small blue companion meet across the boundary between the familiar and unknown.",
     imageUrl: imageAssets.rarity13,
     category: "Rarisity",
   },
   {
     id: 33,
-    title: "Signal Room",
-    medium: "Digital illustration",
-    dimensions: "Dim. pending",
-    description:
-      "A vibrant interior filled with creatures, signals and symbols becomes a playful map of an imagined mind.",
     imageUrl: imageAssets.rarity14,
     category: "Rarisity",
   },
   {
     id: 34,
-    title: "Pink Parade",
-    medium: "Digital illustration",
-    dimensions: "Dim. pending",
-    description:
-      "A lively procession of gestural characters crosses a pink field in an explosion of movement and color.",
     imageUrl: imageAssets.rarity15,
     category: "Rarisity",
   },
   {
     id: 35,
-    title: "Face to Face",
-    medium: "Ink and graphite on paper",
-    dimensions: "Dim. pending",
-    description:
-      "A tense encounter between human and beast captured through raw, energetic lines.",
     imageUrl: imageAssets.drawing1,
     category: "Drawings",
   },
   {
     id: 36,
-    title: "Silent Assembly",
-    medium: "Ink and graphite on paper",
-    dimensions: "Dim. pending",
-    description:
-      "An anonymous gathering where gesture and posture become the language of the group.",
     imageUrl: imageAssets.drawing2,
     category: "Drawings",
   },
   {
     id: 37,
-    title: "Forest Sentinel",
-    medium: "Ink and graphite on paper",
-    dimensions: "Dim. pending",
-    description:
-      "A delicate woodland guardian emerges from branches, feathers and flowing organic forms.",
     imageUrl: imageAssets.drawing3,
     category: "Drawings",
   },
   {
     id: 38,
-    title: "Rootbound",
-    medium: "Ink and graphite on paper",
-    dimensions: "Dim. pending",
-    description:
-      "A seated figure appears fused with a barren tree in a study of endurance and transformation.",
     imageUrl: imageAssets.drawing4,
     category: "Drawings",
   },
   {
     id: 39,
-    title: "Wild Bloom",
-    medium: "Ink and graphite on paper",
-    dimensions: "Dim. pending",
-    description:
-      "A richly textured character portrait crowned by flowers, curls and untamed imagination.",
     imageUrl: imageAssets.drawing5,
     category: "Drawings",
   },
   {
     id: 40,
-    title: "The Giant and Apprentice",
-    medium: "Ink and graphite on paper",
-    dimensions: "Dim. pending",
-    description:
-      "Two contrasting fantasy figures explore scale, companionship and character design.",
     imageUrl: imageAssets.drawing6,
     category: "Drawings",
   },
   {
     id: 41,
-    title: "Flamecaller",
-    medium: "Ink and graphite on paper",
-    dimensions: "Dim. pending",
-    description:
-      "A young wanderer summons heat and movement in a dynamic study of magical gesture.",
     imageUrl: imageAssets.drawing7,
     category: "Drawings",
   },
   {
     id: 42,
-    title: "Child of the Grove",
-    medium: "Ink and graphite on paper",
-    dimensions: "Dim. pending",
-    description:
-      "A quiet child rests beside a watchful forest creature among leaves and hidden forms.",
     imageUrl: imageAssets.drawing8,
     category: "Drawings",
   },
   {
     id: 43,
-    title: "Anatomy Studies",
-    medium: "Ink and graphite on paper",
-    dimensions: "Dim. pending",
-    description:
-      "Observational studies of skulls, bone and structure rendered with careful linear precision.",
     imageUrl: imageAssets.drawing9,
     category: "Drawings",
   },
   {
     id: 44,
-    title: "River Spirits",
-    medium: "Ink and graphite on paper",
-    dimensions: "Dim. pending",
-    description:
-      "A traveler is surrounded by small animal spirits moving like a current through the composition.",
     imageUrl: imageAssets.drawing10,
     category: "Drawings",
   },
   {
     id: 45,
-    title: "Steadfast",
-    medium: "Ink and graphite on paper",
-    dimensions: "Dim. pending",
-    description:
-      "A direct portrait study built through dense marks, strong contrast and an unwavering gaze.",
     imageUrl: imageAssets.drawing11,
     category: "Drawings",
   },
   {
     id: 46,
-    title: "The Listener",
-    medium: "Ink and graphite on paper",
-    dimensions: "Dim. pending",
-    description:
-      "A contemplative figure leans into silence in an intimate study of expression and mood.",
     imageUrl: imageAssets.drawing12,
     category: "Drawings",
   },
   {
     id: 47,
-    title: "Old Soul",
-    medium: "Ink and graphite on paper",
-    dimensions: "Dim. pending",
-    description:
-      "Age, character and experience surface through layered strokes in this expressive portrait.",
     imageUrl: imageAssets.drawing13,
     category: "Drawings",
   },
   {
     id: 48,
-    title: "Warrior Study",
-    medium: "Ink and graphite on paper",
-    dimensions: "Dim. pending",
-    description:
-      "A compact character study balancing heavy armor, movement and a commanding silhouette.",
     imageUrl: imageAssets.drawing14,
     category: "Drawings",
   },
   {
     id: 49,
-    title: "Ronin",
-    medium: "Ink and graphite on paper",
-    dimensions: "Dim. pending",
-    description:
-      "A solitary swordsman takes shape through decisive black marks and weathered detail.",
     imageUrl: imageAssets.drawing15,
     category: "Drawings",
   },
   {
     id: 50,
-    title: "Woodland Heir",
-    medium: "Colored ink on paper",
-    dimensions: "Dim. pending",
-    description:
-      "A luminous elven portrait combines delicate linework with warm earth-toned ink.",
     imageUrl: imageAssets.drawing16,
     category: "Drawings",
   },
   {
     id: 51,
-    title: "The General",
-    medium: "Colored ink on paper",
-    dimensions: "Dim. pending",
-    description:
-      "A poised warrior is rendered with intricate costume details and disciplined red linework.",
     imageUrl: imageAssets.drawing17,
     category: "Drawings",
   },
   {
     id: 52,
-    title: "Sound Traveler",
-    medium: "Colored ink on paper",
-    dimensions: "Dim. pending",
-    description:
-      "A young traveler wearing oversized headphones brings a playful contemporary note to the sketchbook.",
     imageUrl: imageAssets.drawing18,
     category: "Drawings",
   },
   {
     id: 53,
-    title: "Quiet Strength",
-    medium: "Ink on paper",
-    dimensions: "Dim. pending",
-    description:
-      "An expressive portrait built with dense cross-hatching, balancing a steady gaze with the warmth of a spontaneous sketchbook study.",
     imageUrl: imageAssets.drawing19,
     category: "Drawings",
   },
   {
     id: 54,
-    title: "Pasture Studies",
-    medium: "Colored ink on paper",
-    dimensions: "Dim. pending",
-    description:
-      "A pair of animal studies explores weight, rest and character through fluid red lines and layered observation.",
     imageUrl: imageAssets.drawing20,
     category: "Drawings",
   },
   {
     id: 55,
-    title: "Desert Pilgrim",
-    medium: "Ink on paper",
-    dimensions: "Dim. pending",
-    description:
-      "A veiled traveler and camel emerge through intricate linework in a scene shaped by endurance, silence and distant journeys.",
     imageUrl: imageAssets.drawing21,
     category: "Drawings",
   },
   {
     id: 56,
-    title: "The Contemplative",
-    medium: "Ink on paper",
-    dimensions: "Dim. pending",
-    description:
-      "A reflective character study captures an inward moment through loose contours, deep shadows and a quietly dramatic expression.",
     imageUrl: imageAssets.drawing22,
     category: "Drawings",
   },
   {
     id: 57,
-    title: "Harlequin",
-    medium: "Ink and colored pencil on paper",
-    dimensions: "Dim. pending",
-    description:
-      "A vivid harlequin portrait combines theatrical costume, sharp linework and selective color in a playful study of identity.",
     imageUrl: imageAssets.drawing23,
     category: "Drawings",
   },
   {
     id: 58,
-    title: "The Collector",
-    medium: "Ink on paper",
-    dimensions: "Dim. pending",
-    description:
-      "A dark fantasy figure carries a strange collection of masks and skulls, rendered with forceful blacks and restless detail.",
     imageUrl: imageAssets.drawing24,
     category: "Drawings",
   },
   {
     id: 63,
-    title: "Spontaneous",
-    medium: "Ink and marker on paper",
-    dimensions: "Dim. pending",
-    description: "Lorem Ipsum",
     imageUrl: imageAssets.drawing25,
     category: "Drawings",
     markAsNew: true,
@@ -583,42 +303,22 @@ export const artworks: ArtWorkProps[] = [
   },
   {
     id: 59,
-    title: "The Jester and the Goldfish",
-    medium: "Oil on canvas",
-    dimensions: "Dim. pending",
-    description:
-      "A quiet jester shelters a small golden companion, turning an unlikely encounter into a tender scene of solitude, wonder and trust.",
     imageUrl: imageAssets.fantasy1,
     category: "Fantasy",
     status: "In process",
   },
   {
     id: 60,
-    title: "The Raven Alchemist",
-    medium: "Oil on canvas",
-    dimensions: "Dim. pending",
-    description:
-      "A mysterious raven-like figure emerges from deep shadow and electric color, suspended between ancient ritual and imagined mythology.",
     imageUrl: imageAssets.fantasy2,
     category: "Fantasy",
   },
   {
     id: 61,
-    title: "Creature 1",
-    medium: "Oil on oil/acrylic paper",
-    dimensions: "Dim. pending",
-    description:
-      "A guardian of the forest emerges from the shadows, holding a staff and a watchful eye.",
     imageUrl: imageAssets.fantasy3,
     category: "Fantasy",
   },
   {
     id: 62,
-    title: "Creature 2",
-    medium: "Acrylic on oil/acrylic paper",
-    dimensions: "Dim. pending",
-    description:
-      "A golden city emerges from the mist, surrounded by towering trees and a river of gold.",
     imageUrl: imageAssets.fantasy4,
     category: "Fantasy",
     markAsNew: true,
@@ -626,41 +326,21 @@ export const artworks: ArtWorkProps[] = [
   },
   {
     id: 64,
-    title: "Raven & Harlequin Studies",
-    medium: "Ink on paper",
-    dimensions: "Dim. pending",
-    description:
-      "A sketchbook spread pairing studies of ravens in motion with an intricate theatrical figure, explored through energetic linework and dense cross-hatching.",
     imageUrl: imageAssets.drawing26,
     category: "Drawings",
   },
   {
     id: 65,
-    title: "Blades & Forest Creature",
-    medium: "Ink on paper",
-    dimensions: "Dim. pending",
-    description:
-      "Weapons, armor and an expressive woodland creature share a sketchbook spread shaped by fantasy, ornament and spontaneous observation.",
     imageUrl: imageAssets.drawing27,
     category: "Drawings",
   },
   {
     id: 66,
-    title: "Close Encounter",
-    medium: "Portrait study",
-    dimensions: "Dim. pending",
-    description:
-      "A playful studio portrait bringing artist and imagined subject face to face, where observation, character and science-fiction imagery meet.",
     imageUrl: imageAssets.portrait1,
     category: "Portraits",
   },
   {
     id: 67,
-    title: "1450 Witch in the Sabbath",
-    medium: "Portrait study",
-    dimensions: "Dim. pending",
-    description:
-      "An evolving portrait study currently taking shape through successive layers, tonal decisions and expressive detail.",
     imageUrl: imageAssets.portrait2,
     category: "Portraits",
     status: "In process",
@@ -670,11 +350,6 @@ export const artworks: ArtWorkProps[] = [
   },
   {
     id: 68,
-    title: "Pandemic",
-    medium: "Portrait study",
-    dimensions: "Dim. pending",
-    description:
-      "A portrait shaped by the atmosphere and emotional memory of an extraordinary collective moment.",
     imageUrl: imageAssets.portrait3,
     category: "Portraits",
     markAsNew: true,
@@ -682,11 +357,6 @@ export const artworks: ArtWorkProps[] = [
   },
   {
     id: 69,
-    title: "Still Life Study II",
-    medium: "Oil on canvas",
-    dimensions: "Dim. pending",
-    description:
-      "An evolving still-life study of glass, olives and foliage, exploring restrained color, reflected light and the quiet presence of everyday objects.",
     imageUrl: imageAssets.still2,
     category: "Still Life Study",
     status: "In process",
@@ -695,11 +365,6 @@ export const artworks: ArtWorkProps[] = [
   },
   {
     id: 70,
-    title: "Cuban Landscape",
-    medium: "Traditional painting",
-    dimensions: "Dim. pending",
-    description:
-      "A luminous tropical landscape opens toward distant green hills, where monumental trees, drifting clouds and layered vegetation create a quiet sense of depth and belonging.",
     imageUrl: imageAssets.landscape1,
     category: "Landscapes",
     markAsNew: true,
@@ -707,11 +372,6 @@ export const artworks: ArtWorkProps[] = [
   },
   {
     id: 71,
-    title: "The Alchemist's Horse",
-    medium: "Mixed media on canvas",
-    dimensions: "Dim. pending",
-    description:
-      "A pale horse emerges among alchemical vessels, a watchful raven and a suspended ladder, weaving an enigmatic story of transformation, burden and passage.",
     imageUrl: imageAssets.fantasy5,
     category: "Fantasy",
     markAsNew: true,
@@ -719,11 +379,6 @@ export const artworks: ArtWorkProps[] = [
   },
   {
     id: 72,
-    title: "The Little Pianist",
-    medium: "Oil on canvas",
-    dimensions: "Dim. pending",
-    description:
-      "A young figure pauses beside the railway with an expression of wonder, carrying the quiet poetry of departure, memory and an imagined destination.",
     imageUrl: imageAssets.portrait4,
     category: "Portraits",
     markAsNew: true,
@@ -731,11 +386,6 @@ export const artworks: ArtWorkProps[] = [
   },
   {
     id: 73,
-    title: "Quiet Gaze",
-    medium: "Digital painting",
-    dimensions: "Dim. pending",
-    description:
-      "A direct, luminous gaze emerges from layered marks and deep shadow, balancing graphic spontaneity with the stillness of an intimate portrait.",
     imageUrl: imageAssets.digital13,
     category: "Digital Art",
     markAsNew: true,
@@ -743,11 +393,6 @@ export const artworks: ArtWorkProps[] = [
   },
   {
     id: 74,
-    title: "Color Study",
-    medium: "Digital painting",
-    dimensions: "Dim. pending",
-    description:
-      "A mounted figure advances through successive layers of line, shape and restrained earth tones in a study of movement, balance and evolving color.",
     imageUrl: imageAssets.digital14,
     category: "Digital Art",
     phase1: imageAssets.digital14Phase1,
@@ -758,11 +403,6 @@ export const artworks: ArtWorkProps[] = [
   },
   {
     id: 75,
-    title: "Against the Current",
-    medium: "Charcoal on paper",
-    dimensions: "Dim. pending",
-    description:
-      "A solitary fish rises through soft graphite-like shadows and decisive charcoal marks, transforming a simple natural study into an image of motion, resistance and quiet persistence.",
     imageUrl: imageAssets.charcoal1,
     category: "Charcoal",
     markAsNew: true,
@@ -770,11 +410,6 @@ export const artworks: ArtWorkProps[] = [
   },
   {
     id: 76,
-    title: "The Last Laugh",
-    medium: "Oil on canvas",
-    dimensions: "Dim. pending",
-    description:
-      "A laughing clown holds joy and unease in the same expression, where vivid accents, dark shadows and painted tears turn performance into an intimate psychological portrait.",
     imageUrl: imageAssets.portrait5,
     category: "Portraits",
     markAsNew: true,
@@ -782,11 +417,6 @@ export const artworks: ArtWorkProps[] = [
   },
   {
     id: 77,
-    title: "Behind the Mask",
-    medium: "Painting",
-    dimensions: "Dim. pending",
-    description:
-      "A dark sculptural mask frames a face in muted greens and warm ochres, exploring the tension between concealment and expression.",
     imageUrl: imageAssets.portrait6,
     category: "Portraits",
     status: "In process",
@@ -795,11 +425,6 @@ export const artworks: ArtWorkProps[] = [
   },
   {
     id: 78,
-    title: "The Dragon's Gift",
-    medium: "Painting",
-    dimensions: "Dim. pending",
-    description:
-      "A traveler and a green dragon meet around a glowing red egg, sharing a quiet moment of trust and wonder.",
     imageUrl: imageAssets.fantasy6,
     category: "Fantasy",
     status: "In process",
@@ -808,11 +433,6 @@ export const artworks: ArtWorkProps[] = [
   },
   {
     id: 79,
-    title: "Portrait of an Elder — Master Study",
-    medium: "Painting",
-    dimensions: "Dim. pending",
-    description:
-      "A master-copy portrait study exploring warm light, deep shadows and the expressive folds of an elderly face in profile.",
     imageUrl: imageAssets.master2,
     category: "Master copies",
     status: "In process",
@@ -821,14 +441,19 @@ export const artworks: ArtWorkProps[] = [
   },
   {
     id: 80,
-    title: "Horned Sentinel",
-    medium: "Ink on paper",
-    dimensions: "Dim. pending",
-    description:
-      "A powerful bull emerges through layered cross-hatching and confident ink lines, balancing monumental horns with a steady, watchful presence.",
     imageUrl: imageAssets.drawing28,
     category: "Drawings",
     markAsNew: true,
     publishedAt: "2026-10-05",
   },
 ];
+
+const artworkCopy: Record<
+  string,
+  Pick<ArtWorkProps, "title" | "medium" | "dimensions" | "description">
+> = englishContent.artworks;
+
+export const artworks: ArtWorkProps[] = artworkRecords.map((artwork) => ({
+  ...artwork,
+  ...artworkCopy[String(artwork.id)],
+}));

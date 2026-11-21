@@ -1,8 +1,12 @@
+import i18n from "@/i18n";
+import { useLocalizedArtworks } from "@/i18n/content";
+import LanguageSwitcher from "@/components/language-switcher/LanguageSwitcher";
+import { useTranslation } from "react-i18next";
 import { useEffect, useState, type MouseEvent } from "react";
 import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { Route } from "@/routes/work-details/$workId";
-import { artworks } from "@/data/artworks";
+import { artworks as artworkRecords } from "@/data/artworks";
 import ThemeToggle from "@/components/theme-toggle/ThemeToggle";
 
 interface ZoomPosition {
@@ -30,7 +34,7 @@ interface ProcessPhaseGalleryProps {
 }
 
 const createProcessPhases = (
-  artwork: (typeof artworks)[number] | undefined
+  artwork: (typeof artworkRecords)[number] | undefined,
 ): ProcessPhase[] =>
   [
     artwork?.phase1,
@@ -44,10 +48,12 @@ const createProcessPhases = (
           {
             imageUrl,
             number: index + 1,
-            label: `Phase ${String(index + 1).padStart(2, "0")}`,
+            label: i18n.t("workDetails.phase", {
+              number: String(index + 1).padStart(2, "0"),
+            }),
           },
         ]
-      : []
+      : [],
   );
 
 const ProcessPhaseGallery = ({
@@ -57,6 +63,8 @@ const ProcessPhaseGallery = ({
   onPhaseSelect,
   phases,
 }: ProcessPhaseGalleryProps) => {
+  const { t } = useTranslation();
+
   if (phases.length === 0) return null;
 
   return (
@@ -70,17 +78,17 @@ const ProcessPhaseGallery = ({
       <div className="flex items-end justify-between gap-5">
         <div>
           <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#b5502d]">
-            Behind the artwork
+            {t("ui.behindTheArtwork")}
           </p>
           <h2
             id={headingId}
             className="mt-1.5 text-2xl font-semibold tracking-[-0.03em] text-[#172019]"
           >
-            Creative process
+            {t("ui.creativeProcess")}
           </h2>
         </div>
         <span className="pb-1 text-xs text-[#8a8f8b]">
-          {phases.length} {phases.length === 1 ? "stage" : "stages"}
+          {t("workDetails.stages", { count: phases.length })}
         </span>
       </div>
 
@@ -92,14 +100,14 @@ const ProcessPhaseGallery = ({
             layout
             onClick={() => onPhaseSelect(phase.number)}
             whileTap={{ scale: 0.97 }}
-            aria-label={`Show ${phase.label} in the main artwork viewer`}
+            aria-label={t("workDetails.showPhase", { phase: phase.label })}
             className="group cursor-pointer overflow-hidden border border-[#172019]/10 bg-[#e5e0d6] text-left transition hover:-translate-y-1 hover:border-[#b5502d]/45 hover:shadow-[0_12px_30px_rgba(23,32,25,0.14)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b5502d]/50"
           >
             <div className="aspect-square overflow-hidden">
               <motion.img
                 key={phase.imageUrl}
                 src={phase.imageUrl}
-                alt={`${artworkTitle || "Artwork"}, ${phase.label}`}
+                alt={`${artworkTitle || t("common.artwork")}, ${phase.label}`}
                 loading="lazy"
                 decoding="async"
                 initial={{ opacity: 0 }}
@@ -119,25 +127,28 @@ const ProcessPhaseGallery = ({
 };
 
 const WorkDetails = () => {
+  const artworks = useLocalizedArtworks();
+  const { t } = useTranslation();
+
   const { workId } = Route.useParams();
   const currentIndex = artworks.findIndex(
-    (artwork) => artwork.id === Number(workId)
+    (artwork) => artwork.id === Number(workId),
   );
   const artwork = artworks[currentIndex];
   const [zoomPosition, setZoomPosition] = useState<ZoomPosition | null>(null);
   const [isImageZoomed, setIsImageZoomed] = useState(false);
   const [activeMedia, setActiveMedia] = useState<DisplayMedia>(() => ({
     imageUrl: artwork?.imageUrl || "",
-    label: "Original artwork",
+    label: i18n.t("workDetails.original"),
   }));
   const [processPhases, setProcessPhases] = useState<ProcessPhase[]>(() =>
-    createProcessPhases(artwork)
+    createProcessPhases(artwork),
   );
 
   useEffect(() => {
     setActiveMedia({
       imageUrl: artwork?.imageUrl || "",
-      label: "Original artwork",
+      label: i18n.t("workDetails.original"),
     });
     setProcessPhases(createProcessPhases(artwork));
     setZoomPosition(null);
@@ -149,17 +160,17 @@ const WorkDetails = () => {
       <main className="flex min-h-screen w-full items-center justify-center bg-[#f5f2eb] px-6 text-center">
         <div className="max-w-xl">
           <p className="text-sm font-semibold uppercase tracking-[0.28em] text-[#b5502d]">
-            Artwork not found
+            {t("ui.artworkNotFound")}
           </p>
           <h1 className="mt-4 text-5xl font-semibold tracking-[-0.04em] text-[#172019]">
-            This piece is no longer in the collection.
+            {t("ui.thisPieceIsNoLongerInTheCollection")}
           </h1>
           <Link
             to="/"
             hash="gallery"
             className="mt-8 inline-flex rounded-full bg-[#172019] px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-white transition hover:bg-[#b5502d]"
           >
-            Return to gallery
+            {t("ui.returnToGallery")}
           </Link>
         </div>
       </main>
@@ -209,7 +220,7 @@ const WorkDetails = () => {
 
   const handlePhaseSelect = (phaseNumber: number) => {
     const selectedPhase = processPhases.find(
-      (phase) => phase.number === phaseNumber
+      (phase) => phase.number === phaseNumber,
     );
     if (!selectedPhase || !activeMedia.imageUrl) return;
 
@@ -221,8 +232,8 @@ const WorkDetails = () => {
               imageUrl: activeMedia.imageUrl,
               label: activeMedia.label,
             }
-          : phase
-      )
+          : phase,
+      ),
     );
     setActiveMedia({
       imageUrl: selectedPhase.imageUrl,
@@ -249,13 +260,14 @@ const WorkDetails = () => {
           >
             ←
           </span>
-          Back to gallery
+          {t("ui.backToGallery")}
         </Link>
         <div className="flex items-center gap-3">
           <p className="hidden text-xs font-semibold uppercase tracking-[0.24em] text-[#8a8f8b] sm:block">
-            Artist portfolio
+            {t("ui.artistPortfolio")}
           </p>
           <ThemeToggle />
+          <LanguageSwitcher />
         </div>
       </header>
 
@@ -288,8 +300,8 @@ const WorkDetails = () => {
               }}
               aria-label={
                 isImageZoomed
-                  ? "Reset enlarged artwork"
-                  : "Click to enlarge artwork"
+                  ? t("workDetails.reset")
+                  : t("workDetails.enlarge")
               }
               className={`relative z-10 max-h-full max-w-full overflow-hidden shadow-[0_16px_45px_rgba(20,24,21,0.22)] outline-none ring-[#b5502d] focus-visible:ring-2 ${
                 isImageZoomed ? "cursor-zoom-out" : "cursor-zoom-in"
@@ -298,7 +310,7 @@ const WorkDetails = () => {
               <motion.img
                 key={displayedImageUrl}
                 src={displayedImageUrl}
-                alt={`${artwork.title || "Artwork"} — ${activeMedia.label}`}
+                alt={`${artwork.title || t("common.artwork")} — ${activeMedia.label}`}
                 draggable={false}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -339,20 +351,29 @@ const WorkDetails = () => {
                 fill="none"
                 className="mr-2 h-4 w-4"
               >
-                <circle cx="10.5" cy="10.5" r="6" stroke="currentColor" strokeWidth="1.6" />
-                <path d="m15 15 5 5M10.5 7.5v6M7.5 10.5h6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+                <circle
+                  cx="10.5"
+                  cy="10.5"
+                  r="6"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                />
+                <path
+                  d="m15 15 5 5M10.5 7.5v6M7.5 10.5h6"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                />
               </svg>
               {isImageZoomed
-                ? "Move cursor · Click to reset"
-                : "Hover to magnify · Click to zoom"}
+                ? t("workDetails.moveReset")
+                : t("workDetails.hoverZoom")}
             </span>
             <button
               type="button"
               onClick={toggleResponsiveZoom}
               aria-label={
-                isImageZoomed
-                  ? "Reduce artwork image"
-                  : "Enlarge artwork image"
+                isImageZoomed ? t("workDetails.reduce") : t("workDetails.zoom")
               }
               aria-pressed={isImageZoomed}
               className="absolute right-4 top-4 z-30 inline-flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-white/30 bg-[#172019]/85 text-white shadow-[0_12px_35px_rgba(14,18,15,0.28)] backdrop-blur transition active:scale-95 sm:right-7 sm:top-7 lg:hidden"
@@ -386,7 +407,7 @@ const WorkDetails = () => {
             </button>
             {artwork.status && (
               <span className="absolute left-4 top-4 z-30 border border-[#b5502d]/25 bg-[#f5f2eb]/92 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#b5502d] shadow-sm backdrop-blur sm:left-7 sm:top-7">
-                {artwork.status}
+                {t("common.inProcess")}
               </span>
             )}
             <span className="absolute bottom-4 left-4 z-20 bg-[#f5f2eb]/90 px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#59615c] backdrop-blur sm:bottom-7 sm:left-7">
@@ -411,7 +432,9 @@ const WorkDetails = () => {
         >
           <div className="flex items-center justify-between gap-4">
             <p className="text-sm font-semibold uppercase tracking-[0.26em] text-[#b5502d]">
-              {artwork.category || "Selected work"}
+              {artwork.category
+                ? t(`categories.${artwork.category}`)
+                : t("common.selectedWork")}
             </p>
             <span className="text-sm font-medium tracking-[0.16em] text-[#8a8f8b]">
               {collectionNumber} / {String(artworks.length).padStart(2, "0")}
@@ -426,17 +449,17 @@ const WorkDetails = () => {
 
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#8a8f8b]">
-              About the work
+              {t("ui.aboutTheWork")}
             </p>
             <p className="mt-4 max-w-2xl text-lg leading-relaxed text-[#4c5550] sm:text-xl sm:leading-relaxed">
-              {artwork.description || "Details about this artwork are coming soon."}
+              {artwork.description || t("common.detailsSoon")}
             </p>
           </div>
 
           <dl className="mt-9 grid grid-cols-2 gap-x-8 gap-y-6 border-y border-[#172019]/15 py-7 sm:grid-cols-3">
             <div>
               <dt className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8a8f8b]">
-                Medium
+                {t("ui.medium2")}
               </dt>
               <dd className="mt-2 text-base font-medium text-[#172019]">
                 {artwork.medium || "—"}
@@ -444,18 +467,20 @@ const WorkDetails = () => {
             </div>
             <div>
               <dt className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8a8f8b]">
-                Dimensions
+                {t("ui.dimensions2")}
               </dt>
               <dd className="mt-2 text-base font-medium text-[#172019]">
-                {artwork.dimensions || "Variable"}
+                {artwork.dimensions || t("common.variable")}
               </dd>
             </div>
             <div className="col-span-2 sm:col-span-1">
               <dt className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8a8f8b]">
-                Collection
+                {t("ui.collection2")}
               </dt>
               <dd className="mt-2 text-base font-medium text-[#172019]">
-                {artwork.category || "Original works"}
+                {artwork.category
+                  ? t(`categories.${artwork.category}`)
+                  : t("common.originalWorks")}
               </dd>
             </div>
           </dl>
@@ -469,7 +494,7 @@ const WorkDetails = () => {
           />
 
           <nav
-            aria-label="Browse artworks"
+            aria-label={t("ui.browseArtworks")}
             className="mt-9 grid grid-cols-2 gap-3"
           >
             <Link
@@ -478,7 +503,7 @@ const WorkDetails = () => {
               className="group border border-[#172019]/15 px-4 py-4 transition hover:border-[#b5502d]/50 hover:bg-white/50 sm:px-5"
             >
               <span className="block text-xs font-semibold uppercase tracking-[0.18em] text-[#8a8f8b]">
-                ← Previous
+                {t("ui.previous")}
               </span>
               <span className="mt-2 block truncate text-sm font-semibold transition group-hover:text-[#b5502d] sm:text-base">
                 {previousArtwork.title}
@@ -490,7 +515,7 @@ const WorkDetails = () => {
               className="group border border-[#172019]/15 px-4 py-4 text-right transition hover:border-[#b5502d]/50 hover:bg-white/50 sm:px-5"
             >
               <span className="block text-xs font-semibold uppercase tracking-[0.18em] text-[#8a8f8b]">
-                Next →
+                {t("ui.next")}
               </span>
               <span className="mt-2 block truncate text-sm font-semibold transition group-hover:text-[#b5502d] sm:text-base">
                 {nextArtwork.title}

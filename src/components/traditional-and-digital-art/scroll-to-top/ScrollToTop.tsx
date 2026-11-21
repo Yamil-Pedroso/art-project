@@ -1,8 +1,11 @@
+import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FiArrowUp } from "react-icons/fi";
 
 const ScrollToTop = () => {
+  const { t } = useTranslation();
+
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -24,7 +27,7 @@ const ScrollToTop = () => {
         <motion.button
           type="button"
           onClick={scrollToTop}
-          aria-label="Scroll back to the top"
+          aria-label={t("ui.scrollBackToTheTop")}
           initial={{ opacity: 0, scale: 0.75, y: 18 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.75, y: 18 }}
@@ -34,7 +37,7 @@ const ScrollToTop = () => {
           className="group fixed bottom-5 right-4 z-40 flex h-14 w-14 cursor-pointer items-center justify-center rounded-full border border-white/20 bg-[#b5502d] text-white sm:bottom-7 sm:right-7 sm:h-16 sm:w-16"
         >
           <span className="pointer-events-none absolute right-full mr-3 hidden whitespace-nowrap rounded-full bg-[#172019] px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-white opacity-0 shadow-lg transition duration-300 group-hover:opacity-100 sm:block">
-            Back to top
+            {t("ui.backToTop")}
           </span>
           <FiArrowUp
             aria-hidden="true"

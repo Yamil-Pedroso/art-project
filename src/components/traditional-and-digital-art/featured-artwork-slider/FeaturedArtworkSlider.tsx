@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FiArrowUpRight, FiChevronLeft, FiChevronRight } from "react-icons/fi";
@@ -23,6 +24,8 @@ const FeaturedArtworkSlider = ({
   artworks,
   onArtworkSelect,
 }: FeaturedArtworkSliderProps) => {
+  const { t } = useTranslation();
+
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const activeArtwork = artworks[activeIndex];
@@ -41,7 +44,7 @@ const FeaturedArtworkSlider = ({
 
   const moveSlider = (direction: -1 | 1) => {
     setActiveIndex(
-      (current) => (current + direction + artworks.length) % artworks.length
+      (current) => (current + direction + artworks.length) % artworks.length,
     );
   };
 
@@ -76,17 +79,16 @@ const FeaturedArtworkSlider = ({
 
       <div className="mx-auto max-w-[90rem] text-center">
         <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#b5502d] sm:text-xs">
-          Fresh from the studio
+          {t("ui.freshFromTheStudio")}
         </p>
         <h2
           id="recent-artworks-title"
           className="mx-auto mt-3 max-w-3xl text-4xl font-semibold tracking-[-0.045em] text-[#f5f2eb] sm:text-5xl lg:text-6xl"
         >
-          The latest works
+          {t("ui.theLatestWorks")}
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-white/60 sm:text-base">
-          Three recent pieces, moving between finished work and the intimacy of
-          an evolving studio process.
+          {t("ui.threeRecentPiecesMovingBetweenFinishedWorkAndTheIntimacy")}
         </p>
 
         <div className="relative mx-auto mt-10 h-[17rem] w-full max-w-6xl sm:mt-12 sm:h-[27rem] lg:h-[34rem]">
@@ -114,8 +116,8 @@ const FeaturedArtworkSlider = ({
                 }}
                 aria-label={
                   isActive
-                    ? `View ${artwork.title}`
-                    : `Bring ${artwork.title} to the front`
+                    ? t("common.view", { title: artwork.title })
+                    : t("common.bringToFront", { title: artwork.title })
                 }
                 aria-current={isActive ? "true" : undefined}
                 className={`group absolute left-1/2 top-0 aspect-[3/4] w-[48%] max-w-[25rem] origin-bottom cursor-pointer overflow-hidden border bg-[#dcd6ca] text-left shadow-[0_24px_70px_rgba(0,0,0,0.42)] outline-none transition-[border-color] focus-visible:ring-2 focus-visible:ring-[#b5502d] focus-visible:ring-offset-4 focus-visible:ring-offset-[#222222] sm:w-[36%] lg:w-[30%] ${
@@ -138,14 +140,14 @@ const FeaturedArtworkSlider = ({
                 <span className="absolute inset-0 bg-gradient-to-t from-[#172019]/45 via-transparent to-transparent opacity-70" />
                 {artwork.status && (
                   <span className="absolute right-3 top-3 border border-white/30 bg-[#f5f2eb]/90 px-2.5 py-1.5 text-[8px] font-semibold uppercase tracking-[0.16em] text-[#b5502d] backdrop-blur sm:right-4 sm:top-4 sm:text-[9px]">
-                    {artwork.status}
+                    {t("common.inProcess")}
                   </span>
                 )}
                 {isActive && (
                   <span className="absolute bottom-3 left-3 right-3 flex items-end justify-between gap-3 text-white sm:bottom-5 sm:left-5 sm:right-5">
                     <span className="min-w-0">
                       <span className="block text-[8px] font-semibold uppercase tracking-[0.2em] text-white/70 sm:text-[10px]">
-                        {artwork.category}
+                        {t(`categories.${artwork.category}`)}
                       </span>
                       <span className="mt-1 block truncate text-sm font-semibold sm:text-xl">
                         {artwork.title}
@@ -163,19 +165,22 @@ const FeaturedArtworkSlider = ({
           <button
             type="button"
             onClick={() => moveSlider(-1)}
-            aria-label="Previous recent artwork"
+            aria-label={t("ui.previousRecentArtwork")}
             className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-white/15 text-white/70 transition hover:-translate-x-0.5 hover:border-[#b5502d]/60 hover:bg-white/10 hover:text-[#d99272] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b5502d]/55"
           >
             <FiChevronLeft aria-hidden="true" className="h-5 w-5" />
           </button>
 
-          <div className="flex items-center gap-2" aria-label="Recent artwork slides">
+          <div
+            className="flex items-center gap-2"
+            aria-label={t("ui.recentArtworkSlides")}
+          >
             {artworks.map((artwork, index) => (
               <button
                 key={artwork.id}
                 type="button"
                 onClick={() => setActiveIndex(index)}
-                aria-label={`Show ${artwork.title}`}
+                aria-label={t("common.show", { title: artwork.title })}
                 aria-current={activeIndex === index ? "true" : undefined}
                 className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b5502d]/45"
               >
@@ -196,7 +201,7 @@ const FeaturedArtworkSlider = ({
           <button
             type="button"
             onClick={() => moveSlider(1)}
-            aria-label="Next recent artwork"
+            aria-label={t("ui.nextRecentArtwork")}
             className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-white/15 text-white/70 transition hover:translate-x-0.5 hover:border-[#b5502d]/60 hover:bg-white/10 hover:text-[#d99272] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b5502d]/55"
           >
             <FiChevronRight aria-hidden="true" className="h-5 w-5" />

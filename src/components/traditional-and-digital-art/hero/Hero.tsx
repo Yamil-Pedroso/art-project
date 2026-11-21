@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { FiPause, FiPlay } from "react-icons/fi";
@@ -10,25 +11,25 @@ const SLIDE_DURATION = 20_000;
 const slides = [
   {
     id: "art",
-    label: "Traditional & digital art",
+    label: "hero.art.label",
     image: imageAssets.hero,
-    eyebrow: "Traditional & digital artist",
-    title: "Stories shaped in color, texture and light.",
-    description:
-      "A personal collection of original works where Caribbean roots meet European influences across physical and digital mediums.",
+    eyebrow: "hero.art.eyebrow",
+    title: "hero.art.title",
+    description: "hero.art.description",
   },
   {
     id: "design",
-    label: "Graphic & UI/UX design",
+    label: "hero.design.label",
     image: designHero,
-    eyebrow: "Graphic design · UI/UX · Adobe & Figma",
-    title: "Ideas shaped into thoughtful digital experiences.",
-    description:
-      "From visual identities to intuitive interfaces. Exploring typography, composition and interaction through Adobe and Figma.",
+    eyebrow: "hero.design.eyebrow",
+    title: "hero.design.title",
+    description: "hero.design.description",
   },
 ];
 
 const Hero = () => {
+  const { t } = useTranslation();
+
   const [activeSlide, setActiveSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [hasFocus, setHasFocus] = useState(false);
@@ -62,7 +63,7 @@ const Hero = () => {
       ref={heroRef}
       id="home"
       aria-roledescription="carousel"
-      aria-label="Art and design at Yami Atelier"
+      aria-label={t("ui.artAndDesignAtYamiAtelier")}
       onFocusCapture={() => setHasFocus(true)}
       onBlurCapture={(event) => {
         if (!event.currentTarget.contains(event.relatedTarget))
@@ -139,15 +140,15 @@ const Hero = () => {
                   <p
                     className={`mb-5 text-xs font-semibold uppercase tracking-[0.25em] sm:text-sm ${index === 1 ? "text-[#236e88]" : "text-[#b5502d]"}`}
                   >
-                    {slide.eyebrow}
+                    {t(slide.eyebrow)}
                   </p>
                   <h1 className="theme-hero-title text-5xl font-semibold leading-[0.98] tracking-[-0.045em] text-[#172019] sm:text-6xl lg:text-7xl xl:text-[5.5rem]">
-                    {slide.title}
+                    {t(slide.title)}
                   </h1>
                   <p
                     className={`theme-hero-description mt-7 max-w-2xl text-lg leading-relaxed text-[#354039] sm:text-xl ${index === 1 ? "ml-auto" : ""}`}
                   >
-                    {slide.description}
+                    {t(slide.description)}
                   </p>
                 </motion.div>
               );
@@ -160,8 +161,11 @@ const Hero = () => {
             href="#gallery"
             className="inline-flex h-14 max-w-full items-center rounded-full bg-[#172019] px-5 text-xs font-semibold uppercase tracking-[0.12em] text-white transition hover:-translate-y-0.5 hover:bg-[#b5502d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b5502d] focus-visible:ring-offset-4 focus-visible:ring-offset-[#f5f2eb] sm:px-7 sm:text-sm"
           >
-            <FaPaintBrush aria-hidden="true" className="mr-3 h-5 w-5 shrink-0" />
-            Explore the traditional collection
+            <FaPaintBrush
+              aria-hidden="true"
+              className="mr-3 h-5 w-5 shrink-0"
+            />
+            {t("ui.exploreTheTraditionalCollection")}
           </a>
           <DesignProfileLink />
         </div>
@@ -169,7 +173,7 @@ const Hero = () => {
         <div className="mt-10 flex flex-wrap items-center justify-center gap-2">
           <div
             role="group"
-            aria-label="Choose Hero slide"
+            aria-label={t("ui.chooseHeroSlide")}
             className="flex items-center gap-1 rounded-full border border-[#172019]/15 bg-[#f5f2eb]/90 p-1"
           >
             {slides.map((slide, index) => (
@@ -177,7 +181,7 @@ const Hero = () => {
                 key={slide.id}
                 type="button"
                 onClick={() => setActiveSlide(index)}
-                aria-label={`Show ${slide.label}`}
+                aria-label={t("hero.show", { label: t(slide.label) })}
                 aria-pressed={activeSlide === index}
                 className={`flex min-h-10 cursor-pointer items-center gap-2 rounded-full px-3 text-[10px] font-semibold tracking-[0.04em] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2d92b5] sm:px-4 sm:text-xs ${activeSlide === index ? "bg-[#172019] text-white" : "text-[#4c5550] hover:text-[#236e88]"}`}
               >
@@ -185,7 +189,7 @@ const Hero = () => {
                   aria-hidden="true"
                   className={`h-1.5 w-1.5 shrink-0 rounded-full ${index === 0 ? "bg-[#d99272]" : "bg-[#2d92b5]"}`}
                 />
-                {index === 0 ? "Art" : "Design"}
+                {t(index === 0 ? "hero.artLabel" : "hero.designLabel")}
               </button>
             ))}
           </div>
@@ -193,9 +197,7 @@ const Hero = () => {
             <button
               type="button"
               onClick={() => setIsPaused((current) => !current)}
-              aria-label={
-                isPaused ? "Resume Hero slideshow" : "Pause Hero slideshow"
-              }
+              aria-label={t(isPaused ? "hero.resume" : "hero.pause")}
               aria-pressed={isPaused}
               className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-[#172019]/15 bg-[#f5f2eb]/90 text-[#172019] transition hover:border-[#2d92b5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2d92b5]"
             >

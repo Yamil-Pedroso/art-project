@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 interface CategoryMenuProps {
   onSelect: (category: string) => void;
   activeCategory: string;
@@ -27,11 +28,16 @@ const CategoryMenu: React.FC<CategoryMenuProps> = ({
   onSelect,
   activeCategory,
 }) => {
+  const { t } = useTranslation();
+
   return (
-    <nav aria-label="Artwork categories" className="mb-14 w-full sm:mb-16">
+    <nav
+      aria-label={t("ui.artworkCategories")}
+      className="mb-14 w-full sm:mb-16"
+    >
       <ul className="mx-auto flex max-w-6xl flex-wrap justify-center gap-2 border-y border-[#172019]/10 py-5 sm:gap-3 sm:py-6">
         {categories.map((category) => (
-          <li key={category}>
+          <li key={t(`categories.${category}`)}>
             <button
               onClick={() => onSelect(category)}
               data-active={activeCategory === category}
@@ -42,10 +48,7 @@ const CategoryMenu: React.FC<CategoryMenuProps> = ({
                     : "border-transparent bg-white/55 text-[#4c5550] hover:-translate-y-0.5 hover:border-[#b5502d]/40 hover:bg-white hover:shadow-sm"
                 }`}
             >
-              <span
-                aria-hidden="true"
-                className="category-brush-stroke"
-              >
+              <span aria-hidden="true" className="category-brush-stroke">
                 <svg
                   viewBox="0 0 180 48"
                   preserveAspectRatio="none"
@@ -71,7 +74,9 @@ const CategoryMenu: React.FC<CategoryMenuProps> = ({
                   />
                 </svg>
               </span>
-              <span className="relative z-10">{category}</span>
+              <span className="relative z-10">
+                {t(`categories.${category}`)}
+              </span>
             </button>
           </li>
         ))}

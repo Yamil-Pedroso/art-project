@@ -1,9 +1,11 @@
+import LanguageSwitcher from "@/components/language-switcher/LanguageSwitcher";
+import { useTranslation } from "react-i18next";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Route as ArtWorkDetailsRoute } from "@/routes/work-details/$workId";
 import { useNavigate } from "@tanstack/react-router";
 import { FiColumns, FiGrid, FiLayout, FiList } from "react-icons/fi";
-import { artworks } from "@/data/artworks";
+import { useLocalizedArtworks } from "@/i18n/content";
 import Hero from "../hero/Hero";
 import CategoryMenu from "../category-menu/CategoryMenu";
 import UICard, { type ArtworkViewMode } from "../ui-cards/UICard";
@@ -46,6 +48,9 @@ const getInitialArtworkViewMode = (): ArtworkViewMode => {
 };
 
 const ArtGallery = () => {
+  const { t } = useTranslation();
+
+  const artworks = useLocalizedArtworks();
   const navigate = useNavigate();
   const galleryContentRef = useRef<HTMLDivElement>(null);
 
@@ -56,7 +61,7 @@ const ArtGallery = () => {
   );
   const portfolioUpdates = useMemo(
     () => getPortfolioUpdates(artworks, dailySketchPages),
-    [],
+    [artworks],
   );
   const {
     seenIds,
@@ -145,7 +150,7 @@ const ArtGallery = () => {
         )
         .sort((first, second) => (second.id || 0) - (first.id || 0))
         .slice(0, 3),
-    [],
+    [artworks],
   );
   const showsArtworkCards =
     selectedCategory !== "Daily Sketching" &&
@@ -157,10 +162,10 @@ const ArtGallery = () => {
     label: string;
     icon: typeof FiGrid;
   }> = [
-    { mode: "compact", label: "Vertical gallery", icon: FiGrid },
-    { mode: "gallery", label: "Gallery view", icon: FiColumns },
-    { mode: "list", label: "List view", icon: FiList },
-    { mode: "masonry", label: "Irregular mosaic", icon: FiLayout },
+    { mode: "compact", label: t("viewModes.compact"), icon: FiGrid },
+    { mode: "gallery", label: t("viewModes.gallery"), icon: FiColumns },
+    { mode: "list", label: t("viewModes.list"), icon: FiList },
+    { mode: "masonry", label: t("viewModes.masonry"), icon: FiLayout },
   ];
 
   return (
@@ -189,56 +194,56 @@ const ArtGallery = () => {
               </a>
             </div>
             <span className="hidden whitespace-nowrap text-[#7b817d] md:block">
-              Visual artist · {contactDetails.location}
+              {t("ui.visualArtist")} {t("common.switzerland")}
             </span>
           </div>
 
           <nav
-            aria-label="Main navigation"
-            className="flex h-[4.5rem] items-center justify-between px-4 sm:px-6 lg:px-8"
+            aria-label={t("ui.mainNavigation")}
+            className="flex h-[4.5rem] items-center justify-between gap-2 px-3 sm:px-6 lg:px-8"
           >
             <a
               href="#home"
               onClick={() => setIsMenuOpen(false)}
               className="group inline-flex items-center text-[#172019]"
             >
-              <span className="mr-3 h-3 w-3 rounded-full bg-[#b5502d] transition-transform group-hover:scale-125" />
-              <span className="text-lg font-semibold uppercase tracking-[0.14em] sm:text-xl">
+              <span className="mr-2 hidden h-3 w-3 rounded-full bg-[#b5502d] sm:mr-3 sm:block transition-transform group-hover:scale-125" />
+              <span className="text-sm font-semibold uppercase tracking-[0.1em] sm:text-xl sm:tracking-[0.14em]">
                 Yami Atelier
               </span>
             </a>
 
-            <div className="flex items-center gap-2 sm:gap-3">
-              <div className="hidden items-center gap-7 text-xs font-semibold uppercase tracking-[0.14em] text-[#4c5550] lg:flex xl:gap-9">
+            <div className="flex items-center gap-1 sm:gap-3">
+              <div className="hidden items-center gap-7 text-xs font-semibold uppercase tracking-[0.14em] text-[#4c5550] xl:flex xl:gap-9">
                 <a href="#home" className="transition hover:text-[#b5502d]">
-                  Home
+                  {t("ui.home")}
                 </a>
                 <a
                   href="#gallery-content"
                   onClick={() => handleNavCategory("All")}
                   className="transition hover:text-[#b5502d]"
                 >
-                  Gallery
+                  {t("ui.gallery")}
                 </a>
                 <a
                   href="#gallery-content"
                   onClick={() => handleNavCategory("Exhibitions & Collectors")}
                   className="transition hover:text-[#b5502d]"
                 >
-                  Exhibitions
+                  {t("ui.exhibitions")}
                 </a>
                 <a
                   href="#gallery-content"
                   onClick={() => handleNavCategory("Art Curriculum")}
                   className="transition hover:text-[#b5502d]"
                 >
-                  Art Curriculum
+                  {t("ui.artCurriculum")}
                 </a>
                 <a
                   href="#contact"
                   className="rounded-full bg-[#172019] px-5 py-3 text-white transition hover:-translate-y-0.5 hover:bg-[#b5502d]"
                 >
-                  Contact
+                  {t("ui.contact")}
                 </a>
               </div>
 
@@ -251,14 +256,17 @@ const ArtGallery = () => {
               />
 
               <ThemeToggle />
+              <LanguageSwitcher />
 
               <button
                 type="button"
                 onClick={() => setIsMenuOpen((isOpen) => !isOpen)}
                 aria-expanded={isMenuOpen}
                 aria-controls="mobile-navigation"
-                aria-label={isMenuOpen ? "Close navigation" : "Open navigation"}
-                className="flex h-11 w-11 cursor-pointer flex-col items-center justify-center gap-1.5 rounded-full border border-[#172019]/15 text-[#172019] lg:hidden"
+                aria-label={t(
+                  isMenuOpen ? "navigation.close" : "navigation.open",
+                )}
+                className="flex h-9 w-9 cursor-pointer flex-col sm:h-11 sm:w-11 items-center justify-center gap-1.5 rounded-full border border-[#172019]/15 text-[#172019] xl:hidden"
               >
                 <span
                   className={`h-px w-5 bg-current transition ${
@@ -282,7 +290,7 @@ const ArtGallery = () => {
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
                 transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                className="overflow-hidden border-t border-[#172019]/10 lg:hidden"
+                className="overflow-hidden border-t border-[#172019]/10 xl:hidden"
               >
                 <div className="grid px-5 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-[#4c5550]">
                   <a
@@ -290,14 +298,14 @@ const ArtGallery = () => {
                     onClick={() => setIsMenuOpen(false)}
                     className="border-b border-[#172019]/10 py-3"
                   >
-                    Home
+                    {t("ui.home")}
                   </a>
                   <a
                     href="#gallery-content"
                     onClick={() => handleNavCategory("All")}
                     className="border-b border-[#172019]/10 py-3"
                   >
-                    Gallery
+                    {t("ui.gallery")}
                   </a>
                   <a
                     href="#gallery-content"
@@ -306,14 +314,14 @@ const ArtGallery = () => {
                     }
                     className="border-b border-[#172019]/10 py-3"
                   >
-                    Exhibitions
+                    {t("ui.exhibitions")}
                   </a>
                   <a
                     href="#gallery-content"
                     onClick={() => handleNavCategory("Art Curriculum")}
                     className="border-b border-[#172019]/10 py-3"
                   >
-                    Art Curriculum
+                    {t("ui.artCurriculum")}
                   </a>
                   <a
                     href={`tel:${contactDetails.phoneHref}`}
@@ -341,15 +349,16 @@ const ArtGallery = () => {
       >
         <div className="mx-auto mb-10 max-w-3xl text-center sm:mb-12">
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.28em] text-[#b5502d]">
-            The collection
+            {t("ui.theCollection")}
           </p>
           <h2 className="text-4xl font-semibold tracking-[-0.04em] text-[#172019] sm:text-5xl lg:text-6xl">
-            Selected artworks
+            {t("ui.selectedArtworks")}
           </h2>
           <div className="mx-auto my-5 h-px w-20 bg-[#b5502d]/55" />
           <p className="mx-auto max-w-2xl text-base leading-relaxed text-[#59615c] sm:text-lg">
-            Explore original pieces across traditional and digital mediums, each
-            shaped by memory, imagination and lived experience.
+            {t(
+              "ui.exploreOriginalPiecesAcrossTraditionalAndDigitalMediumsEachShaped",
+            )}
           </p>
         </div>
 
@@ -366,11 +375,11 @@ const ArtGallery = () => {
           {showsArtworkCards && (
             <div className="mb-8 flex items-center justify-end gap-3 sm:mb-10">
               <span className="hidden text-[10px] font-semibold uppercase tracking-[0.22em] text-[#7b817d] sm:inline">
-                View
+                {t("ui.view")}
               </span>
               <div
                 role="group"
-                aria-label="Choose artwork layout"
+                aria-label={t("ui.chooseArtworkLayout")}
                 className="inline-flex items-center gap-1 rounded-full border border-[#172019]/10 bg-white/55 p-1.5"
               >
                 {viewOptions.map(({ mode, label, icon: Icon }) => {

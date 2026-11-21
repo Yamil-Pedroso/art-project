@@ -1,0 +1,577 @@
+{
+  "artworks": {
+    "1": {
+      "title": "Spazierfahrt durch Havanna: 1958",
+      "medium": "Öl auf Leinwand",
+      "dimensions": "100 × 100 cm",
+      "description": "Ein amerikanischer Oldtimer gleitet durch das farbenfrohe Treiben der Strassen Havannas. Sein Chrom spiegelt die Sonne und Geschichten einer längst vergangenen Zeit."
+    },
+    "2": {
+      "title": "Kathedrale von Alt-Havanna: 1959",
+      "medium": "Öl auf Leinwand",
+      "dimensions": "100 × 100 cm",
+      "description": "Verblasste Farbe, markante Linien und ein leiser Motor — dieses Auto ist mehr als ein Verkehrsmittel. Es ist ein Überlebender, der an lebendigen Mauern und zeitlosen Melodien vorbeizieht."
+    },
+    "3": {
+      "title": "Mittelalterliches Mittagessen",
+      "medium": "Öl auf Leinwand",
+      "dimensions": "45 × 60 cm",
+      "description": "Ein gusseisernes Stillleben von bescheidener Pracht. Drei Spiegeleier, vollkommen unvollkommen. Eine stille Hommage an Hunger, Ritual und die Poesie der Einfachheit."
+    },
+    "4": {
+      "title": "Öl auf Karton",
+      "medium": "Öl auf Leinwand",
+      "dimensions": "45 × 60 cm",
+      "description": "Augen voller stiller Hingabe, vom Licht berührtes Fell — dieser bescheidene Hund wird zum Sinnbild der Treue. Mehr als ein Porträt: ein ruhiger Blick auf eine zeitlose Verbundenheit."
+    },
+    "5": {
+      "title": "Cuty",
+      "medium": "Öl auf Leinwand",
+      "dimensions": "45 × 60 cm",
+      "description": "Lorem Ipsum"
+    },
+    "6": {
+      "title": "Vertrauen",
+      "medium": "Öl auf Karton",
+      "dimensions": "45 × 60 cm",
+      "description": "Eine zarte Schnauze, geduldige Augen und die sanfte Geometrie des Vertrauens. Dieser in der Stille festgehaltene Hund bewahrt die Wärme eines Zuhauses im Bild."
+    },
+    "7": {
+      "title": "Traum vom Meer",
+      "medium": "Digitale Kunst",
+      "dimensions": "",
+      "description": "Lorem Ipsum"
+    },
+    "8": {
+      "title": "Cagueiro",
+      "medium": "Digitale Kunst",
+      "dimensions": "",
+      "description": "Lorem Ipsum"
+    },
+    "9": {
+      "title": "Erde",
+      "medium": "Digitale Kunst",
+      "dimensions": "",
+      "description": "Lorem Ipsum"
+    },
+    "10": {
+      "title": "Güije & Rana",
+      "medium": "Digitale Kunst",
+      "dimensions": "",
+      "description": "Lorem Ipsum"
+    },
+    "11": {
+      "title": "Güije",
+      "medium": "Digitale Kunst",
+      "dimensions": "",
+      "description": "Lorem Ipsum"
+    },
+    "12": {
+      "title": "Zwerg",
+      "medium": "Digitale Kunst",
+      "dimensions": "",
+      "description": "Lorem Ipsum"
+    },
+    "13": {
+      "title": "Christus",
+      "medium": "Digitale Kunst",
+      "dimensions": "",
+      "description": "Lorem Ipsum"
+    },
+    "14": {
+      "title": "Katze",
+      "medium": "Digitale Kunst",
+      "dimensions": "",
+      "description": "Lorem Ipsum"
+    },
+    "15": {
+      "title": "KI-Kataklysmus",
+      "medium": "Digitale Kunst",
+      "dimensions": "",
+      "description": "Lorem Ipsum"
+    },
+    "16": {
+      "title": "Abstrakt",
+      "medium": "Digitale Kunst",
+      "dimensions": "",
+      "description": "Lorem Ipsum"
+    },
+    "17": {
+      "title": "Farbenjunge",
+      "medium": "Digitale Kunst",
+      "dimensions": "",
+      "description": "Lorem Ipsum"
+    },
+    "18": {
+      "title": "Blauton",
+      "medium": "Digitale Kunst",
+      "dimensions": "",
+      "description": "Lorem Ipsum"
+    },
+    "19": {
+      "title": "Anatomieunterricht — Meisterstudie",
+      "medium": "Öl auf Leinwand",
+      "dimensions": "",
+      "description": "Eine Meisterkopie, die dramatisches Licht, gemeinsame Aufmerksamkeit und die ausdrucksstarke Spannung einer zeitlosen figurativen Komposition erkundet."
+    },
+    "20": {
+      "title": "Die Zusammenkunft",
+      "medium": "Digitale Illustration",
+      "dimensions": "Masse folgen",
+      "description": "Drei neugierige Figuren versammeln sich um einen geheimnisvollen Tisch — eine spielerische Studie über Verbundenheit und gemeinsame Rituale."
+    },
+    "21": {
+      "title": "Der Wegweiser",
+      "medium": "Digitale Illustration",
+      "dimensions": "Masse folgen",
+      "description": "Ein grosser Wanderer führt eine kleine blaue Gemeinschaft durch eine fremdartige Landschaft voller Farbe und Möglichkeiten."
+    },
+    "22": {
+      "title": "Umlaufende Freude",
+      "medium": "Digitale Illustration",
+      "dimensions": "Masse folgen",
+      "description": "Eine fröhliche grüne Gestalt bewegt sich durch einen erdachten Kosmos voller Blumen, Signale und ferner Planeten."
+    },
+    "23": {
+      "title": "Nächtliche Gefährten",
+      "medium": "Digitale Illustration",
+      "dimensions": "Masse folgen",
+      "description": "Zwei zerbrechliche Gefährten teilen eine stille Nacht, schwebend zwischen Zärtlichkeit, Einsamkeit und Traum."
+    },
+    "24": {
+      "title": "Der Schatten in uns",
+      "medium": "Digitale Illustration",
+      "dimensions": "Masse folgen",
+      "description": "Ein psychologisches Porträt, in dem doppelte Figuren Erinnerung, Schutz und das unsichtbare Selbst andeuten."
+    },
+    "25": {
+      "title": "Bote",
+      "medium": "Digitale Illustration",
+      "dimensions": "Masse folgen",
+      "description": "Ein vielarmiger Bote durchquert eine Wasserwelt und trägt Gesten und Geschichten in alle Richtungen."
+    },
+    "26": {
+      "title": "Roter Garten",
+      "medium": "Digitale Illustration",
+      "dimensions": "Masse folgen",
+      "description": "In einem leuchtend roten Garten voller Geheimnisse tritt eine einsame Gestalt zwischen strahlenden Blumen hervor."
+    },
+    "27": {
+      "title": "Zwei Welten",
+      "medium": "Digitale Illustration",
+      "dimensions": "Masse folgen",
+      "description": "Zwei ungewöhnliche Wesen tragen ferne Welten über sich und halten Staunen und stille Unsicherheit im Gleichgewicht."
+    },
+    "28": {
+      "title": "Die Gabe",
+      "medium": "Digitale Illustration",
+      "dimensions": "Masse folgen",
+      "description": "Eine kleine Begegnung um ein blaues Gefäss verwandelt eine einfache Gabe in eine rätselhafte Zeremonie."
+    },
+    "29": {
+      "title": "Leuchtende Gesellschaft",
+      "medium": "Digitale Illustration",
+      "dimensions": "Masse folgen",
+      "description": "Ein strahlendes Gruppenporträt feiert Individualität, Gemeinschaft und die Kraft der Zugehörigkeit."
+    },
+    "30": {
+      "title": "Selbstumarmung",
+      "medium": "Digitale Illustration",
+      "dimensions": "Masse folgen",
+      "description": "Eine orangefarbene Figur wendet sich nach innen — eine zärtliche Betrachtung über Verletzlichkeit, Fürsorge und Selbstannahme."
+    },
+    "31": {
+      "title": "Seelenverwandte",
+      "medium": "Digitale Illustration",
+      "dimensions": "Masse folgen",
+      "description": "Zwei Gefährten mit grossen Augen spiegeln einander in einem Porträt von Verwandtschaft und gemeinsamer Neugier."
+    },
+    "32": {
+      "title": "Der Besucher",
+      "medium": "Digitale Illustration",
+      "dimensions": "Masse folgen",
+      "description": "Ein geheimnisvoller Besucher und ein kleiner blauer Gefährte begegnen sich an der Grenze zwischen Vertrautem und Unbekanntem."
+    },
+    "33": {
+      "title": "Signalraum",
+      "medium": "Digitale Illustration",
+      "dimensions": "Masse folgen",
+      "description": "Ein lebendiger Innenraum voller Wesen, Signale und Symbole wird zur spielerischen Landkarte eines erdachten Geistes."
+    },
+    "34": {
+      "title": "Rosa Parade",
+      "medium": "Digitale Illustration",
+      "dimensions": "Masse folgen",
+      "description": "Ein lebhafter Zug gestischer Figuren zieht über ein rosa Feld — eine Explosion von Bewegung und Farbe."
+    },
+    "35": {
+      "title": "Von Angesicht zu Angesicht",
+      "medium": "Tusche und Grafit auf Papier",
+      "dimensions": "Masse folgen",
+      "description": "Eine spannungsgeladene Begegnung zwischen Mensch und Tier, festgehalten in rauen, energischen Linien."
+    },
+    "36": {
+      "title": "Stille Versammlung",
+      "medium": "Tusche und Grafit auf Papier",
+      "dimensions": "Masse folgen",
+      "description": "Eine anonyme Versammlung, in der Gestik und Haltung zur Sprache der Gruppe werden."
+    },
+    "37": {
+      "title": "Wächter des Waldes",
+      "medium": "Tusche und Grafit auf Papier",
+      "dimensions": "Masse folgen",
+      "description": "Ein zarter Waldwächter entsteht aus Zweigen, Federn und fliessenden organischen Formen."
+    },
+    "38": {
+      "title": "Verwurzelt",
+      "medium": "Tusche und Grafit auf Papier",
+      "dimensions": "Masse folgen",
+      "description": "Eine sitzende Gestalt scheint mit einem kahlen Baum verschmolzen — eine Studie über Ausdauer und Verwandlung."
+    },
+    "39": {
+      "title": "Wilde Blüte",
+      "medium": "Tusche und Grafit auf Papier",
+      "dimensions": "Masse folgen",
+      "description": "Ein vielschichtiges Charakterporträt, gekrönt von Blumen, Locken und ungezähmter Fantasie."
+    },
+    "40": {
+      "title": "Der Riese und sein Lehrling",
+      "medium": "Tusche und Grafit auf Papier",
+      "dimensions": "Masse folgen",
+      "description": "Zwei gegensätzliche Fantasiefiguren erkunden Grössenverhältnisse, Gemeinschaft und Charaktergestaltung."
+    },
+    "41": {
+      "title": "Flammenrufer",
+      "medium": "Tusche und Grafit auf Papier",
+      "dimensions": "Masse folgen",
+      "description": "Ein junger Wanderer beschwört Wärme und Bewegung in einer dynamischen Studie magischer Gesten."
+    },
+    "42": {
+      "title": "Kind des Hains",
+      "medium": "Tusche und Grafit auf Papier",
+      "dimensions": "Masse folgen",
+      "description": "Ein stilles Kind ruht neben einem wachsamen Waldwesen zwischen Blättern und verborgenen Formen."
+    },
+    "43": {
+      "title": "Anatomiestudien",
+      "medium": "Tusche und Grafit auf Papier",
+      "dimensions": "Masse folgen",
+      "description": "Beobachtungsstudien von Schädeln, Knochen und Strukturen, gezeichnet mit sorgfältiger linearer Präzision."
+    },
+    "44": {
+      "title": "Flussgeister",
+      "medium": "Tusche und Grafit auf Papier",
+      "dimensions": "Masse folgen",
+      "description": "Ein Reisender ist von kleinen Tiergeistern umgeben, die wie eine Strömung durch die Komposition fliessen."
+    },
+    "45": {
+      "title": "Standhaft",
+      "medium": "Tusche und Grafit auf Papier",
+      "dimensions": "Masse folgen",
+      "description": "Eine direkte Porträtstudie aus dichten Strichen, starken Kontrasten und einem unerschütterlichen Blick."
+    },
+    "46": {
+      "title": "Der Zuhörer",
+      "medium": "Tusche und Grafit auf Papier",
+      "dimensions": "Masse folgen",
+      "description": "Eine nachdenkliche Figur lauscht der Stille — eine persönliche Studie von Ausdruck und Stimmung."
+    },
+    "47": {
+      "title": "Alte Seele",
+      "medium": "Tusche und Grafit auf Papier",
+      "dimensions": "Masse folgen",
+      "description": "Alter, Charakter und Erfahrung treten in diesem ausdrucksstarken Porträt durch übereinandergelegte Striche hervor."
+    },
+    "48": {
+      "title": "Kriegerstudie",
+      "medium": "Tusche und Grafit auf Papier",
+      "dimensions": "Masse folgen",
+      "description": "Eine kompakte Charakterstudie, die schwere Rüstung, Bewegung und eine eindrucksvolle Silhouette verbindet."
+    },
+    "49": {
+      "title": "Ronin",
+      "medium": "Tusche und Grafit auf Papier",
+      "dimensions": "Masse folgen",
+      "description": "Ein einsamer Schwertkämpfer nimmt durch entschlossene schwarze Striche und verwitterte Details Gestalt an."
+    },
+    "50": {
+      "title": "Erbe des Waldes",
+      "medium": "Farbige Tusche auf Papier",
+      "dimensions": "Masse folgen",
+      "description": "Ein leuchtendes Elfenporträt verbindet feine Linien mit warmer, erdfarbener Tusche."
+    },
+    "51": {
+      "title": "Der General",
+      "medium": "Farbige Tusche auf Papier",
+      "dimensions": "Masse folgen",
+      "description": "Ein gefasster Krieger, dargestellt mit aufwendigen Kostümdetails und disziplinierter roter Linienführung."
+    },
+    "52": {
+      "title": "Klangreisender",
+      "medium": "Farbige Tusche auf Papier",
+      "dimensions": "Masse folgen",
+      "description": "Ein junger Reisender mit übergrossen Kopfhörern bringt einen spielerischen, zeitgenössischen Akzent ins Skizzenbuch."
+    },
+    "53": {
+      "title": "Stille Stärke",
+      "medium": "Tusche auf Papier",
+      "dimensions": "Masse folgen",
+      "description": "Ein ausdrucksstarkes Porträt mit dichter Kreuzschraffur, das einen beständigen Blick mit der Wärme einer spontanen Skizzenbuchstudie verbindet."
+    },
+    "54": {
+      "title": "Weidestudien",
+      "medium": "Farbige Tusche auf Papier",
+      "dimensions": "Masse folgen",
+      "description": "Zwei Tierstudien erkunden Gewicht, Ruhe und Charakter durch fliessende rote Linien und wiederholte Beobachtung."
+    },
+    "55": {
+      "title": "Wüstenpilger",
+      "medium": "Tusche auf Papier",
+      "dimensions": "Masse folgen",
+      "description": "Ein verschleierter Reisender und ein Kamel entstehen aus feinen Linien — eine Szene voller Ausdauer, Stille und ferner Reisen."
+    },
+    "56": {
+      "title": "Der Nachdenkliche",
+      "medium": "Tusche auf Papier",
+      "dimensions": "Masse folgen",
+      "description": "Eine nachdenkliche Charakterstudie hält einen inneren Moment mit lockeren Konturen, tiefen Schatten und einem still dramatischen Ausdruck fest."
+    },
+    "57": {
+      "title": "Harlekin",
+      "medium": "Tusche und Farbstift auf Papier",
+      "dimensions": "Masse folgen",
+      "description": "Ein lebendiges Harlekinporträt verbindet Theaterkostüm, präzise Linien und gezielte Farbe zu einer spielerischen Studie der Identität."
+    },
+    "58": {
+      "title": "Der Sammler",
+      "medium": "Tusche auf Papier",
+      "dimensions": "Masse folgen",
+      "description": "Eine dunkle Fantasiegestalt trägt eine seltsame Sammlung von Masken und Schädeln, gezeichnet mit kräftigem Schwarz und unruhigen Details."
+    },
+    "63": {
+      "title": "Spontan",
+      "medium": "Tusche und Marker auf Papier",
+      "dimensions": "Masse folgen",
+      "description": "Lorem Ipsum"
+    },
+    "59": {
+      "title": "Der Narr und der Goldfisch",
+      "medium": "Öl auf Leinwand",
+      "dimensions": "Masse folgen",
+      "description": "Ein stiller Narr beschützt einen kleinen goldenen Gefährten. Die unwahrscheinliche Begegnung wird zu einer zärtlichen Szene von Einsamkeit, Staunen und Vertrauen."
+    },
+    "60": {
+      "title": "Der Rabenalchemist",
+      "medium": "Öl auf Leinwand",
+      "dimensions": "Masse folgen",
+      "description": "Eine geheimnisvolle, rabenartige Gestalt tritt aus tiefem Schatten und elektrisierender Farbe hervor, zwischen uraltem Ritual und erdachter Mythologie."
+    },
+    "61": {
+      "title": "Kreatur 1",
+      "medium": "Öl auf Öl-/Acrylpapier",
+      "dimensions": "Masse folgen",
+      "description": "Ein Wächter des Waldes tritt aus den Schatten, mit einem Stab in der Hand und einem wachsamen Blick."
+    },
+    "62": {
+      "title": "Kreatur 2",
+      "medium": "Acryl auf Öl-/Acrylpapier",
+      "dimensions": "Masse folgen",
+      "description": "Eine goldene Stadt taucht aus dem Nebel auf, umgeben von riesigen Bäumen und einem goldenen Fluss."
+    },
+    "64": {
+      "title": "Raben- & Harlekinstudien",
+      "medium": "Tusche auf Papier",
+      "dimensions": "Masse folgen",
+      "description": "Eine Skizzenbuch-Doppelseite verbindet Studien fliegender Raben mit einer detailreichen Theaterfigur, erkundet durch energische Linien und dichte Kreuzschraffuren."
+    },
+    "65": {
+      "title": "Klingen & Waldwesen",
+      "medium": "Tusche auf Papier",
+      "dimensions": "Masse folgen",
+      "description": "Waffen, Rüstungen und ein ausdrucksstarkes Waldwesen teilen eine Skizzenbuch-Doppelseite voller Fantasie, Ornament und spontaner Beobachtung."
+    },
+    "66": {
+      "title": "Nahe Begegnung",
+      "medium": "Porträtstudie",
+      "dimensions": "Masse folgen",
+      "description": "Ein spielerisches Atelierporträt bringt Künstler und erdachte Figur von Angesicht zu Angesicht zusammen. Beobachtung, Charakter und Science-Fiction-Bilder treffen aufeinander."
+    },
+    "67": {
+      "title": "1450 — Hexe beim Sabbat",
+      "medium": "Porträtstudie",
+      "dimensions": "Masse folgen",
+      "description": "Eine wachsende Porträtstudie, die durch aufeinanderfolgende Schichten, Tonwertentscheidungen und ausdrucksstarke Details entsteht."
+    },
+    "68": {
+      "title": "Pandemie",
+      "medium": "Porträtstudie",
+      "dimensions": "Masse folgen",
+      "description": "Ein Porträt, geprägt von der Atmosphäre und der emotionalen Erinnerung an einen aussergewöhnlichen gemeinsamen Moment."
+    },
+    "69": {
+      "title": "Stilllebenstudie II",
+      "medium": "Öl auf Leinwand",
+      "dimensions": "Masse folgen",
+      "description": "Eine entstehende Stilllebenstudie mit Glas, Oliven und Blattwerk, die zurückhaltende Farbe, reflektiertes Licht und die stille Präsenz alltäglicher Dinge erkundet."
+    },
+    "70": {
+      "title": "Kubanische Landschaft",
+      "medium": "Traditionelle Malerei",
+      "dimensions": "Masse folgen",
+      "description": "Eine leuchtende tropische Landschaft öffnet sich zu fernen grünen Hügeln. Monumentale Bäume, ziehende Wolken und geschichtete Vegetation erzeugen stille Tiefe und Zugehörigkeit."
+    },
+    "71": {
+      "title": "Das Pferd des Alchemisten",
+      "medium": "Mischtechnik auf Leinwand",
+      "dimensions": "Masse folgen",
+      "description": "Ein helles Pferd erscheint zwischen alchemistischen Gefässen, einem wachsamen Raben und einer schwebenden Leiter. Eine rätselhafte Geschichte von Verwandlung, Last und Übergang entsteht."
+    },
+    "72": {
+      "title": "Der kleine Pianist",
+      "medium": "Öl auf Leinwand",
+      "dimensions": "Masse folgen",
+      "description": "Eine junge Gestalt hält staunend neben den Bahngleisen inne und trägt die stille Poesie von Aufbruch, Erinnerung und einem erdachten Ziel in sich."
+    },
+    "73": {
+      "title": "Stiller Blick",
+      "medium": "Digitale Malerei",
+      "dimensions": "Masse folgen",
+      "description": "Ein direkter, leuchtender Blick tritt aus geschichteten Spuren und tiefem Schatten hervor — zwischen grafischer Spontaneität und der Stille eines persönlichen Porträts."
+    },
+    "74": {
+      "title": "Farbstudie",
+      "medium": "Digitale Malerei",
+      "dimensions": "Masse folgen",
+      "description": "Eine berittene Gestalt schreitet durch aufeinanderfolgende Schichten aus Linien, Formen und zurückhaltenden Erdtönen. Eine Studie über Bewegung, Gleichgewicht und sich entwickelnde Farbe."
+    },
+    "75": {
+      "title": "Gegen den Strom",
+      "medium": "Kohle auf Papier",
+      "dimensions": "Masse folgen",
+      "description": "Ein einzelner Fisch steigt durch sanfte, grafitartige Schatten und entschlossene Kohlestriche auf. Eine einfache Naturstudie wird zum Bild von Bewegung, Widerstand und stiller Beharrlichkeit."
+    },
+    "76": {
+      "title": "Das letzte Lachen",
+      "medium": "Öl auf Leinwand",
+      "dimensions": "Masse folgen",
+      "description": "Ein lachender Clown vereint Freude und Unbehagen in einem Ausdruck. Leuchtende Akzente, dunkle Schatten und gemalte Tränen verwandeln die Darbietung in ein persönliches psychologisches Porträt."
+    },
+    "77": {
+      "title": "Hinter der Maske",
+      "medium": "Malerei",
+      "dimensions": "Masse folgen",
+      "description": "Eine dunkle, plastische Maske umrahmt ein Gesicht in gedämpften Grüntönen und warmem Ocker und erkundet die Spannung zwischen Verbergen und Ausdruck."
+    },
+    "78": {
+      "title": "Das Geschenk des Drachen",
+      "medium": "Malerei",
+      "dimensions": "Masse folgen",
+      "description": "Ein Reisender und ein grüner Drache begegnen sich an einem leuchtend roten Ei und teilen einen stillen Moment von Vertrauen und Staunen."
+    },
+    "79": {
+      "title": "Porträt eines alten Mannes — Meisterstudie",
+      "medium": "Malerei",
+      "dimensions": "Masse folgen",
+      "description": "Eine Porträtstudie nach einem Meisterwerk erkundet warmes Licht, tiefe Schatten und die ausdrucksstarken Falten eines alten Gesichts im Profil."
+    },
+    "80": {
+      "title": "Gehörnter Wächter",
+      "medium": "Tusche auf Papier",
+      "dimensions": "Masse folgen",
+      "description": "Ein mächtiger Stier entsteht aus geschichteter Kreuzschraffur und sicheren Tuschelinien. Monumentale Hörner treffen auf eine ruhige, wachsame Präsenz."
+    }
+  },
+  "cv": {
+    "profile": {
+      "title": "Lebenslauf",
+      "subtitle": "Künstler und Designer",
+      "description": "Ich bin bildender Künstler mit über 15 Jahren Erfahrung in traditioneller und digitaler Kunst. Meine Arbeiten wurden in zahlreichen Einzel- und Gruppenausstellungen in Kuba, Deutschland und der Schweiz gezeigt und spiegeln einen vielseitigen künstlerischen Weg wider. Meine grundlegende Ausbildung erhielt ich in der YETI-UNEAC-Gemeinschaftswerkstatt für Künstler in Havanna, Kuba. Dort entwickelte ich nicht nur technische Fähigkeiten, sondern auch ein tiefes Verständnis für Kunst als kulturelle und gesellschaftliche Ausdrucksform. Darüber hinaus besuchte ich mehrere Malkurse an der renommierten Kunstschule „San Alejandro“ in Havanna und erweiterte so meine Kenntnisse und meine Praxis in klassischen und zeitgenössischen Techniken. In Kuba leitete ich meine eigene unabhängige Kunstgalerie, in der ich meine Werke ausstellte und verkaufte und zugleich den Austausch mit der lokalen Gemeinschaft pflegte. Besonders wertvoll war es für mich, den Kindern der Nachbarschaft kostenlosen Malunterricht anzubieten — Kunst als universelle Sprache zu teilen und Kreativität schon früh zu fördern. Heute lebe und arbeite ich in der Schweiz und erkunde weiterhin traditionelle und digitale Medien. Meine künstlerische Praxis verbindet karibische Wurzeln mit europäischen Einflüssen. Mit Farbe, Form und Textur schaffe ich visuelle Erzählungen, die Menschen persönlich und emotional ansprechen."
+    },
+    "exhibitions": {
+      "soloShow": {
+        "header": "Einzelausstellungen",
+        "shows": [
+          {
+            "title": "\"Reflejos\"",
+            "year": 2013,
+            "info": "Galerie Juanito Hernández, Nationaler Bildungskanal (Canal Educativo Nacional), Havanna, Kuba."
+          },
+          {
+            "title": "\"Reflejos del alma\"",
+            "year": 2015,
+            "info": "Casa de Artistas y Creadores (Haus der Künstler und Kreativen), Havanna, Kuba."
+          },
+          {
+            "title": "\"Mundus Vita\"",
+            "year": 2018,
+            "info": "Eine visuelle und künstlerische Weiterentwicklung des Projekts. Ein Projekt besonderer Art mit direkter Hilfe zur Selbsthilfe. Zürich, Schweiz."
+          }
+        ]
+      },
+      "groupShow": {
+        "header": "Gruppenausstellungen",
+        "shows": [
+          {
+            "title": "\"Apertura\"",
+            "year": 2013,
+            "info": "Galerie von Canal Habana, zum Gedenken an den Geburtstag des kubanischen Nationalhelden José Martí, Havanna, Kuba."
+          },
+          {
+            "title": "\"Símbolo\"",
+            "year": 2013,
+            "info": "Ausbildungszentrum des Innenministeriums, Havanna, Kuba."
+          },
+          {
+            "title": "„Zum 54. Jahrestag der Staatssicherheitsorgane“",
+            "year": 2013,
+            "info": "Ausbildungszentrum des Innenministeriums, Havanna, Kuba."
+          },
+          {
+            "title": "Homenaje",
+            "year": 2013,
+            "info": "Nationale Gewerkschaft der Kulturschaffenden (Sindicato Nacional de la Cultura), Havanna, Kuba."
+          },
+          {
+            "title": "Raíces",
+            "year": 2014,
+            "info": "Yoruba-Kulturgesellschaft Kubas, Havanna, Kuba."
+          },
+          {
+            "title": "Ruptura",
+            "year": 2014,
+            "info": "Militärhochschule „Comandante Arides Estévez Sánchez“, Havanna, Kuba."
+          },
+          {
+            "title": "Ruptura 2",
+            "year": 2014,
+            "info": "Galerie Kunst und Freundschaft, Militärhochschule „Comandante Arides Estévez Sánchez“, Havanna, Kuba."
+          },
+          {
+            "title": "Divino Tesoro",
+            "year": 2015,
+            "info": "Galerie Juanito Hernández, Canal Educativo Nacional – ICRT. Zu Ehren des Internationalen Frauentags, Havanna, Kuba."
+          },
+          {
+            "title": "RompArte, la Habana Encueros",
+            "year": 2015,
+            "info": "Wandbild in der Galerie des Stadtmodells von Havanna (Galería de la Maqueta de La Habana), Havanna, Kuba."
+          },
+          {
+            "title": "Mágico Encanto",
+            "year": 2015,
+            "info": "Galerie Juanito Hernández, Nationaler Bildungskanal (Canal Educativo Nacional), Havanna, Kuba."
+          },
+          {
+            "title": "\"Puertas Abiertas\" – \"Offene Türen\"",
+            "year": 2016,
+            "info": "Kuba im Wandel, zunächst in Berlin und später in Bonn, Deutschland."
+          }
+        ]
+      }
+    },
+    "individual": "Individuelle Praxis",
+    "collective": "Gemeinsame Praxis",
+    "havana": "Havanna",
+    "zurich": "Zürich"
+  }
+}

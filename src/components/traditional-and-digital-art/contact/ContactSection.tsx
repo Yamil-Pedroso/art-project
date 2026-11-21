@@ -1,20 +1,28 @@
+import { useTranslation } from "react-i18next";
 import type { FormEvent } from "react";
 import { motion } from "framer-motion";
 import { contactDetails } from "@/data/contact";
 
 const ContactSection = () => {
+  const { t, i18n } = useTranslation();
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
     const name = String(formData.get("name") || "");
     const email = String(formData.get("email") || "");
-    const subject = String(formData.get("subject") || "Artwork inquiry");
+    const subject = String(formData.get("subject") || t("ui.artworkInquiry"));
     const message = String(formData.get("message") || "");
-    const body = [`Name: ${name}`, `Email: ${email}`, "", message].join("\n");
+    const body = [
+      `${t("common.name")}: ${name}`,
+      `${t("common.email")}: ${email}`,
+      "",
+      message,
+    ].join("\n");
 
     window.location.href = `mailto:${contactDetails.email}?subject=${encodeURIComponent(
-      subject
+      subject,
     )}&body=${encodeURIComponent(body)}`;
   };
 
@@ -39,14 +47,13 @@ const ContactSection = () => {
 
           <div className="relative">
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#d17450] sm:text-sm">
-              Start a conversation
+              {t("ui.startAConversation")}
             </p>
             <h2 className="mt-5 max-w-xl text-5xl font-semibold leading-[0.96] tracking-[-0.045em] sm:text-6xl">
-              Let’s create something meaningful.
+              {t("ui.letsCreateSomethingMeaningful")}
             </h2>
             <p className="mt-7 max-w-lg text-lg leading-relaxed text-[#b9c0bb]">
-              Interested in an original work, a commission or a creative
-              collaboration? Tell me a little about what you have in mind.
+              {t("ui.interestedInAnOriginalWorkACommissionOrACreative")}
             </p>
           </div>
 
@@ -56,7 +63,7 @@ const ContactSection = () => {
               className="group flex items-center justify-between gap-4 text-white transition hover:text-[#d17450]"
             >
               <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#858f88]">
-                Email
+                {t("ui.email")}
               </span>
               <span className="truncate">{contactDetails.email}</span>
             </a>
@@ -65,15 +72,15 @@ const ContactSection = () => {
               className="group flex items-center justify-between gap-4 text-white transition hover:text-[#d17450]"
             >
               <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#858f88]">
-                Telephone
+                {t("ui.telephone")}
               </span>
               <span>{contactDetails.phoneDisplay}</span>
             </a>
             <div className="flex items-center justify-between gap-4 text-white">
               <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#858f88]">
-                Based in
+                {t("ui.basedIn")}
               </span>
-              <span>{contactDetails.location}</span>
+              <span>{t("common.switzerland")}</span>
             </div>
           </div>
         </motion.div>
@@ -88,40 +95,42 @@ const ContactSection = () => {
           <div className="mb-10 flex items-end justify-between border-b border-[#172019]/15 pb-6">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#b5502d]">
-                Contact form
+                {t("ui.contactForm")}
               </p>
               <h3 className="mt-2 text-3xl font-semibold tracking-[-0.03em] text-[#172019] sm:text-4xl">
-                Send an inquiry
+                {t("ui.sendAnInquiry")}
               </h3>
             </div>
-            <span className="hidden text-sm text-[#858c87] sm:block">01 — 04</span>
+            <span className="hidden text-sm text-[#858c87] sm:block">
+              01 — 04
+            </span>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-8">
             <div className="grid gap-8 sm:grid-cols-2">
               <label className="block">
                 <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#6d746f]">
-                  Your name
+                  {t("ui.yourName")}
                 </span>
                 <input
                   type="text"
                   name="name"
                   required
                   autoComplete="name"
-                  placeholder="Name and surname"
+                  placeholder={t("ui.nameAndSurname")}
                   className="mt-3 w-full border-0 border-b border-[#172019]/25 bg-transparent px-0 py-3 text-base text-[#172019] outline-none transition placeholder:text-[#9ca19e] focus:border-[#b5502d]"
                 />
               </label>
               <label className="block">
                 <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#6d746f]">
-                  Email address
+                  {t("ui.emailAddress")}
                 </span>
                 <input
                   type="email"
                   name="email"
                   required
                   autoComplete="email"
-                  placeholder="you@example.com"
+                  placeholder={t("ui.youExampleCom")}
                   className="mt-3 w-full border-0 border-b border-[#172019]/25 bg-transparent px-0 py-3 text-base text-[#172019] outline-none transition placeholder:text-[#9ca19e] focus:border-[#b5502d]"
                 />
               </label>
@@ -129,44 +138,46 @@ const ContactSection = () => {
 
             <label className="block">
               <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#6d746f]">
-                Subject
+                {t("ui.subject")}
               </span>
               <select
+                key={i18n.resolvedLanguage}
                 name="subject"
-                defaultValue="Artwork inquiry"
+                defaultValue={t("ui.artworkInquiry")}
                 className="mt-3 w-full cursor-pointer appearance-none border-0 border-b border-[#172019]/25 bg-transparent px-0 py-3 text-base text-[#172019] outline-none transition focus:border-[#b5502d]"
               >
-                <option>Artwork inquiry</option>
-                <option>Commission request</option>
-                <option>Exhibition proposal</option>
-                <option>Creative collaboration</option>
-                <option>Other</option>
+                <option>{t("ui.artworkInquiry")}</option>
+                <option>{t("ui.commissionRequest")}</option>
+                <option>{t("ui.exhibitionProposal")}</option>
+                <option>{t("ui.creativeCollaboration")}</option>
+                <option>{t("ui.other")}</option>
               </select>
             </label>
 
             <label className="block">
               <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#6d746f]">
-                Your message
+                {t("ui.yourMessage")}
               </span>
               <textarea
                 name="message"
                 required
                 rows={5}
-                placeholder="Tell me about your idea, the artwork you are interested in or your project..."
+                placeholder={t(
+                  "ui.tellMeAboutYourIdeaTheArtworkYouAreInterested",
+                )}
                 className="mt-3 w-full resize-none border-0 border-b border-[#172019]/25 bg-transparent px-0 py-3 text-base leading-relaxed text-[#172019] outline-none transition placeholder:text-[#9ca19e] focus:border-[#b5502d]"
               />
             </label>
 
             <div className="flex flex-col gap-4 pt-2 sm:flex-row sm:items-center sm:justify-between">
               <p className="max-w-sm text-xs leading-relaxed text-[#858c87]">
-                Submitting opens your email app with this message prepared for
-                sending.
+                {t("ui.submittingOpensYourEmailAppWithThisMessagePreparedFor")}
               </p>
               <button
                 type="submit"
                 className="group inline-flex cursor-pointer items-center justify-center rounded-full bg-[#172019] px-7 py-3.5 text-sm font-semibold uppercase tracking-[0.12em] text-white transition hover:-translate-y-0.5 hover:bg-[#b5502d]"
               >
-                Send inquiry
+                {t("ui.sendInquiry")}
                 <span
                   aria-hidden="true"
                   className="ml-3 transition-transform group-hover:translate-x-1"

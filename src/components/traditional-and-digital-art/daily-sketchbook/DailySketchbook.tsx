@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   useRef,
   useState,
@@ -11,10 +12,7 @@ import {
   FiChevronRight,
   FiPenTool,
 } from "react-icons/fi";
-import {
-  dailySketchPages,
-  type DailySketchPage,
-} from "@/data/dailySketches";
+import { dailySketchPages, type DailySketchPage } from "@/data/dailySketches";
 
 const paperTexture = {
   backgroundColor: "#f4ecda",
@@ -29,6 +27,8 @@ interface SketchPageProps {
 }
 
 const SketchPage = ({ page, side }: SketchPageProps) => {
+  const { t } = useTranslation();
+
   if (!page) {
     return <div aria-hidden="true" className="hidden sm:block" />;
   }
@@ -37,7 +37,7 @@ const SketchPage = ({ page, side }: SketchPageProps) => {
 
   return (
     <article
-      aria-label={`Daily sketch page ${page.id}`}
+      aria-label={t("sketchbook.page", { number: page.id })}
       className={`relative flex min-h-[23rem] flex-col overflow-hidden px-5 py-6 text-[#2f392f] sm:min-h-[32rem] sm:px-8 sm:py-8 lg:min-h-[38rem] lg:px-10 lg:py-9 ${
         side === "left"
           ? "rounded-l-[0.4rem] border-r border-[#7f6544]/20 shadow-[inset_-24px_0_34px_-30px_rgba(44,32,19,0.65)]"
@@ -46,8 +46,8 @@ const SketchPage = ({ page, side }: SketchPageProps) => {
       style={paperTexture}
     >
       <div className="flex items-center justify-between border-b border-[#866f50]/20 pb-3 text-[8px] font-semibold uppercase tracking-[0.24em] text-[#786b58] sm:text-[9px]">
-        <span>Daily observation</span>
-        <span>{page.date || `Day ${pageNumber}`}</span>
+        <span>{t("ui.dailyObservation")}</span>
+        <span>{page.date || t("sketchbook.day", { number: pageNumber })}</span>
       </div>
 
       <div className="relative flex flex-1 items-center justify-center py-8 sm:py-10">
@@ -56,7 +56,7 @@ const SketchPage = ({ page, side }: SketchPageProps) => {
           <figure className="relative z-10 flex h-full w-full flex-col items-center justify-center">
             <img
               src={page.imageUrl}
-              alt={page.title || `Daily sketch ${page.id}`}
+              alt={page.title || t("sketchbook.sketch", { number: page.id })}
               className="max-h-full max-w-full object-contain drop-shadow-[0_12px_20px_rgba(44,32,19,0.14)]"
             />
             {(page.title || page.note) && (
@@ -78,7 +78,7 @@ const SketchPage = ({ page, side }: SketchPageProps) => {
           <div className="relative z-10 text-center text-[#796d5b]/55">
             <FiPenTool className="mx-auto h-6 w-6 stroke-[1.2] sm:h-7 sm:w-7" />
             <p className="mt-4 text-[9px] font-semibold uppercase tracking-[0.24em] sm:text-[10px]">
-              Waiting for today’s sketch
+              {t("ui.waitingForTodaysSketch")}
             </p>
           </div>
         )}
@@ -96,6 +96,8 @@ const SketchPage = ({ page, side }: SketchPageProps) => {
 };
 
 const DailySketchbook = () => {
+  const { t } = useTranslation();
+
   const spreadCount = Math.ceil(dailySketchPages.length / 2);
   const lastStep = spreadCount + 1;
   const [step, setStep] = useState(0);
@@ -141,36 +143,42 @@ const DailySketchbook = () => {
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       onKeyDown={handleKeyDown}
       tabIndex={0}
-      aria-label="Interactive daily sketchbook"
+      aria-label={t("ui.interactiveDailySketchbook")}
       className="relative isolate w-full overflow-hidden rounded-[2rem] bg-[#1d2a21] px-3 py-12 outline-none ring-[#d17450] focus-visible:ring-2 sm:px-7 sm:py-16 lg:px-12 lg:py-20"
     >
       <div className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full border border-[#e3b95f]/15" />
       <div className="pointer-events-none absolute -left-10 -top-10 h-44 w-44 rounded-full border border-[#e3b95f]/10" />
       <div className="pointer-events-none absolute -bottom-40 -right-24 h-96 w-96 rounded-full bg-[#b5502d]/10 blur-3xl" />
-      <span className="pointer-events-none absolute left-[8%] top-[26%] text-5xl text-[#e3b95f]/15">✦</span>
-      <span className="pointer-events-none absolute right-[9%] top-[15%] text-3xl text-[#d17450]/20">✧</span>
+      <span className="pointer-events-none absolute left-[8%] top-[26%] text-5xl text-[#e3b95f]/15">
+        ✦
+      </span>
+      <span className="pointer-events-none absolute right-[9%] top-[15%] text-3xl text-[#d17450]/20">
+        ✧
+      </span>
 
       <div className="relative mx-auto mb-9 flex max-w-5xl flex-col gap-5 text-[#f5f2eb] sm:mb-12 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#d99272] sm:text-xs">
-            An evolving visual diary
+            {t("ui.anEvolvingVisualDiary")}
           </p>
           <h3 className="mt-3 text-4xl font-semibold tracking-[-0.045em] sm:text-5xl lg:text-6xl">
-            Daily Sketching
+            {t("ui.dailySketching")}
           </h3>
         </div>
         <div className="max-w-sm sm:text-right">
           <p className="text-sm leading-relaxed text-[#aeb7b0] sm:text-base">
-            A new page for small observations, passing ideas and drawings made
-            one day at a time.
+            {t("ui.aNewPageForSmallObservationsPassingIdeasAndDrawings")}
           </p>
           <p className="mt-2 text-[9px] font-semibold uppercase tracking-[0.2em] text-[#77837a] sm:text-[10px]">
-            Drag, swipe or use the arrow keys
+            {t("ui.dragSwipeOrUseTheArrowKeys")}
           </p>
         </div>
       </div>
 
-      <div className="relative mx-auto max-w-5xl" style={{ perspective: "1800px" }}>
+      <div
+        className="relative mx-auto max-w-5xl"
+        style={{ perspective: "1800px" }}
+      >
         <div className="absolute -inset-x-2 bottom-[-0.8rem] top-4 rounded-[1.4rem] bg-[#0c120e]/70 blur-sm sm:-inset-x-5 sm:bottom-[-1.2rem]" />
         <motion.div
           drag="x"
@@ -198,22 +206,22 @@ const DailySketchbook = () => {
               >
                 <div className="absolute inset-3 rounded-r-xl rounded-l-sm border border-[#f0c66c]/30" />
                 <div className="relative flex w-full items-center justify-between text-[8px] font-semibold uppercase tracking-[0.26em] text-[#f0c66c]/70 sm:text-[10px]">
-                  <span>Visual journal</span>
-                  <span>Vol. 01</span>
+                  <span>{t("ui.visualJournal")}</span>
+                  <span>{t("ui.vol01")}</span>
                 </div>
                 <div className="relative">
                   <FiBookOpen className="mx-auto h-9 w-9 text-[#f0c66c] sm:h-12 sm:w-12" />
                   <h4 className="mt-6 font-serif text-4xl italic leading-none sm:text-6xl">
-                    Daily
-                    <span className="block">Sketching</span>
+                    {t("ui.daily")}
+                    <span className="block">{t("ui.sketching")}</span>
                   </h4>
                   <span className="mx-auto mt-7 block h-px w-20 bg-[#f0c66c]/55" />
                   <p className="mt-5 text-[9px] font-semibold uppercase tracking-[0.28em] text-[#f0c66c]/75 sm:text-xs">
-                    Open the sketchbook
+                    {t("ui.openTheSketchbook")}
                   </p>
                 </div>
                 <p className="relative text-[9px] font-semibold uppercase tracking-[0.24em] text-[#f6e8c9]/55 sm:text-[10px]">
-                  Yami Atelier · Daily practice
+                  {t("ui.yamiAtelierDailyPractice")}
                 </p>
               </motion.button>
             ) : step === lastStep ? (
@@ -229,14 +237,14 @@ const DailySketchbook = () => {
                 <div className="absolute inset-3 rounded-l-xl rounded-r-sm border border-white/10" />
                 <span className="text-4xl text-[#e3b95f]/55">✦</span>
                 <p className="mt-6 font-serif text-3xl italic sm:text-5xl">
-                  To be continued tomorrow.
+                  {t("ui.toBeContinuedTomorrow")}
                 </p>
                 <button
                   type="button"
                   onClick={() => goToStep(0)}
                   className="relative mt-8 cursor-pointer border-b border-[#d99272]/60 pb-1 text-[9px] font-semibold uppercase tracking-[0.24em] text-[#d99272]"
                 >
-                  Return to cover
+                  {t("ui.returnToCover")}
                 </button>
               </motion.div>
             ) : (
@@ -255,7 +263,10 @@ const DailySketchbook = () => {
                   x: direction > 0 ? -55 : 55,
                 }}
                 transition={{ duration: 0.48, ease: [0.22, 1, 0.36, 1] }}
-                style={{ transformOrigin: direction > 0 ? "left center" : "right center" }}
+                style={{
+                  transformOrigin:
+                    direction > 0 ? "left center" : "right center",
+                }}
                 className="grid grid-cols-2 overflow-hidden rounded-md bg-[#e7dcc6] shadow-[0_24px_60px_rgba(4,8,5,0.42)]"
               >
                 <SketchPage page={leftPage} side="left" />
@@ -270,7 +281,7 @@ const DailySketchbook = () => {
           type="button"
           onClick={() => goToStep(step - 1)}
           disabled={step === 0}
-          aria-label="Previous sketchbook pages"
+          aria-label={t("ui.previousSketchbookPages")}
           className="absolute left-1 top-1/2 z-30 flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/15 bg-[#172019]/85 text-white shadow-lg backdrop-blur transition hover:bg-[#b5502d] disabled:pointer-events-none disabled:opacity-0 sm:-left-5 sm:h-12 sm:w-12"
         >
           <FiChevronLeft className="h-5 w-5" />
@@ -279,7 +290,7 @@ const DailySketchbook = () => {
           type="button"
           onClick={() => goToStep(step + 1)}
           disabled={step === lastStep}
-          aria-label="Next sketchbook pages"
+          aria-label={t("ui.nextSketchbookPages")}
           className="absolute right-1 top-1/2 z-30 flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/15 bg-[#172019]/85 text-white shadow-lg backdrop-blur transition hover:bg-[#b5502d] disabled:pointer-events-none disabled:opacity-0 sm:-right-5 sm:h-12 sm:w-12"
         >
           <FiChevronRight className="h-5 w-5" />
@@ -292,13 +303,14 @@ const DailySketchbook = () => {
             key={index}
             type="button"
             onClick={() => goToStep(index)}
-            aria-label={`Go to ${
-              index === 0
-                ? "front cover"
-                : index === lastStep
-                  ? "back cover"
-                  : `spread ${index}`
-            }`}
+            aria-label={t("sketchbook.goTo", {
+              target:
+                index === 0
+                  ? t("sketchbook.frontCover")
+                  : index === lastStep
+                    ? t("sketchbook.backCover")
+                    : t("sketchbook.spread", { number: index }),
+            })}
             aria-current={step === index ? "page" : undefined}
             className={`h-1.5 cursor-pointer rounded-full transition-all ${
               step === index

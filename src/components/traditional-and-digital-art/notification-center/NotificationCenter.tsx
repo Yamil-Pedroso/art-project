@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -8,10 +9,9 @@ import {
   FiEyeOff,
   FiX,
 } from "react-icons/fi";
-import type { PortfolioUpdate, PortfolioUpdateType } from "@/types/Types";
+import type { PortfolioUpdate } from "@/types/Types";
 
-const CHECKED_UPDATES_PROMPT_KEY =
-  "yami-atelier:checked-notification-prompt";
+const CHECKED_UPDATES_PROMPT_KEY = "yami-atelier:checked-notification-prompt";
 
 interface NotificationCenterProps {
   updates: PortfolioUpdate[];
@@ -21,51 +21,6 @@ interface NotificationCenterProps {
   onDismiss: (updateId: string) => void;
 }
 
-const copy = {
-  en: {
-    title: "What's new",
-    intro: "Recent notes from the studio and the evolving collection.",
-    open: "Open what's new",
-    close: "Close what's new",
-    view: "View artwork",
-    viewSketch: "View sketchbook",
-    remove: "Hide this notification",
-    empty: "There are no recent updates at the moment.",
-    subscribeTitle: "Would you like to discover my next works?",
-    subscribeAction: "Receive updates by email",
-    soon: "Soon",
-    types: {
-      artwork: "New artwork",
-      sketch: "New daily sketch",
-      series: "New series",
-      exhibition: "Exhibition",
-      news: "Journal",
-      studio: "From the studio",
-    },
-  },
-  es: {
-    title: "Novedades",
-    intro: "Notas recientes del estudio y de una colección en evolución.",
-    open: "Abrir novedades",
-    close: "Cerrar novedades",
-    view: "Ver obra",
-    viewSketch: "Ver libreta",
-    remove: "Ocultar esta notificación",
-    empty: "No hay novedades recientes por el momento.",
-    subscribeTitle: "¿Quieres conocer mis próximas obras?",
-    subscribeAction: "Recibir novedades por email",
-    soon: "Próximamente",
-    types: {
-      artwork: "Nueva obra",
-      sketch: "Nuevo sketch diario",
-      series: "Nueva serie",
-      exhibition: "Exposición",
-      news: "Noticias",
-      studio: "Desde el estudio",
-    },
-  },
-};
-
 const NotificationCenter = ({
   updates,
   seenIds,
@@ -73,18 +28,13 @@ const NotificationCenter = ({
   onSelect,
   onDismiss,
 }: NotificationCenterProps) => {
+  const { t } = useTranslation();
+
   const [isOpen, setIsOpen] = useState(false);
   const [shouldAnimateBell, setShouldAnimateBell] = useState(false);
-  const [showRemovedConfirmation, setShowRemovedConfirmation] =
-    useState(false);
+  const [showRemovedConfirmation, setShowRemovedConfirmation] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const confirmationTimerRef = useRef<number | null>(null);
-  const language =
-    typeof document !== "undefined" &&
-    document.documentElement.lang.toLowerCase().startsWith("es")
-      ? "es"
-      : "en";
-  const text = copy[language];
   const unseenUpdatesSignature = updates
     .filter((update) => !seenIds.has(update.id))
     .map((update) => update.id)
@@ -99,7 +49,7 @@ const NotificationCenter = ({
 
     try {
       const checkedSignature = window.localStorage.getItem(
-        CHECKED_UPDATES_PROMPT_KEY
+        CHECKED_UPDATES_PROMPT_KEY,
       );
       setShouldAnimateBell(checkedSignature !== unseenUpdatesSignature);
     } catch {
@@ -133,7 +83,7 @@ const NotificationCenter = ({
         window.clearTimeout(confirmationTimerRef.current);
       }
     },
-    []
+    [],
   );
 
   const handleSelect = (update: PortfolioUpdate) => {
@@ -150,7 +100,7 @@ const NotificationCenter = ({
     }
     confirmationTimerRef.current = window.setTimeout(
       () => setShowRemovedConfirmation(false),
-      2800
+      2800,
     );
   };
 
@@ -163,7 +113,7 @@ const NotificationCenter = ({
       try {
         window.localStorage.setItem(
           CHECKED_UPDATES_PROMPT_KEY,
-          unseenUpdatesSignature
+          unseenUpdatesSignature,
         );
       } catch {
         // The animation still stops for the current visit.
@@ -178,8 +128,8 @@ const NotificationCenter = ({
         onClick={togglePanel}
         aria-expanded={isOpen}
         aria-controls="portfolio-updates-panel"
-        aria-label={isOpen ? text.close : text.open}
-        className="relative flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-[#172019]/15 text-[#172019] transition hover:border-[#b5502d]/45 hover:text-[#b5502d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b5502d]/45 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f5f2eb]"
+        aria-label={isOpen ? t("notifications.close") : t("notifications.open")}
+        className="relative flex h-9 w-9 cursor-pointer sm:h-11 sm:w-11 items-center justify-center rounded-full border border-[#172019]/15 text-[#172019] transition hover:border-[#b5502d]/45 hover:text-[#b5502d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b5502d]/45 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f5f2eb]"
       >
         <motion.span
           aria-hidden="true"
@@ -216,7 +166,7 @@ const NotificationCenter = ({
         {isOpen && (
           <motion.section
             id="portfolio-updates-panel"
-            aria-label={text.title}
+            aria-label={t("notifications.title")}
             initial={{ opacity: 0, y: -8, scale: 0.985 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -6, scale: 0.99 }}
@@ -229,16 +179,16 @@ const NotificationCenter = ({
                   Yami Atelier
                 </p>
                 <h2 className="mt-1.5 text-2xl font-semibold tracking-[-0.035em] text-[#172019]">
-                  {text.title}
+                  {t("notifications.title")}
                 </h2>
                 <p className="mt-2 max-w-xs text-sm leading-relaxed text-[#69706c]">
-                  {text.intro}
+                  {t("notifications.intro")}
                 </p>
               </div>
               <button
                 type="button"
                 onClick={() => setIsOpen(false)}
-                aria-label={text.close}
+                aria-label={t("notifications.close")}
                 className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full text-[#59615c] transition hover:bg-[#172019]/5 hover:text-[#172019] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b5502d]/45"
               >
                 <FiX aria-hidden="true" className="h-4 w-4" />
@@ -248,14 +198,13 @@ const NotificationCenter = ({
             <div className="min-h-0 overflow-y-auto overscroll-contain">
               {updates.length === 0 ? (
                 <p className="px-6 py-10 text-center text-sm leading-relaxed text-[#69706c]">
-                  {text.empty}
+                  {t("notifications.empty")}
                 </p>
               ) : (
                 <ul className="divide-y divide-[#172019]/8">
                   {updates.map((update) => {
                     const isSeen = seenIds.has(update.id);
-                    const typeLabel =
-                      text.types[update.type as PortfolioUpdateType];
+                    const typeLabel = t(`notifications.types.${update.type}`);
 
                     return (
                       <li key={update.id} className="relative">
@@ -279,7 +228,7 @@ const NotificationCenter = ({
                             <span className="flex items-center gap-2 text-[9px] font-semibold uppercase tracking-[0.2em] text-[#b5502d]">
                               {!isSeen && (
                                 <span
-                                  aria-label="Unread"
+                                  aria-label={t("ui.unread")}
                                   className="h-1.5 w-1.5 rounded-full bg-[#b5502d]"
                                 />
                               )}
@@ -295,10 +244,10 @@ const NotificationCenter = ({
                             )}
                             <span className="mt-2 inline-flex items-center text-[10px] font-semibold uppercase tracking-[0.14em] text-[#4c5550] transition group-hover:text-[#b5502d]">
                               {update.type === "artwork"
-                                ? text.view
+                                ? t("notifications.view")
                                 : update.type === "sketch"
-                                  ? text.viewSketch
-                                : typeLabel}
+                                  ? t("notifications.viewSketch")
+                                  : typeLabel}
                               <FiArrowUpRight
                                 aria-hidden="true"
                                 className="ml-1.5 h-3 w-3"
@@ -309,8 +258,8 @@ const NotificationCenter = ({
                         <motion.button
                           type="button"
                           onClick={() => handleDismiss(update.id)}
-                          aria-label={`${text.remove}: ${update.title}`}
-                          title={text.remove}
+                          aria-label={`${t("notifications.remove")}: ${update.title}`}
+                          title={t("notifications.remove")}
                           whileTap={{ scale: 0.88 }}
                           className="notification-hide absolute right-3 top-3 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full text-[#8a8f8b] transition-colors hover:bg-[#172019]/6 hover:text-[#b5502d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b5502d]/40 sm:right-4"
                         >
@@ -328,17 +277,17 @@ const NotificationCenter = ({
 
             <div className="border-t border-[#172019]/10 bg-white/35 px-5 py-4 sm:px-6">
               <p className="text-sm font-medium text-[#354039]">
-                {text.subscribeTitle}
+                {t("notifications.subscribeTitle")}
               </p>
               <button
                 type="button"
                 disabled
                 className="mt-2 inline-flex cursor-not-allowed items-center text-[10px] font-semibold uppercase tracking-[0.15em] text-[#777d79]"
               >
-                {text.subscribeAction}
+                {t("notifications.subscribeAction")}
                 <FiArrowRight aria-hidden="true" className="ml-2 h-3.5 w-3.5" />
                 <span className="ml-3 border-l border-[#172019]/15 pl-3 text-[8px] tracking-[0.18em] text-[#9b9f9c]">
-                  {text.soon}
+                  {t("notifications.soon")}
                 </span>
               </button>
             </div>
@@ -358,7 +307,7 @@ const NotificationCenter = ({
                     <FiCheck aria-hidden="true" className="h-3.5 w-3.5" />
                   </span>
                   <span className="text-xs font-semibold tracking-[0.02em]">
-                    Notification hidden for you.
+                    {t("ui.notificationHiddenForYou")}
                   </span>
                 </motion.div>
               )}

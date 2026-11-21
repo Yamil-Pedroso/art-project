@@ -1,3 +1,6 @@
+import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
+import { entranceGroup, entranceItem } from "./designMotion";
 import { useEffect, useState } from "react";
 import CreativeWorkspace, { type WorkspaceDesign } from "./CreativeWorkspace";
 import styles from "./DesignPresentation.module.css";
@@ -15,6 +18,8 @@ const getSavedDesign = (): WorkspaceDesign => {
 };
 
 const DesignPresentation = () => {
+  const { t } = useTranslation();
+
   const [design, setDesign] = useState<WorkspaceDesign>(getSavedDesign);
 
   useEffect(() => {
@@ -26,11 +31,12 @@ const DesignPresentation = () => {
   }, [design]);
 
   return (
-    <div className={styles.presentation}>
-      <div
+    <motion.div variants={entranceGroup} className={styles.presentation}>
+      <motion.div
+        variants={entranceItem}
         className={styles.switcher}
         role="group"
-        aria-label="Choose presentation design"
+        aria-label={t("ui.choosePresentationDesign")}
       >
         {(["design-1", "design-2"] as const).map((option, index) => (
           <button
@@ -44,12 +50,12 @@ const DesignPresentation = () => {
               className={index === 0 ? styles.organicIcon : styles.editorIcon}
               aria-hidden="true"
             />
-            Design {index + 1}
+            {t("ui.design")} {index + 1}
           </button>
         ))}
-      </div>
+      </motion.div>
       <CreativeWorkspace design={design} />
-    </div>
+    </motion.div>
   );
 };
 

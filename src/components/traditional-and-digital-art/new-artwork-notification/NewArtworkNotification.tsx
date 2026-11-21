@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FiArrowUpRight, FiX } from "react-icons/fi";
@@ -10,39 +11,21 @@ interface NewArtworkNotificationProps {
   onView: (update: PortfolioUpdate) => void;
 }
 
-const copy = {
-  en: {
-    artworkEyebrow: "New artwork",
-    artworkAction: "View artwork",
-    sketchEyebrow: "New daily sketch",
-    sketchAction: "View sketchbook",
-    close: "Dismiss notification",
-  },
-  es: {
-    artworkEyebrow: "Nueva obra",
-    artworkAction: "Ver obra",
-    sketchEyebrow: "Nuevo sketch diario",
-    sketchAction: "Ver libreta",
-    close: "Cerrar notificación",
-  },
-};
-
 const NewArtworkNotification = ({
   update,
   isSeen,
   onSeen,
   onView,
 }: NewArtworkNotificationProps) => {
+  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
-  const language =
-    typeof document !== "undefined" &&
-    document.documentElement.lang.toLowerCase().startsWith("es")
-      ? "es"
-      : "en";
-  const text = copy[language];
   const isSketch = update?.type === "sketch";
-  const eyebrow = isSketch ? text.sketchEyebrow : text.artworkEyebrow;
-  const action = isSketch ? text.sketchAction : text.artworkAction;
+  const eyebrow = isSketch
+    ? t("floatingNotifications.sketchEyebrow")
+    : t("floatingNotifications.artworkEyebrow");
+  const action = isSketch
+    ? t("floatingNotifications.sketchAction")
+    : t("floatingNotifications.artworkAction");
 
   useEffect(() => {
     if (!update?.id || !update.imageUrl || isSeen) {
@@ -109,7 +92,7 @@ const NewArtworkNotification = ({
             <button
               type="button"
               onClick={rememberAsSeen}
-              aria-label={text.close}
+              aria-label={t("floatingNotifications.close")}
               className="absolute right-2.5 top-2.5 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full text-white/55 transition hover:bg-white/10 hover:text-white"
             >
               <FiX className="h-4 w-4" />

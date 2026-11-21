@@ -1,6 +1,9 @@
+import { useTranslation } from "react-i18next";
 import { contactDetails } from "@/data/contact";
 
 const Footer = () => {
+  const { t } = useTranslation();
+
   const currentYear = new Date().getFullYear();
 
   return (
@@ -15,28 +18,30 @@ const Footer = () => {
               </span>
             </a>
             <p className="mt-6 max-w-xl text-2xl font-medium leading-snug tracking-[-0.025em] text-[#b9c0bb] sm:text-3xl">
-              Original art shaped by memory, place and imagination.
+              {t("ui.originalArtShapedByMemoryPlaceAndImagination")}
             </p>
           </div>
 
           <nav
-            aria-label="Footer navigation"
+            aria-label={t("ui.footerNavigation")}
             className="grid grid-cols-2 gap-x-8 gap-y-4 text-sm font-semibold uppercase tracking-[0.14em] text-[#a5aca7] sm:grid-cols-3 lg:justify-self-end"
           >
             <a href="#home" className="transition hover:text-[#d17450]">
-              Home
+              {t("ui.home")}
             </a>
             <a href="#gallery" className="transition hover:text-[#d17450]">
-              Gallery
+              {t("ui.gallery")}
             </a>
             <a href="#contact" className="transition hover:text-[#d17450]">
-              Contact
+              {t("ui.contact")}
             </a>
           </nav>
         </div>
 
         <div className="flex flex-col gap-4 pt-7 text-xs uppercase tracking-[0.14em] text-[#737d76] sm:flex-row sm:items-center sm:justify-between">
-          <p>© {currentYear} Yami Atelier. All rights reserved.</p>
+          <p>
+            © {currentYear} {t("ui.yamiAtelierAllRightsReserved")}
+          </p>
           <div className="flex flex-wrap gap-x-6 gap-y-2">
             <a
               href={`mailto:${contactDetails.email}`}

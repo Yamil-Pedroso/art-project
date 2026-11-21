@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+import { entranceGroup, entranceItem, workspaceEntrance } from "./designMotion";
 import { useEffect, useRef, useState } from "react";
 import {
   AnimatePresence,
@@ -35,9 +37,6 @@ const tools = [
     badge: "Ps",
     extension: "psd",
     color: "#70c5ef",
-    discipline: "Image & imagination",
-    layers: ["Color study", "Paper texture", "Background"],
-    property: "Color balance",
     value: "+24",
     shape:
       "M 0 -85 C 55 -85 85 -45 85 0 C 85 55 45 85 0 85 C -55 85 -85 45 -85 0 C -85 -55 -45 -85 0 -85 Z",
@@ -47,9 +46,6 @@ const tools = [
     badge: "Ai",
     extension: "ai",
     color: "#ffb363",
-    discipline: "Points into possibilities",
-    layers: ["Bézier study", "Construction lines", "Artboard 01"],
-    property: "Corner radius",
     value: "32 px",
     shape:
       "M 0 -85 C 15 -15 15 -15 85 0 C 15 15 15 15 0 85 C -15 15 -15 15 -85 0 C -15 -15 -15 -15 0 -85 Z",
@@ -59,9 +55,6 @@ const tools = [
     badge: "Id",
     extension: "indd",
     color: "#f49cb6",
-    discipline: "Type, rhythm & space",
-    layers: ["Editorial typography", "Image frame", "Baseline grid"],
-    property: "Baseline grid",
     value: "12 pt",
     shape:
       "M 0 -85 C 60 -85 85 -60 85 0 C 85 12 12 12 0 85 C -60 85 -85 60 -85 0 C -85 -12 -12 -12 0 -85 Z",
@@ -71,9 +64,6 @@ const tools = [
     image: figma,
     extension: "fig",
     color: "#bea7ef",
-    discipline: "Made for the human side",
-    layers: ["Atelier / Home", "Components", "Design tokens"],
-    property: "Auto layout",
     value: "24 px",
     shape:
       "M 0 -85 C 10 -85 85 -10 85 0 C 85 10 10 85 0 85 C -10 85 -85 10 -85 0 C -85 -10 -10 -85 0 -85 Z",
@@ -94,13 +84,24 @@ const CreativeWorkspace = ({
 }: {
   design?: WorkspaceDesign;
 }) => {
+  const { t } = useTranslation();
+
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const [focused, setFocused] = useState(false);
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { amount: 0.25 });
   const reducedMotion = useReducedMotion();
-  const tool = tools[active];
+  const selectedTool = tools[active];
+  const copyKey = ["ps", "ai", "id", "fig"][active];
+  const tool = {
+    ...selectedTool,
+    discipline: t(`workspace.${copyKey}.discipline`),
+    layers: t(`workspace.${copyKey}.layers`, {
+      returnObjects: true,
+    }) as string[],
+    property: t(`workspace.${copyKey}.property`),
+  };
   const duration = reducedMotion ? 0 : 0.85;
 
   useEffect(() => {
@@ -113,11 +114,12 @@ const CreativeWorkspace = ({
   }, [active, paused, focused, inView, reducedMotion]);
 
   return (
-    <section
+    <motion.section
+      variants={entranceGroup}
       ref={ref}
       className={`${styles.studio} ${design === "design-2" ? styles.editorVariant : ""}`}
       data-design={design}
-      aria-label="A preview of my creative studio"
+      aria-label={t("ui.aPreviewOfMyCreativeStudio")}
       onFocusCapture={() => setFocused(true)}
       onBlurCapture={(event) => {
         if (!event.currentTarget.contains(event.relatedTarget))
@@ -125,30 +127,30 @@ const CreativeWorkspace = ({
       }}
       style={{ "--studio-accent": tool.color } as React.CSSProperties}
     >
-      <div className={styles.intro}>
+      <motion.div variants={entranceItem} className={styles.intro}>
         <span className={styles.kicker}>
-          <span /> A small look inside the process
+          <span /> {t("ui.aSmallLookInsideTheProcess")}
         </span>
         <span className={styles.edition}>YAMI ATELIER / STUDIO 01</span>
-      </div>
+      </motion.div>
 
-      <div className={styles.shell}>
-        <div className={styles.shellHeader}>
+      <motion.div variants={workspaceEntrance} className={styles.shell}>
+        <motion.div variants={entranceItem} className={styles.shellHeader}>
           <div className={styles.projectTab}>
             <span className={styles.projectIcon} aria-hidden="true">
               <FiPenTool />
             </span>
             <span>
-              Creative desk
+              {t("ui.creativeDesk")}
               <span className={styles.projectSubtitle}>
-                Yami Atelier / In progress
+                {t("workspace.inProgress")}
               </span>
             </span>
           </div>
           <div
             className={styles.toolTabs}
             role="group"
-            aria-label="Explore a creative tool"
+            aria-label={t("ui.exploreACreativeTool")}
           >
             {tools.map((item, index) => (
               <button
@@ -173,9 +175,9 @@ const CreativeWorkspace = ({
               </button>
             ))}
           </div>
-        </div>
-        <div className={styles.editor}>
-          <div className={styles.sessionBar}>
+        </motion.div>
+        <motion.div variants={entranceGroup} className={styles.editor}>
+          <motion.div variants={entranceItem} className={styles.sessionBar}>
             <div className={styles.sessionIdentity}>
               <span className={styles.sessionBadge} aria-hidden="true">
                 {tool.image ? (
@@ -185,7 +187,9 @@ const CreativeWorkspace = ({
                 )}
               </span>
               <div>
-                <span className={styles.sessionEyebrow}>THE WORKING FILE</span>
+                <span className={styles.sessionEyebrow}>
+                  {t("ui.theWorkingFile")}
+                </span>
                 <span className={styles.filename}>
                   an_idea_in_progress.{tool.extension}
                   <span className={styles.unsaved}>*</span>
@@ -194,18 +198,18 @@ const CreativeWorkspace = ({
             </div>
             <div className={styles.sessionMetrics} aria-hidden="true">
               <span>
-                <small>Discipline</small>
+                <small>{t("ui.discipline")}</small>
                 {tool.name}
               </span>
               <span>
-                <small>Perspective</small>0{active + 1} / 04
+                <small>{t("ui.perspective")}</small>0{active + 1} / 04
               </span>
               <span>
-                <small>Workspace</small>66.7%
+                <small>{t("ui.workspace")}</small>66.7%
               </span>
             </div>
-          </div>
-          <div className={styles.workbench}>
+          </motion.div>
+          <motion.div variants={entranceGroup} className={styles.workbench}>
             <svg
               className={styles.connections}
               viewBox="0 0 1200 500"
@@ -240,13 +244,23 @@ const CreativeWorkspace = ({
               </div>
             </div>
 
-            <div className={styles.layers} aria-hidden="true">
+            <motion.div
+              variants={entranceItem}
+              className={styles.layers}
+              aria-hidden="true"
+            >
               <div className={styles.panelHeading}>
-                <FiLayers /> {active === 2 ? "Pages" : "Layers"} <FiPlus />
+                <FiLayers />{" "}
+                {t(active === 2 ? "workspace.pages" : "workspace.layers")}{" "}
+                <FiPlus />
               </div>
               <div className={styles.layerGroup}>
                 <FiChevronDown />{" "}
-                {tool.name === "Figma" ? "Atelier app" : "The working file"}
+                {t(
+                  tool.name === "Figma"
+                    ? "workspace.atelierApp"
+                    : "workspace.workingFile",
+                )}
               </div>
               {tool.layers.map((layer, index) => (
                 <div
@@ -259,20 +273,23 @@ const CreativeWorkspace = ({
                 </div>
               ))}
               <div className={styles.layerNote}>
-                Somewhere between
+                {t("ui.somewhereBetween")}
                 <br />
-                the first thought
+                {t("ui.theFirstThought")}
                 <br />
-                and the final detail.
+                {t("ui.andTheFinalDetail")}
               </div>
-            </div>
+            </motion.div>
 
-            <div className={styles.canvas}>
+            <motion.div variants={entranceItem} className={styles.canvas}>
               <svg
                 viewBox="0 0 720 480"
                 className={styles.artboard}
                 role="img"
-                aria-label={`${tool.name} creative study: ${tool.discipline}`}
+                aria-label={t("workspace.study", {
+                  name: tool.name,
+                  discipline: tool.discipline,
+                })}
               >
                 <defs>
                   <pattern
@@ -327,7 +344,7 @@ const CreativeWorkspace = ({
                           fontSize="10"
                           letterSpacing="3"
                         >
-                          EXPERIMENT NO. 01
+                          {t("ui.experimentNo01")}
                         </text>
                         <text
                           x="110"
@@ -337,7 +354,7 @@ const CreativeWorkspace = ({
                           fontWeight="700"
                           letterSpacing="-3"
                         >
-                          A different
+                          {t("ui.aDifferent")}
                         </text>
                         <text
                           x="110"
@@ -347,7 +364,7 @@ const CreativeWorkspace = ({
                           fontWeight="700"
                           letterSpacing="-3"
                         >
-                          perspective.
+                          {t("ui.perspective2")}
                         </text>
                         <path d="M110 400 H270" stroke="#fff" strokeWidth="1" />
                         <text
@@ -357,7 +374,7 @@ const CreativeWorkspace = ({
                           fontSize="9"
                           letterSpacing="2"
                         >
-                          COLOR / TEXTURE / FEELING
+                          {t("ui.colorTextureFeeling")}
                         </text>
                       </>
                     )}
@@ -377,7 +394,7 @@ const CreativeWorkspace = ({
                           fontSize="10"
                           letterSpacing="3"
                         >
-                          THE BEAUTY OF A BÉZIER
+                          {t("ui.theBeautyOfABezier")}
                         </text>
                         <text
                           x="110"
@@ -387,7 +404,7 @@ const CreativeWorkspace = ({
                           fontWeight="600"
                           letterSpacing="-2"
                         >
-                          Every point
+                          {t("ui.everyPoint")}
                         </text>
                         <text
                           x="110"
@@ -397,7 +414,7 @@ const CreativeWorkspace = ({
                           fontWeight="600"
                           letterSpacing="-2"
                         >
-                          has potential.
+                          {t("ui.hasPotential")}
                         </text>
                         <path
                           d="M160 340 C200 200 490 400 570 180"
@@ -434,7 +451,7 @@ const CreativeWorkspace = ({
                           fontSize="9"
                           letterSpacing="2"
                         >
-                          PATHS, NOT LIMITS.
+                          {t("ui.pathsNotLimits")}
                         </text>
                       </>
                     )}
@@ -473,7 +490,7 @@ const CreativeWorkspace = ({
                           fontSize="10"
                           letterSpacing="3"
                         >
-                          NOTES ON DESIGN / VOL. 01
+                          {t("ui.notesOnDesignVol01")}
                         </text>
                         <text
                           x="78"
@@ -484,7 +501,7 @@ const CreativeWorkspace = ({
                           fontStyle="italic"
                           letterSpacing="-5"
                         >
-                          Form
+                          {t("ui.form")}
                         </text>
                         <text
                           x="82"
@@ -493,7 +510,7 @@ const CreativeWorkspace = ({
                           fontFamily="Georgia, serif"
                           fontSize="31"
                         >
-                          follows curiosity.
+                          {t("ui.followsCuriosity")}
                         </text>
                         {[0, 1, 2, 3, 4, 5, 6].map((i) => (
                           <path
@@ -504,7 +521,7 @@ const CreativeWorkspace = ({
                           />
                         ))}
                         <text x="82" y="398" fill="#756f60" fontSize="9">
-                          01 — Looking closer
+                          {t("ui.01LookingCloser")}
                         </text>
                         <text x="610" y="411" fill="#756f60" fontSize="9">
                           02
@@ -527,7 +544,7 @@ const CreativeWorkspace = ({
                           fontSize="10"
                           letterSpacing="3"
                         >
-                          LESS FRICTION. MORE FEELING.
+                          {t("ui.lessFrictionMoreFeeling")}
                         </text>
                         <rect
                           x="110"
@@ -554,7 +571,7 @@ const CreativeWorkspace = ({
                           fontWeight="600"
                           letterSpacing="-1"
                         >
-                          A little more
+                          {t("ui.aLittleMore")}
                         </text>
                         <text
                           x="132"
@@ -564,7 +581,7 @@ const CreativeWorkspace = ({
                           fontWeight="600"
                           letterSpacing="-1"
                         >
-                          human.
+                          {t("ui.human")}
                         </text>
                         <rect
                           x="132"
@@ -589,7 +606,7 @@ const CreativeWorkspace = ({
                           fill="#30372f"
                         />
                         <text x="153" y="371" fill="#fff" fontSize="10">
-                          Make some space ↗
+                          {t("ui.makeSomeSpace")}
                         </text>
                         <rect
                           x="420"
@@ -615,7 +632,7 @@ const CreativeWorkspace = ({
                           fontSize="12"
                           fontWeight="600"
                         >
-                          Your daily pause.
+                          {t("ui.yourDailyPause")}
                         </text>
                         <rect
                           x="438"
@@ -730,15 +747,19 @@ const CreativeWorkspace = ({
                 </motion.g>
               </svg>
               <span className={styles.canvasLabel}>
-                ONE IDEA. FOUR WAYS TO SHAPE IT.
+                {t("ui.oneIdeaFourWaysToShapeIt")}
               </span>
-            </div>
+            </motion.div>
 
-            <div className={styles.inspector} aria-hidden="true">
+            <motion.div
+              variants={entranceItem}
+              className={styles.inspector}
+              aria-hidden="true"
+            >
               <div className={styles.panelHeading}>
-                <FiSliders /> Properties
+                <FiSliders /> {t("ui.properties")}
               </div>
-              <span className={styles.inspectorLabel}>TRANSFORM</span>
+              <span className={styles.inspectorLabel}>{t("ui.transform")}</span>
               <div className={styles.propertyGrid}>
                 <span>
                   X <b>128</b>
@@ -753,7 +774,9 @@ const CreativeWorkspace = ({
                   H <b>640</b>
                 </span>
               </div>
-              <span className={styles.inspectorLabel}>APPEARANCE</span>
+              <span className={styles.inspectorLabel}>
+                {t("ui.appearance")}
+              </span>
               <div className={styles.colorProperty}>
                 <i style={{ background: tool.color }} />
                 <span>{tool.color.toUpperCase()}</span>
@@ -769,7 +792,9 @@ const CreativeWorkspace = ({
                   transition={{ duration }}
                 />
               </div>
-              <span className={styles.inspectorLabel}>WORKING PALETTE</span>
+              <span className={styles.inspectorLabel}>
+                {t("ui.workingPalette")}
+              </span>
               <div className={styles.palette}>
                 {["#ede9dc", tool.color, "#30372f", "#b55635"].map((color) => (
                   <i key={color} style={{ background: color }} />
@@ -778,56 +803,56 @@ const CreativeWorkspace = ({
               <div className={styles.inspectorFooter}>
                 <FiPenTool />
                 <span>
-                  Always a work
+                  {t("ui.alwaysAWork")}
                   <br />
-                  in progress.
+                  {t("ui.inProgress")}
                 </span>
               </div>
-            </div>
+            </motion.div>
             {design === "design-2" && (
               <>
                 <div className={styles.contextMenu} aria-hidden="true">
                   <span>
-                    Bring forward <small>⌘ ]</small>
+                    {t("ui.bringForward")} <small>⌘ ]</small>
                   </span>
                   <span>
-                    Bring to front <small>⇧ ⌘ ]</small>
+                    {t("ui.bringToFront")} <small>⇧ ⌘ ]</small>
                   </span>
                   <span>
-                    Send backward <small>⌘ [</small>
+                    {t("ui.sendBackward")} <small>⌘ [</small>
                   </span>
                   <span>
-                    Send to back <small>⇧ ⌘ [</small>
+                    {t("ui.sendToBack")} <small>⇧ ⌘ [</small>
                   </span>
                   <i />
                   <span>
-                    <FiTrash2 /> Delete
+                    <FiTrash2 /> {t("ui.delete")}
                   </span>
                   <span>
-                    <FiCopy /> Duplicate
+                    <FiCopy /> {t("ui.duplicate")}
                   </span>
                   <span className={styles.contextSelected}>
-                    <FiLock /> Lock
+                    <FiLock /> {t("ui.lock")}
                   </span>
                   <span>
-                    <FiLink /> Link
+                    <FiLink /> {t("ui.link")}
                   </span>
                   <i />
                   <span>
-                    <FiLayers /> Group selection
+                    <FiLayers /> {t("ui.groupSelection")}
                   </span>
                 </div>
                 <div
                   className={styles.filmstrip}
                   role="group"
-                  aria-label="Artboard previews"
+                  aria-label={t("ui.artboardPreviews")}
                 >
                   {tools.map((item, index) => (
                     <button
                       key={item.name}
                       type="button"
                       onClick={() => setActive(index)}
-                      aria-label={`Preview ${item.name}`}
+                      aria-label={t("workspace.preview", { name: item.name })}
                       aria-pressed={active === index}
                       className={active === index ? styles.previewActive : ""}
                     >
@@ -859,26 +884,24 @@ const CreativeWorkspace = ({
                 </div>
               </>
             )}
-          </div>
-          <div className={styles.statusbar}>
+          </motion.div>
+          <motion.div variants={entranceItem} className={styles.statusbar}>
             <span>
               <i /> {tool.discipline}
             </span>
             <span>
               Yami Atelier <FiArrowUpRight />
             </span>
-          </div>
-        </div>
-      </div>
+          </motion.div>
+        </motion.div>
+      </motion.div>
 
-      <div className={styles.caption}>
+      <motion.div variants={entranceItem} className={styles.caption}>
         {!reducedMotion && (
           <button
             type="button"
             onClick={() => setPaused((current) => !current)}
-            aria-label={
-              paused ? "Play studio animation" : "Pause studio animation"
-            }
+            aria-label={t(paused ? "workspace.play" : "workspace.pause")}
             aria-pressed={paused}
             className={styles.pause}
           >
@@ -889,8 +912,8 @@ const CreativeWorkspace = ({
             )}
           </button>
         )}
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 };
 

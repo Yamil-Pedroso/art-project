@@ -1,11 +1,12 @@
+import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { cvData, artShow } from "@/data/cvData";
+import { cvData, artShow as artShowData } from "@/data/cvData";
 import imageAssets from "@/assets";
 
 interface ExhibitionListProps {
   eyebrow: string;
   title: string;
-  shows: typeof artShow.soloShow.shows;
+  shows: typeof artShowData.soloShow.shows;
 }
 
 const ExhibitionList = ({ eyebrow, title, shows }: ExhibitionListProps) => (
@@ -51,7 +52,19 @@ const ExhibitionList = ({ eyebrow, title, shows }: ExhibitionListProps) => (
 );
 
 const ArtCV = () => {
-  const profile = cvData[0];
+  const { t } = useTranslation();
+
+  const profile = {
+    ...cvData[0],
+    ...(t("cv.profile", {
+      ns: "content",
+      returnObjects: true,
+    }) as (typeof cvData)[0]),
+  };
+  const artShow = t("cv.exhibitions", {
+    ns: "content",
+    returnObjects: true,
+  }) as typeof artShowData;
   const totalShows =
     artShow.soloShow.shows.length + artShow.groupShow.shows.length;
 
@@ -72,13 +85,13 @@ const ArtCV = () => {
           {profile.imageUrl && (
             <img
               src={profile.imageUrl}
-              alt="Artist working in the studio"
+              alt={t("ui.artistWorkingInTheStudio")}
               className="absolute inset-0 h-full w-full object-cover object-center grayscale"
             />
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-[#172019]/70 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-transparent lg:to-[#172019]/25" />
           <p className="absolute bottom-6 left-6 text-xs font-semibold uppercase tracking-[0.24em] text-white/75 sm:bottom-9 sm:left-9">
-            In the studio · Visual artist
+            {t("ui.inTheStudioVisualArtist")}
           </p>
         </motion.div>
 
@@ -92,21 +105,24 @@ const ArtCV = () => {
           <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full border border-white/[0.07]" />
 
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#d17450] sm:text-sm">
-            Artist profile
+            {t("ui.artistProfile")}
           </p>
           <h3 className="mt-5 text-5xl font-semibold leading-[0.96] tracking-[-0.045em] sm:text-6xl xl:text-7xl">
-            A practice between places.
+            {t("ui.aPracticeBetweenPlaces")}
           </h3>
           <p className="mt-7 max-w-xl text-lg leading-relaxed text-[#bcc2bd] sm:text-xl">
-            Caribbean roots, European influences and more than fifteen years
-            exploring traditional and digital mediums.
+            {t(
+              "ui.caribbeanRootsEuropeanInfluencesAndMoreThanFifteenYearsExploring",
+            )}
           </p>
 
           <div className="mt-10 grid grid-cols-3 gap-4 border-t border-white/15 pt-7">
             <div>
-              <span className="block text-3xl font-semibold text-white">15+</span>
+              <span className="block text-3xl font-semibold text-white">
+                15+
+              </span>
               <span className="mt-1 block text-xs uppercase tracking-[0.14em] text-[#858f88]">
-                Years
+                {t("ui.years")}
               </span>
             </div>
             <div>
@@ -114,13 +130,13 @@ const ArtCV = () => {
                 {totalShows}
               </span>
               <span className="mt-1 block text-xs uppercase tracking-[0.14em] text-[#858f88]">
-                Exhibitions
+                {t("ui.exhibitions")}
               </span>
             </div>
             <div>
               <span className="block text-3xl font-semibold text-white">3</span>
               <span className="mt-1 block text-xs uppercase tracking-[0.14em] text-[#858f88]">
-                Countries
+                {t("ui.countries")}
               </span>
             </div>
           </div>
@@ -130,10 +146,10 @@ const ArtCV = () => {
       <div className="grid gap-10 px-6 py-16 sm:px-10 sm:py-20 lg:grid-cols-[0.65fr_1.35fr] lg:gap-x-16 lg:gap-y-12 lg:px-14 lg:py-24 xl:grid-cols-[0.52fr_0.68fr_1.1fr] xl:gap-x-14 xl:px-20">
         <div className="lg:col-start-1 lg:row-start-1">
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#b5502d]">
-            Curriculum vitae
+            {t("ui.curriculumVitae")}
           </p>
           <h3 className="mt-4 text-4xl font-semibold leading-tight tracking-[-0.04em] text-[#172019] sm:text-5xl">
-            Art as a cultural and emotional language.
+            {t("ui.artAsACulturalAndEmotionalLanguage")}
           </h3>
           <p className="mt-5 text-base font-medium text-[#59615c]">
             {profile.subtitle}
@@ -150,24 +166,24 @@ const ArtCV = () => {
           <div className="relative aspect-[3/4] min-h-[28rem] overflow-hidden xl:min-h-0">
             <img
               src={imageAssets.yamiDraw}
-              alt="Yami drawing in Venice with a sketchbook"
+              alt={t("ui.yamiDrawingInVeniceWithASketchbook")}
               className="absolute inset-0 h-full w-full object-cover object-top transition duration-700 hover:scale-[1.025]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#172019]/85 via-transparent to-transparent" />
             <figcaption className="absolute inset-x-0 bottom-0 p-6 text-[#f5f2eb] sm:p-7">
               <span className="block text-[10px] font-semibold uppercase tracking-[0.28em] text-[#d99272]">
-                Travel sketchbook
+                {t("ui.travelSketchbook")}
               </span>
               <span className="mt-2 block text-xl font-semibold tracking-[-0.02em]">
-                Drawing in Venice
+                {t("ui.drawingInVenice")}
               </span>
             </figcaption>
           </div>
 
           <div className="flex flex-1 flex-col justify-between gap-16 px-6 py-8 text-[#f5f2eb] sm:px-7 sm:py-9 xl:gap-12">
             <div className="flex items-center justify-between border-b border-white/15 pb-4 text-[9px] font-semibold uppercase tracking-[0.26em] text-white/45">
-              <span>Field notes</span>
-              <span>01 / Venice</span>
+              <span>{t("ui.fieldNotes")}</span>
+              <span>{t("ui.01Venice")}</span>
             </div>
 
             <div>
@@ -176,21 +192,20 @@ const ArtCV = () => {
                 className="block h-px w-10 bg-[#d17450]"
               />
               <p className="mt-5 max-w-xs text-2xl font-medium leading-[1.18] tracking-[-0.035em] text-white sm:text-3xl xl:text-2xl 2xl:text-3xl">
-                Drawing as a way of looking longer.
+                {t("ui.drawingAsAWayOfLookingLonger")}
               </p>
               <p className="mt-5 text-sm leading-relaxed text-[#929b95]">
-                Observing place, gesture and memory through the intimacy of a
-                travel sketchbook.
+                {t("ui.observingPlaceGestureAndMemoryThroughTheIntimacyOfA")}
               </p>
             </div>
 
             <div className="flex items-end justify-between gap-4 border-t border-white/15 pt-5">
               <div>
                 <span className="block text-[9px] font-semibold uppercase tracking-[0.24em] text-white/40">
-                  Practice
+                  {t("ui.practice")}
                 </span>
                 <span className="mt-1.5 block text-xs font-medium uppercase tracking-[0.14em] text-white/75">
-                  Drawing · Observation
+                  {t("ui.drawingObservation")}
                 </span>
               </div>
               <span className="text-4xl font-light leading-none text-white/10">
@@ -206,16 +221,19 @@ const ArtCV = () => {
           </p>
 
           <div className="mt-10 flex flex-wrap gap-2.5 border-t border-[#172019]/15 pt-7">
-            {["YETI–UNEAC", "San Alejandro", "Havana", "Zurich"].map(
-              (item) => (
-                <span
-                  key={item}
-                  className="rounded-full border border-[#172019]/15 bg-[#f5f2eb]/60 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#59615c]"
-                >
-                  {item}
-                </span>
-              )
-            )}
+            {[
+              "YETI–UNEAC",
+              "San Alejandro",
+              t("cv.havana", { ns: "content" }),
+              t("cv.zurich", { ns: "content" }),
+            ].map((item) => (
+              <span
+                key={item}
+                className="rounded-full border border-[#172019]/15 bg-[#f5f2eb]/60 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#59615c]"
+              >
+                {item}
+              </span>
+            ))}
           </div>
         </div>
       </div>
@@ -230,7 +248,7 @@ const ArtCV = () => {
         <div className="relative min-h-[24rem] overflow-hidden sm:min-h-[34rem] lg:min-h-full">
           <img
             src={imageAssets.yamiDraw1}
-            alt="Yami painting at the Rembrandt House Museum in Amsterdam"
+            alt={t("ui.yamiPaintingAtTheRembrandtHouseMuseumInAmsterdam")}
             loading="lazy"
             decoding="async"
             className="absolute inset-0 h-full w-full object-cover object-center transition duration-700 hover:scale-[1.02]"
@@ -238,42 +256,42 @@ const ArtCV = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-[#172019]/60 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-transparent lg:to-[#172019]/30" />
           <figcaption className="absolute bottom-6 left-6 right-6 sm:bottom-9 sm:left-9 lg:hidden">
             <span className="text-[10px] font-semibold uppercase tracking-[0.27em] text-[#e1a284]">
-              The Rembrandt House Museum · Amsterdam
+              {t("ui.theRembrandtHouseMuseumAmsterdam")}
             </span>
           </figcaption>
         </div>
 
         <div className="relative flex flex-col justify-between gap-14 px-6 py-12 sm:px-10 sm:py-14 lg:px-12 lg:py-16 xl:px-16">
           <div className="flex items-center justify-between border-b border-white/15 pb-5 text-[9px] font-semibold uppercase tracking-[0.26em] text-white/45">
-            <span>Field notes</span>
-            <span>02 / Amsterdam</span>
+            <span>{t("ui.fieldNotes")}</span>
+            <span>{t("ui.02Amsterdam")}</span>
           </div>
 
           <div>
             <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#d99272]">
-              The Rembrandt House Museum
+              {t("ui.theRembrandtHouseMuseum")}
             </p>
             <h3 className="mt-5 max-w-md text-4xl font-semibold leading-[1.02] tracking-[-0.045em] text-white sm:text-5xl lg:text-4xl xl:text-5xl">
-              Painting where history still feels present.
+              {t("ui.paintingWhereHistoryStillFeelsPresent")}
             </h3>
             <span
               aria-hidden="true"
               className="mt-7 block h-px w-12 bg-[#d17450]"
             />
             <p className="mt-6 max-w-md text-base leading-relaxed text-[#aeb6b0] sm:text-lg">
-              A moment of practice inside Rembrandt’s house in Amsterdam,
-              connecting direct observation with the techniques and legacy of
-              the old masters.
+              {t(
+                "ui.aMomentOfPracticeInsideRembrandtsHouseInAmsterdamConnecting",
+              )}
             </p>
           </div>
 
           <div className="flex items-end justify-between gap-4 border-t border-white/15 pt-5">
             <div>
               <span className="block text-[9px] font-semibold uppercase tracking-[0.24em] text-white/40">
-                Practice
+                {t("ui.practice")}
               </span>
               <span className="mt-1.5 block text-xs font-medium uppercase tracking-[0.14em] text-white/75">
-                Painting · Tradition · Study
+                {t("ui.paintingTraditionStudy")}
               </span>
             </div>
             <span className="text-5xl font-light leading-none text-white/10">
@@ -286,21 +304,21 @@ const ArtCV = () => {
       <div className="border-t border-[#172019]/10 bg-[#f5f2eb] px-6 py-16 sm:px-10 sm:py-20 lg:px-14 lg:py-24 xl:px-20">
         <div className="mb-14 max-w-3xl">
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#b5502d]">
-            Selected history
+            {t("ui.selectedHistory")}
           </p>
           <h3 className="mt-4 text-4xl font-semibold tracking-[-0.04em] text-[#172019] sm:text-5xl lg:text-6xl">
-            Exhibitions & milestones
+            {t("ui.exhibitionsMilestones")}
           </h3>
         </div>
 
         <div className="grid gap-16 xl:grid-cols-2 xl:gap-20">
           <ExhibitionList
-            eyebrow="Individual practice"
+            eyebrow={t("cv.individual", { ns: "content" })}
             title={artShow.soloShow.header}
             shows={artShow.soloShow.shows}
           />
           <ExhibitionList
-            eyebrow="Collective practice"
+            eyebrow={t("cv.collective", { ns: "content" })}
             title={artShow.groupShow.header}
             shows={artShow.groupShow.shows}
           />
