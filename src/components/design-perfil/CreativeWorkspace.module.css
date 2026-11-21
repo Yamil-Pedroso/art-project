@@ -748,3 +748,506 @@
     transition: none !important;
   }
 }
+
+/* Alternate shell: a compact graphite editor, with the same animated artboards. */
+.editorVariant {
+  --surface: #2e2e38;
+  --editor-panel: #1a1418;
+  max-width: 1280px;
+  padding-top: 38px;
+}
+.editorVariant .intro {
+  margin-bottom: 16px;
+  padding-inline: 0;
+}
+.editorVariant .shell {
+  padding: 0;
+  border: 1px solid var(--editor-panel);
+  border-radius: 9px;
+  background: var(--editor-panel);
+  box-shadow: 0 28px 60px -30px #0009;
+}
+.editorVariant .shellHeader {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 20px;
+  min-height: 49px;
+  padding: 7px 18px;
+  background: var(--editor-panel);
+  border-radius: 8px 8px 0 0;
+}
+.editorVariant .projectTab {
+  min-width: 0;
+  width: auto;
+  align-self: auto;
+  padding: 0;
+  gap: 10px;
+  border-radius: 0;
+  background: none;
+  font-size: 12px;
+  letter-spacing: -0.01em;
+}
+.editorVariant .projectTab::after {
+  display: none;
+}
+.editorVariant .projectIcon {
+  width: 25px;
+  height: 25px;
+  background: var(--editor-panel);
+  border-radius: 4px;
+  color: #d4d4dd;
+  font-size: 12px;
+}
+.editorVariant .projectSubtitle {
+  display: none;
+}
+.editorVariant .toolTabs {
+  display: flex;
+  justify-content: flex-end;
+  width: auto;
+  flex: 1;
+  padding: 0;
+  background: none;
+  gap: 5px;
+}
+.editorVariant .toolTab {
+  flex-direction: row;
+  min-height: 30px;
+  padding: 4px 10px;
+  gap: 6px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  color: #aaaab6;
+  font-size: 9px;
+}
+.editorVariant .toolTab:hover {
+  background: #34343e;
+  transform: none;
+}
+.editorVariant .toolActive {
+  background: #31313c;
+  border-color: #555561;
+  color: #f6f3f3;
+}
+.editorVariant .toolBadge {
+  width: 21px;
+  height: 21px;
+  border-radius: 3px;
+  background: var(--editor-panel);
+  font-size: 13px;
+}
+.editorVariant .editor {
+  padding: 0;
+  border-radius: 0 0 8px 8px;
+  background: var(--surface);
+}
+.editorVariant .sessionBar {
+  position: absolute;
+  left: 84px;
+  right: 218px;
+  top: 15px;
+  z-index: 2;
+  padding: 0;
+  pointer-events: none;
+}
+.editorVariant .sessionBadge,
+.editorVariant .sessionEyebrow,
+.editorVariant .sessionMetrics {
+  display: none;
+}
+.editorVariant .sessionIdentity {
+  gap: 0;
+}
+.editorVariant .filename {
+  font-size: 8px;
+  color: #9c9baa;
+  letter-spacing: 0.01em;
+}
+.editorVariant .workbench {
+  display: grid;
+  grid-template-columns: 55px minmax(0, 1fr) 212px;
+  gap: 0;
+  align-items: stretch;
+  min-height: 620px;
+  padding: 19px 17px 19px 14px;
+}
+.editorVariant .connections {
+  display: none;
+}
+.editorVariant .toolbar {
+  position: relative;
+  left: auto;
+  bottom: auto;
+  top: auto;
+  align-self: start;
+  justify-self: start;
+  flex-direction: column;
+  transform: none;
+  gap: 6px;
+  padding: 7px;
+  border: 0;
+  border-radius: 7px;
+  background: var(--editor-panel);
+  box-shadow: 0 7px 17px #0002;
+}
+.editorVariant .toolbar > span {
+  width: 26px;
+  height: 27px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #c6c6d1;
+}
+.editorVariant .toolbar > .selectedTool {
+  background: #424250;
+  color: #fff;
+}
+.editorVariant .swatches {
+  display: none;
+}
+.editorVariant .layers {
+  position: absolute;
+  left: 18px;
+  bottom: 46px;
+  width: 153px;
+  padding: 15px 11px;
+  border: 0;
+  border-radius: 7px;
+  margin: 0;
+  background: var(--editor-panel);
+  box-shadow: 0 7px 20px #0003;
+  font-size: 9px;
+}
+.editorVariant .panelHeading {
+  font-size: 9px;
+  margin-bottom: 18px;
+  color: #dbdbe3;
+}
+.editorVariant .layerGroup {
+  display: none;
+}
+.editorVariant .layer {
+  min-height: 25px;
+  padding: 5px;
+  border-radius: 3px;
+  font-size: 7px;
+}
+.editorVariant .layerSelected {
+  background: #393946;
+}
+.editorVariant .layerNote {
+  margin-top: 11px;
+  padding: 10px 3px 0;
+  font-size: 8px;
+  color: #8c8c9b;
+  line-height: 1.6;
+}
+.editorVariant .canvas {
+  align-self: stretch;
+  min-width: 0;
+  padding: 28px 14px 102px 8px;
+}
+.editorVariant .artboard {
+  max-width: 660px;
+  max-height: 450px;
+}
+.editorVariant .canvasLabel {
+  bottom: 110px;
+  font-size: 5px;
+  color: #8c8b9a;
+}
+.editorVariant .inspector {
+  align-self: stretch;
+  width: auto;
+  margin: 0;
+  padding: 21px 17px;
+  border: 0;
+  border-radius: 7px;
+  background: var(--editor-panel);
+}
+.editorVariant .inspectorLabel {
+  color: #a5a4b1;
+  margin-top: 5px;
+  font-size: 7px;
+}
+.editorVariant .propertyGrid span {
+  background: #262630;
+  border-radius: 3px;
+  color: #92929f;
+  padding: 7px;
+}
+.editorVariant .propertyGrid b {
+  color: #d7d6df;
+}
+.editorVariant .sliderTrack {
+  background: #3f3f4b;
+}
+.editorVariant .sliderTrack i {
+  width: 6px;
+  height: 6px;
+  top: -2px;
+  background: #ff6338;
+}
+.editorVariant .palette {
+  gap: 6px;
+}
+.editorVariant .palette i {
+  width: 27px;
+  height: 27px;
+  border-radius: 3px;
+}
+.editorVariant .inspectorFooter {
+  margin-top: auto;
+  padding-top: 23px;
+  font-size: 9px;
+  color: #9695a5;
+}
+.editorVariant .inspectorFooter svg {
+  color: #ff6338;
+}
+.editorVariant .statusbar {
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  gap: 13px;
+  width: max-content;
+  max-width: calc(100% - 50px);
+  min-height: 25px;
+  padding: 5px 10px;
+  border: 0;
+  border-radius: 4px;
+  background: var(--editor-panel);
+  font-size: 7px;
+}
+.editorVariant .statusbar i {
+  background: #ff6338;
+  width: 4px;
+  height: 4px;
+}
+.editorVariant .statusbar > span:last-child {
+  color: #8e8c9d;
+}
+.contextMenu {
+  position: absolute;
+  top: 125px;
+  left: 51%;
+  z-index: 3;
+  width: 153px;
+  padding: 9px 0;
+  border: 1px solid #3b3b47;
+  border-radius: 7px;
+  background: var(--editor-panel);
+  color: #b6b5c1;
+  box-shadow: 0 12px 25px #0004;
+  backdrop-filter: blur(12px);
+  pointer-events: none;
+}
+.contextMenu > span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 23px;
+  padding: 5px 12px;
+  font-size: 7px;
+}
+.contextMenu small {
+  margin-left: auto;
+  color: #737281;
+  font-size: 6px;
+}
+.contextMenu > i {
+  display: block;
+  border-top: 1px solid #ffffff09;
+  margin: 5px 9px;
+}
+.contextMenu > .contextSelected {
+  margin-inline: 5px;
+  padding-inline: 7px;
+  border-radius: 3px;
+  background: #ff5932;
+  color: #fff;
+}
+.filmstrip {
+  position: absolute;
+  bottom: 57px;
+  left: calc((100% - 212px) / 2);
+  transform: translateX(-50%);
+  display: flex;
+  gap: 5px;
+  z-index: 3;
+  padding: 8px;
+  border: 1px solid #4b495c;
+  border-radius: 8px;
+  background: var(--editor-panel);
+  box-shadow: 0 8px 20px #0004;
+}
+.filmstrip button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 43px;
+  padding: 3px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #92919f;
+  cursor: pointer;
+  font-size: 5px;
+}
+.filmstrip button:hover {
+  background: #393744;
+}
+.filmstrip .previewActive {
+  border-color: #ad9eff;
+  color: #fff;
+}
+.filmstrip button:focus-visible {
+  outline: 2px solid #ad9eff;
+  outline-offset: 2px;
+}
+.previewArt {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 31px;
+  height: 44px;
+  overflow: hidden;
+  background: #eee9dd;
+}
+.previewArt img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.previewStar {
+  font-size: 29px;
+  line-height: 1;
+  color: #ce713d;
+}
+.previewType {
+  font:
+    italic 20px Georgia,
+    serif;
+  color: #b6556d;
+}
+.previewFrames {
+  display: flex;
+  gap: 2px;
+}
+.previewFrames i {
+  display: block;
+  width: 10px;
+  height: 24px;
+  background: #78916b;
+  border-radius: 2px;
+}
+.previewFrames i + i {
+  width: 7px;
+  height: 20px;
+  margin-top: 4px;
+}
+@media (max-width: 1000px) {
+  .editorVariant .workbench {
+    grid-template-columns: 44px minmax(0, 1fr) 175px;
+    padding-inline: 10px;
+    min-height: 550px;
+  }
+  .editorVariant .inspector {
+    padding: 18px 12px;
+  }
+  .editorVariant .layers {
+    width: 126px;
+  }
+  .editorVariant .sessionBar {
+    left: 65px;
+    right: 196px;
+  }
+  .filmstrip {
+    left: calc((100% - 175px) / 2);
+  }
+  .contextMenu {
+    left: 46%;
+    width: 137px;
+    top: 105px;
+  }
+}
+@media (max-width: 700px) {
+  .editorVariant .shellHeader {
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 13px;
+  }
+  .editorVariant .projectTab {
+    width: 100%;
+  }
+  .editorVariant .toolTabs {
+    justify-content: flex-start;
+    gap: 4px;
+  }
+  .editorVariant .toolTab {
+    flex: 1;
+    padding-inline: 6px;
+    font-size: 8px;
+  }
+  .editorVariant .workbench {
+    grid-template-columns: 36px minmax(0, 1fr);
+    padding: 14px 10px;
+    min-height: 475px;
+  }
+  .editorVariant .inspector {
+    display: none;
+  }
+  .editorVariant .sessionBar {
+    left: 58px;
+    right: 12px;
+    top: 12px;
+  }
+  .editorVariant .layers {
+    display: none;
+  }
+  .editorVariant .canvas {
+    padding: 25px 0 115px;
+  }
+  .editorVariant .artboard {
+    width: 112%;
+    max-width: none;
+  }
+  .editorVariant .canvasLabel {
+    bottom: 127px;
+    font-size: 4px;
+  }
+  .editorVariant .toolbar {
+    padding: 4px;
+    gap: 4px;
+  }
+  .editorVariant .toolbar > span {
+    width: 24px;
+    height: 25px;
+  }
+  .editorVariant .statusbar {
+    bottom: 12px;
+    font-size: 5px;
+    gap: 8px;
+  }
+  .contextMenu {
+    top: 95px;
+    left: 52%;
+    width: 121px;
+    padding-block: 5px;
+  }
+  .contextMenu > span {
+    font-size: 6px;
+    min-height: 20px;
+    padding: 4px 9px;
+  }
+  .contextMenu small {
+    font-size: 5px;
+  }
+  .filmstrip {
+    left: calc(50% + 14px);
+    bottom: 47px;
+  }
+}

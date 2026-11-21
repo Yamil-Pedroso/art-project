@@ -7,11 +7,13 @@ import {
 } from "framer-motion";
 import {
   FiArrowUpRight,
+  FiCopy,
   FiChevronDown,
   FiCircle,
   FiEye,
   FiGrid,
   FiLayers,
+  FiLink,
   FiLock,
   FiMousePointer,
   FiPause,
@@ -20,6 +22,7 @@ import {
   FiPlus,
   FiSliders,
   FiSquare,
+  FiTrash2,
   FiType,
 } from "react-icons/fi";
 import designImage from "@/assets/images/hero/design-hero.webp";
@@ -84,7 +87,13 @@ const markPositions = [
   { x: 505, y: 250, scale: 0.62, rotate: 45 },
 ];
 
-const CreativeWorkspace = () => {
+export type WorkspaceDesign = "design-1" | "design-2";
+
+const CreativeWorkspace = ({
+  design = "design-1",
+}: {
+  design?: WorkspaceDesign;
+}) => {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const [focused, setFocused] = useState(false);
@@ -106,7 +115,8 @@ const CreativeWorkspace = () => {
   return (
     <section
       ref={ref}
-      className={styles.studio}
+      className={`${styles.studio} ${design === "design-2" ? styles.editorVariant : ""}`}
+      data-design={design}
       aria-label="A preview of my creative studio"
       onFocusCapture={() => setFocused(true)}
       onBlurCapture={(event) => {
@@ -774,6 +784,81 @@ const CreativeWorkspace = () => {
                 </span>
               </div>
             </div>
+            {design === "design-2" && (
+              <>
+                <div className={styles.contextMenu} aria-hidden="true">
+                  <span>
+                    Bring forward <small>⌘ ]</small>
+                  </span>
+                  <span>
+                    Bring to front <small>⇧ ⌘ ]</small>
+                  </span>
+                  <span>
+                    Send backward <small>⌘ [</small>
+                  </span>
+                  <span>
+                    Send to back <small>⇧ ⌘ [</small>
+                  </span>
+                  <i />
+                  <span>
+                    <FiTrash2 /> Delete
+                  </span>
+                  <span>
+                    <FiCopy /> Duplicate
+                  </span>
+                  <span className={styles.contextSelected}>
+                    <FiLock /> Lock
+                  </span>
+                  <span>
+                    <FiLink /> Link
+                  </span>
+                  <i />
+                  <span>
+                    <FiLayers /> Group selection
+                  </span>
+                </div>
+                <div
+                  className={styles.filmstrip}
+                  role="group"
+                  aria-label="Artboard previews"
+                >
+                  {tools.map((item, index) => (
+                    <button
+                      key={item.name}
+                      type="button"
+                      onClick={() => setActive(index)}
+                      aria-label={`Preview ${item.name}`}
+                      aria-pressed={active === index}
+                      className={active === index ? styles.previewActive : ""}
+                    >
+                      <span
+                        className={styles.previewArt}
+                        style={
+                          {
+                            "--preview-accent": item.color,
+                          } as React.CSSProperties
+                        }
+                        aria-hidden="true"
+                      >
+                        {index === 0 ? (
+                          <img src={designImage} alt="" />
+                        ) : index === 1 ? (
+                          <span className={styles.previewStar}>✦</span>
+                        ) : index === 2 ? (
+                          <span className={styles.previewType}>Aa</span>
+                        ) : (
+                          <span className={styles.previewFrames}>
+                            <i />
+                            <i />
+                          </span>
+                        )}
+                      </span>
+                      <span>{item.name}</span>
+                    </button>
+                  ))}
+                </div>
+              </>
+            )}
           </div>
           <div className={styles.statusbar}>
             <span>

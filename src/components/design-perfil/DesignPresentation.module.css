@@ -1,0 +1,66 @@
+.presentation {
+  width: 100%;
+  margin-block: auto;
+}
+.switcher {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  margin: 28px auto 0;
+}
+.switcher button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 10px 19px;
+  border: 1px solid #8b91954d;
+  border-radius: 24px;
+  color: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s;
+}
+.switcher button:hover {
+  border-color: #2d92b5;
+}
+.switcher button:focus-visible {
+  outline: 2px solid #2d92b5;
+  outline-offset: 3px;
+}
+.switcher .active {
+  background: #e7e9e3;
+  border-color: #e7e9e3;
+  color: #232629;
+}
+.organicIcon,
+.editorIcon {
+  width: 15px;
+  height: 13px;
+  display: block;
+  border: 1px solid currentColor;
+  position: relative;
+}
+.organicIcon {
+  border-radius: 6px 6px 4px 4px;
+}
+.editorIcon {
+  border-radius: 2px;
+}
+.editorIcon::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  right: 2px;
+  top: 3px;
+  border-top: 1px solid currentColor;
+}
+@media (prefers-reduced-motion: reduce) {
+  .switcher button {
+    transition: none;
+  }
+}
