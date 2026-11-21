@@ -1,3 +1,7 @@
+// Design Perfil Collection
+import figma from "./images/design-perfil/figma.png";
+
+// Traditional Art Collection
 import hero from "./images/hero/hero.webp";
 
 import art1 from "./images/art-works/art1.webp";
@@ -150,6 +154,7 @@ interface ImageAssets {
 }
 
 const imageAssets: ImageAssets = {
+  figma,
   hero,
   yamiAtelier,
   yamiDraw,

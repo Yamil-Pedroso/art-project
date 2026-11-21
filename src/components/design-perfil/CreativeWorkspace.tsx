@@ -24,6 +24,7 @@ import {
 } from "react-icons/fi";
 import designImage from "@/assets/images/hero/design-hero.webp";
 import styles from "./CreativeWorkspace.module.css";
+import figma from "@/assets/images/design-perfil/figma.png";
 
 const tools = [
   {
@@ -64,7 +65,7 @@ const tools = [
   },
   {
     name: "Figma",
-    image: "/public/figma.png",
+    image: figma,
     extension: "fig",
     color: "#bea7ef",
     discipline: "Made for the human side",
