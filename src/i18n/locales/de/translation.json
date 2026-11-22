@@ -182,7 +182,7 @@
     "previous": "← Zurück",
     "next": "Weiter →",
     "volverALaPaginaPrincipal": "Zurück zur Startseite",
-    "designPerfilAdobeFigmaFocus": "Design Perfil — Adobe & Figma im Fokus"
+    "designPerfilAdobeFigmaFocus": "Design Perfil Adobe & Figma im Fokus"
   },
   "language": {
     "choose": "Sprache auswählen"
@@ -334,38 +334,22 @@
     "inProgress": "Yami Atelier / In Arbeit",
     "ps": {
       "discipline": "Bild & Vorstellungskraft",
-      "layers": [
-        "Farbstudie",
-        "Papiertextur",
-        "Hintergrund"
-      ],
+      "layers": ["Farbstudie", "Papiertextur", "Hintergrund"],
       "property": "Farbbalance"
     },
     "ai": {
       "discipline": "Punkte voller Möglichkeiten",
-      "layers": [
-        "Bézierstudie",
-        "Konstruktionslinien",
-        "Zeichenfläche 01"
-      ],
+      "layers": ["Bézierstudie", "Konstruktionslinien", "Zeichenfläche 01"],
       "property": "Eckenradius"
     },
     "id": {
       "discipline": "Schrift, Rhythmus & Raum",
-      "layers": [
-        "Editorial-Typografie",
-        "Bildrahmen",
-        "Grundlinienraster"
-      ],
+      "layers": ["Editorial-Typografie", "Bildrahmen", "Grundlinienraster"],
       "property": "Grundlinienraster"
     },
     "fig": {
       "discipline": "Für Menschen gestaltet",
-      "layers": [
-        "Atelier / Startseite",
-        "Komponenten",
-        "Design-Tokens"
-      ],
+      "layers": ["Atelier / Startseite", "Komponenten", "Design-Tokens"],
       "property": "Auto-Layout"
     },
     "pages": "Seiten",
